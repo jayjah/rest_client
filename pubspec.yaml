@@ -1,0 +1,29 @@
+name: dart_backend_client
+description: A flutter package to provide a rest interface to dart_backend
+version: 0.0.1
+author: Markus Krebs <jah@jayjah.de>
+homepage: https://www.jayjah.de
+repository: https://github.com/jayjah/dart_backend_client
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  dio: ^3.0.10
+  path_provider: ^2.0.1
+  package_info_plus: any
+  json_serializable: any
+  json_annotation: any
+  retrofit: any
+  logger: any
+dev_dependencies:
+  flutter_test:
+
+    sdk: flutter
+  retrofit_generator: any
+  build_runner: any
+flutter:
