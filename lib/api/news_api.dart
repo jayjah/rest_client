@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -31,12 +32,28 @@ abstract class NewsRestClient {
   Future<NewsObject> create(@Body() NewsObject task);
 }
 
+@HiveType(typeId: 1)
 @JsonSerializable()
 class NewsObject {
+  @HiveField(0)
   int id;
-  String youtubeUrl, title, wordPressId, text;
-  String name, shortDescription;
-  DateTime createdAt, updatedAt;
+  @HiveField(1)
+  String youtubeUrl;
+  @HiveField(2)
+  String title;
+  @HiveField(3)
+  String wordPressId;
+  @HiveField(4)
+  String text;
+  @HiveField(5)
+  String name;
+  @HiveField(6)
+  String shortDescription;
+  @HiveField(7)
+  DateTime createdAt;
+  @HiveField(8)
+  DateTime updatedAt;
+  @HiveField(9)
   ImageObject image;
 
   NewsObject(

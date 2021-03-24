@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -34,12 +35,23 @@ abstract class ImageRestClient {
       @Header('type') String type});
 }
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class ImageObject {
+  @HiveField(0)
   int id;
-  String name, shortDescription;
-  DateTime createdAt, updatedAt;
-  String youtubeUrl, title;
+  @HiveField(1)
+  String name;
+  @HiveField(2)
+  String shortDescription;
+  @HiveField(3)
+  DateTime createdAt;
+  @HiveField(4)
+  DateTime updatedAt;
+  @HiveField(5)
+  String youtubeUrl;
+  @HiveField(6)
+  String title;
 
   ImageObject(
       {this.id,
