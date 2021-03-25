@@ -1,5 +1,4 @@
 ![Dart](https://img.shields.io/badge/Dart-2.12.0-green)
-![Flutter](https://img.shields.io/badge/Flutter-2.0.0-blue)
 
 # dart_backend_client
 

@@ -1,5 +1,5 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Images', () {
@@ -7,7 +7,7 @@ void main() {
     setUp(() {
       image = ImageRestClient(
         Client.getDio,
-        baseUrl: 'https://movementfam.jayjah.de/v3/images',
+        baseUrl: 'https://movementfam.jayjah.de/v3',
       );
     });
     test('getAll', () async {

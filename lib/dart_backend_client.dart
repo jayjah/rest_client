@@ -3,8 +3,7 @@ library dart_backend_client;
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-
-//export 'package:dio/dio.dart' show Response;
+import 'package:dio_logger/dio_logger.dart';
 
 export 'api/image_api.dart';
 export 'api/news_api.dart';

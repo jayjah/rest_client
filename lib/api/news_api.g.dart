@@ -105,3 +105,118 @@ Map<String, dynamic> _$NewsObjectToJson(NewsObject instance) =>
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'image': instance.image,
     };
+
+// **************************************************************************
+// RetrofitGenerator
+// **************************************************************************
+
+class _NewsRestClient implements NewsRestClient {
+  _NewsRestClient(this._dio, {this.baseUrl}) {
+    ArgumentError.checkNotNull(_dio, '_dio');
+  }
+
+  final Dio _dio;
+
+  String baseUrl;
+
+  @override
+  Future<List<NewsObject>> getAll(
+      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<List<dynamic>>('/news',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{
+              if (pageById != null) r'pageById': pageById,
+              if (pageByDate != null) r'pageByDate': pageByDate,
+              if (splitBy != null) r'splitBy': splitBy,
+              if (onlyIds != null) r'onlyIds': onlyIds,
+              if (pageByIds != null) r'pageByIds': pageByIds
+            },
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    var value = _result.data
+        .map((dynamic i) => NewsObject.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<NewsObject> getOne(id) async {
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('/news/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = NewsObject.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<NewsObject> update(id, task) async {
+    ArgumentError.checkNotNull(id, 'id');
+    ArgumentError.checkNotNull(task, 'task');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(task?.toJson() ?? <String, dynamic>{});
+    final _result = await _dio.request<Map<String, dynamic>>('/news/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'PUT',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = NewsObject.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<void> delete(id) async {
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    await _dio.request<void>('/news/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'DELETE',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    return null;
+  }
+
+  @override
+  Future<NewsObject> create(task) async {
+    ArgumentError.checkNotNull(task, 'task');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(task?.toJson() ?? <String, dynamic>{});
+    final _result = await _dio.request<Map<String, dynamic>>('/news',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = NewsObject.fromJson(_result.data);
+    return value;
+  }
+}

@@ -11,7 +11,7 @@ part 'image_api.g.dart';
 abstract class ImageRestClient {
   factory ImageRestClient(Dio dio, {String baseUrl}) = _ImageRestClient;
 
-  @GET("/news")
+  @GET("/images")
   Future<List<ImageObject>> getAll(
       {@Header("pageById") int pageById,
       @Header('pageByDate') DateTime pageByDate,
@@ -19,16 +19,16 @@ abstract class ImageRestClient {
       @Header('onlyIds') bool onlyIds,
       @Header('pageByIds') List<int> pageByIds});
 
-  @GET("/news/{id}")
+  @GET("/images/{id}")
   Future<ImageObject> getOne(@Path("id") String id);
 
   //PUT("/news/{id}")
   //Future<ImageObject> update(@Path() String id, @Body() ImageObject task);
 
-  @DELETE("/news/{id}")
+  @DELETE("/images/{id}")
   Future<void> delete(@Path() String id);
 
-  @POST("/news")
+  @POST("/images")
   Future<ImageObject> create(@Header('filePath') String filePath,
       @Header('name') String name, @Part() File file,
       {@Header('extraContent') String extraContent,

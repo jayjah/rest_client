@@ -88,3 +88,109 @@ Map<String, dynamic> _$ImageObjectToJson(ImageObject instance) =>
       'youtubeUrl': instance.youtubeUrl,
       'title': instance.title,
     };
+
+// **************************************************************************
+// RetrofitGenerator
+// **************************************************************************
+
+class _ImageRestClient implements ImageRestClient {
+  _ImageRestClient(this._dio, {this.baseUrl}) {
+    ArgumentError.checkNotNull(_dio, '_dio');
+  }
+
+  final Dio _dio;
+
+  String baseUrl;
+
+  @override
+  Future<List<ImageObject>> getAll(
+      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<List<dynamic>>('/images',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{
+              if (pageById != null) r'pageById': pageById,
+              if (pageByDate != null) r'pageByDate': pageByDate,
+              if (splitBy != null) r'splitBy': splitBy,
+              if (onlyIds != null) r'onlyIds': onlyIds,
+              if (pageByIds != null) r'pageByIds': pageByIds
+            },
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    var value = _result.data
+        .map((dynamic i) => ImageObject.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<ImageObject> getOne(id) async {
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('/images/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ImageObject.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<void> delete(id) async {
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    await _dio.request<void>('/images/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'DELETE',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    return null;
+  }
+
+  @override
+  Future<ImageObject> create(filePath, name, file, {extraContent, type}) async {
+    ArgumentError.checkNotNull(filePath, 'filePath');
+    ArgumentError.checkNotNull(name, 'name');
+    ArgumentError.checkNotNull(file, 'file');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = FormData();
+    _data.files.add(MapEntry(
+        'file',
+        MultipartFile.fromFileSync(file.path,
+            filename: file.path.split(Platform.pathSeparator).last)));
+    final _result = await _dio.request<Map<String, dynamic>>('/images',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{
+              r'filePath': filePath,
+              r'name': name,
+              r'extraContent': extraContent,
+              r'type': type
+            },
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ImageObject.fromJson(_result.data);
+    return value;
+  }
+}

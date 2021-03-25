@@ -7,26 +7,18 @@ repository: https://github.com/jayjah/dart_backend_client
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-
   dio: any
-  path_provider: any
   intl: any
   hive: any
-  package_info_plus: any
   json_serializable: any
   json_annotation: any
   retrofit: any
   logger: any
+  dio_logger: ^3.0.9+5
 dev_dependencies:
-  flutter_test:
-
-    sdk: flutter
+  test: any
   retrofit_generator: any
   build_runner: any
   hive_generator: any
-flutter:

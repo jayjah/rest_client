@@ -7,6 +7,7 @@ abstract class Client {
     headers: {},
     queryParameters: {},
   ))
-    ..interceptors.add(AuthorizationInterceptor());
+    ..interceptors.add(AuthorizationInterceptor())
+    ..interceptors.add(dioLoggerInterceptor);
   static Dio get getDio => _dio;
 }
