@@ -16,7 +16,7 @@ dependencies:
   json_annotation: any
   retrofit: any
   logger: any
-  dio_logger: ^3.0.9+5
+  pretty_dio_logger: any
 dev_dependencies:
   test: any
   retrofit_generator: any

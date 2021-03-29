@@ -23,18 +23,18 @@ abstract class NewsRestClient {
   Future<NewsObject> getOne(@Path("id") String id);
 
   @PUT("/news/{id}")
-  Future<NewsObject> update(@Path() String id, @Body() NewsObject task);
+  Future<NewsObject> update(@Path('id') String id, @Body() NewsObject task);
 
   @DELETE("/news/{id}")
-  Future<void> delete(@Path() String id);
+  Future<void> delete(@Path('id') String id);
 
   @POST("/news")
-  Future<NewsObject> create(@Body() NewsObject task);
+  Future<NewsObject> post(@Body() NewsObject task);
 }
 
 @HiveType(typeId: 1)
 @JsonSerializable()
-class NewsObject {
+class NewsObject extends HiveObject {
   @HiveField(0)
   int id;
   @HiveField(1)

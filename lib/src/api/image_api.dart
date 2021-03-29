@@ -20,16 +20,16 @@ abstract class ImageRestClient {
       @Header('pageByIds') List<int> pageByIds});
 
   @GET("/images/{id}")
-  Future<ImageObject> getOne(@Path("id") String id);
+  Future<ImageObject> getOne(@Path('id') String id);
 
   //PUT("/news/{id}")
   //Future<ImageObject> update(@Path() String id, @Body() ImageObject task);
 
   @DELETE("/images/{id}")
-  Future<void> delete(@Path() String id);
+  Future<void> delete(@Path('id') String id);
 
   @POST("/images")
-  Future<ImageObject> create(@Header('filePath') String filePath,
+  Future<ImageObject> post(@Header('filePath') String filePath,
       @Header('name') String name, @Part() File file,
       {@Header('extraContent') String extraContent,
       @Header('type') String type});
@@ -37,7 +37,7 @@ abstract class ImageRestClient {
 
 @HiveType(typeId: 0)
 @JsonSerializable()
-class ImageObject {
+class ImageObject extends HiveObject {
   @HiveField(0)
   int id;
   @HiveField(1)

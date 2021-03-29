@@ -44,7 +44,7 @@ class AuthorizationInterceptor extends Interceptor {
   AuthorizationInterceptor();
 
   onRequest(RequestOptions options) async {
-    // Add default headers
+    // add authentication header && default headers
     if (!options.headers.containsKey(HttpHeaders.authorizationHeader)) {
       options.headers.addAll({
         HttpHeaders.contentTypeHeader: "application/json",
@@ -63,23 +63,37 @@ class AuthorizationInterceptor extends Interceptor {
         HttpHeaders.acceptEncodingHeader: "utf-8"
       });
     }
+    // config auth token
+    if (options.path.contains('/config/client')) {
+      options.headers.addAll({'config_x_auth_token': 'abcdefghijKlmn'});
+    }
 
     print(
         ':: AuthorizationInterceptor ::  \n Request Path: ${options.path} Method: ${options.method} \n Headers: ${options.headers} \n Data: ${options.data}');
     return options; //continue
-// If you want to resolve the request with some custom data，
-// you can return a `Response` object or return `dio.resolve(data)`.
-// If you want to reject the request with a error message,
-// you can return a `DioError` object or return `dio.reject(errMsg)`
+    // If you want to resolve the request with some custom data，
+    // you can return a `Response` object or return `dio.resolve(data)`.
+    // If you want to reject the request with a error message,
+    // you can return a `DioError` object or return `dio.reject(errMsg)`
   }
 
   onResponse(Response response) async {
-// Do something with response data
+    // Do something with response data
+
+    // save auth token on login response
+    if (response.request.path.contains('/authenticate/login') &&
+        response.statusCode == 200) {
+      final authToken = response.headers.value('AuthToken');
+      if (authToken != null && authToken.isNotEmpty) {
+        Client.authenticationToken = authToken;
+      }
+    }
+
     return response; // continue
   }
 
   onError(DioError e) async {
-// Do something with response error
+    // Do something with response error
     return e; //continue
   }
 }
