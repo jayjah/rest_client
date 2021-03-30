@@ -131,11 +131,11 @@ class _NewsRestClient implements NewsRestClient {
         options: RequestOptions(
             method: 'GET',
             headers: <String, dynamic>{
-              r'pageById': pageById,
-              r'pageByDate': pageByDate,
-              r'splitBy': splitBy,
-              r'onlyIds': onlyIds,
-              r'pageByIds': pageByIds
+              if (pageById != null) r'pageById': pageById,
+              if (pageByDate != null) r'pageByDate': pageByDate,
+              if (splitBy != null) r'splitBy': splitBy,
+              if (onlyIds != null) r'onlyIds': onlyIds,
+              if (pageByIds != null) r'pageByIds': pageByIds
             },
             extra: _extra,
             baseUrl: baseUrl),
