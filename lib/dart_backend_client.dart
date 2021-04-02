@@ -3,7 +3,6 @@ library dart_backend_client;
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 export 'src/api/configs_api.dart';
 export 'src/api/credits_api.dart';

@@ -130,6 +130,7 @@ class _NewsRestClient implements NewsRestClient {
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
+            contentType: 'application/json',
             headers: <String, dynamic>{
               if (pageById != null) r'pageById': pageById,
               if (pageByDate != null) r'pageByDate': pageByDate,

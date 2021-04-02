@@ -9,14 +9,14 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  dio: 3.0.10
-  intl: 0.16.1
-  hive: 1.4.4+1
-  json_serializable: 3.5.1
-  json_annotation: 3.1.1
-  retrofit: 1.3.4+1
-  logger: 0.9.4
-  pretty_dio_logger: 1.1.1
+  dio: any
+  intl: any
+  hive: any
+  json_serializable: any
+  json_annotation: any
+  retrofit: any
+  logger: any
+  #dio_logger: any
 dev_dependencies:
   test: any
   retrofit_generator: any
