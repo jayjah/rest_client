@@ -7,18 +7,18 @@ part 'credits_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class CreditRestClient {
-  factory CreditRestClient(Dio dio, {String baseUrl}) = _CreditRestClient;
+  factory CreditRestClient(Dio dio, {String? baseUrl}) = _CreditRestClient;
 
   @GET("/credits/{id}")
   Future<CreditObject> getOne(@Path("id") String id);
 
   @GET("/credits")
   Future<List<CreditObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @PUT("/credits/{id}")
   Future<CreditObject> update(@Path('id') String id, @Body() CreditObject task);
@@ -38,11 +38,11 @@ abstract class CreditRestClient {
 @JsonSerializable()
 class CreditObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  int value;
+  int? value;
   @HiveField(2)
-  String type;
+  String? type;
 
   CreditObject({this.id, this.value, this.type});
 

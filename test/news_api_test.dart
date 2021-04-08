@@ -5,14 +5,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('News', () {
-    NewsRestClient news;
+    late NewsRestClient news;
     setUp(() {
       Client.guestAuthenticationToken =
           '${base64.encode('guest:guest'.codeUnits)}';
       Client.enableLogging();
       news = NewsRestClient(
         Client.getDio,
-        baseUrl: 'https://movementfam.jayjah.de/v3/',
+        baseUrl: 'https://movementfam.jayjah.de/v3',
       );
     });
     test('post', () async {

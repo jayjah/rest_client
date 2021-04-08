@@ -1,5 +1,5 @@
 part of dart_backend_client;
-/*
+
 class AuthorizationInterceptor extends Interceptor {
   AuthorizationInterceptor();
 
@@ -38,12 +38,12 @@ class AuthorizationInterceptor extends Interceptor {
     super.onResponse(response, handler);
   }
 }
-*/
 
+/*
 class AuthorizationInterceptor extends Interceptor {
   AuthorizationInterceptor();
 
-  onRequest(RequestOptions options) async {
+  void onRequest(RequestOptions options) async {
     // add authentication header && default headers
     if (!options.headers.containsKey(HttpHeaders.authorizationHeader)) {
       options.headers.addAll({
@@ -97,3 +97,4 @@ class AuthorizationInterceptor extends Interceptor {
     return e; //continue
   }
 }
+*/

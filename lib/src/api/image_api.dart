@@ -9,15 +9,15 @@ part 'image_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class ImageRestClient {
-  factory ImageRestClient(Dio dio, {String baseUrl}) = _ImageRestClient;
+  factory ImageRestClient(Dio dio, {String? baseUrl}) = _ImageRestClient;
 
   @GET("/images")
   Future<List<ImageObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/images/{id}")
   Future<ImageObject> getOne(@Path('id') String id);
@@ -31,27 +31,27 @@ abstract class ImageRestClient {
   @POST("/images")
   Future<ImageObject> post(@Header('filePath') String filePath,
       @Header('name') String name, @Part() File file,
-      {@Header('extraContent') String extraContent,
-      @Header('type') String type});
+      {@Header('extraContent') String? extraContent,
+      @Header('type') String? type});
 }
 
 @HiveType(typeId: 0)
 @JsonSerializable()
 class ImageObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String name;
+  String? name;
   @HiveField(2)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(3)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(4)
-  DateTime updatedAt;
+  DateTime? updatedAt;
   @HiveField(5)
-  String youtubeUrl;
+  String? youtubeUrl;
   @HiveField(6)
-  String title;
+  String? title;
 
   ImageObject(
       {this.id,

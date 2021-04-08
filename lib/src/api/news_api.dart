@@ -9,15 +9,15 @@ part 'news_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class NewsRestClient {
-  factory NewsRestClient(Dio dio, {String baseUrl}) = _NewsRestClient;
+  factory NewsRestClient(Dio dio, {String? baseUrl}) = _NewsRestClient;
 
   @GET("/news")
   Future<List<NewsObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/news/{id}")
   Future<NewsObject> getOne(@Path("id") String id);
@@ -36,25 +36,25 @@ abstract class NewsRestClient {
 @JsonSerializable()
 class NewsObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String youtubeUrl;
+  String? youtubeUrl;
   @HiveField(2)
-  String title;
+  String? title;
   @HiveField(3)
-  String wordPressId;
+  String? wordPressId;
   @HiveField(4)
-  String text;
+  String? text;
   @HiveField(5)
-  String name;
+  String? name;
   @HiveField(6)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(7)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(8)
-  DateTime updatedAt;
+  DateTime? updatedAt;
   @HiveField(9)
-  ImageObject image;
+  ImageObject? image;
 
   NewsObject(
       {this.id,

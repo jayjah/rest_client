@@ -9,15 +9,15 @@ part 'locations_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class LocationRestClient {
-  factory LocationRestClient(Dio dio, {String baseUrl}) = _LocationRestClient;
+  factory LocationRestClient(Dio dio, {String? baseUrl}) = _LocationRestClient;
 
   @GET("/locations")
   Future<List<LocationObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/locations/{id}")
   Future<LocationObject> getOne(@Path("id") String id);
@@ -37,31 +37,31 @@ abstract class LocationRestClient {
 @JsonSerializable()
 class LocationObject extends HiveObject {
   @HiveField(0)
-  num longitude;
+  num? longitude;
   @HiveField(1)
-  num latitude;
+  num? latitude;
   @HiveField(2)
-  String city;
+  String? city;
   @HiveField(3)
-  String address;
+  String? address;
   @HiveField(4)
-  String postalCode;
+  String? postalCode;
   @HiveField(5)
-  String name;
+  String? name;
   @HiveField(6)
-  int id;
+  int? id;
   @HiveField(7)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(8)
-  String text;
+  String? text;
   @HiveField(9)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(10)
-  DateTime updatedAt;
+  DateTime? updatedAt;
   @HiveField(11)
-  ImageObject image;
+  ImageObject? image;
   @HiveField(12)
-  List<ImageObject> images;
+  List<ImageObject>? images;
   LocationObject(
       {this.id,
       this.name,

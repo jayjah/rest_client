@@ -7,14 +7,14 @@ part 'registers_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class RegisterRestClient {
-  factory RegisterRestClient(Dio dio, {String baseUrl}) = _RegisterRestClient;
+  factory RegisterRestClient(Dio dio, {String? baseUrl}) = _RegisterRestClient;
   @GET("/registers")
   Future<List<RegisterObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/registers/{id}")
   Future<RegisterObject> getOne(@Path("id") String id);
@@ -34,23 +34,23 @@ abstract class RegisterRestClient {
 @JsonSerializable()
 class RegisterObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String email;
+  String? email;
   @HiveField(2)
-  String verifyToken;
+  String? verifyToken;
   @HiveField(3)
-  String firstName;
+  String? firstName;
   @HiveField(4)
-  String lastName;
+  String? lastName;
   @HiveField(5)
-  DateTime birthDate;
+  DateTime? birthDate;
   @HiveField(6)
-  String password;
+  String? password;
   @HiveField(7)
-  bool activated;
+  bool? activated;
   @HiveField(8)
-  DateTime createdAt;
+  DateTime? createdAt;
 
   RegisterObject(
       {this.id,

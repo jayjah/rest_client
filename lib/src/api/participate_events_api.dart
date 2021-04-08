@@ -6,11 +6,11 @@ part 'participate_events_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class ParticipateEventRestClient {
-  factory ParticipateEventRestClient(Dio dio, {String baseUrl}) =
+  factory ParticipateEventRestClient(Dio dio, {String? baseUrl}) =
       _ParticipateEventRestClient;
 
   @GET("/events/{id}/participates")
-  Future<List<UserEventObject>> getAllOfEvent({@Path("id") int id});
+  Future<List<UserEventObject>> getAllOfEvent({@Path("id") int? id});
 
   @DELETE("/users/{userId}/events/{eventId}/participate")
   Future<void> unParticipateEvent(

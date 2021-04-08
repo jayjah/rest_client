@@ -1,16 +1,17 @@
-import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+
+import 'training_days_api.dart';
 
 part 'participate_trainings_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class ParticipateTrainingRestClient {
-  factory ParticipateTrainingRestClient(Dio dio, {String baseUrl}) =
+  factory ParticipateTrainingRestClient(Dio dio, {String? baseUrl}) =
       _ParticipateTrainingRestClient;
 
   @GET("/trainings/{id}/participates")
-  Future<List<TrainingDateObject>> getAllOfTraining({@Path("id") int id});
+  Future<List<TrainingDateObject>> getAllOfTraining({@Path("id") int? id});
 
   @DELETE("/users/{userId}/trainings/{trainingId}/participate")
   Future<void> unParticipateTraining(

@@ -9,15 +9,15 @@ part 'todos_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class TodoRestClient {
-  factory TodoRestClient(Dio dio, {String baseUrl}) = _TodoRestClient;
+  factory TodoRestClient(Dio dio, {String? baseUrl}) = _TodoRestClient;
 
   @GET("/todos")
   Future<List<TodoObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/todos/{id}")
   Future<TodoObject> getOne(@Path("id") String id);
@@ -40,25 +40,25 @@ abstract class TodoRestClient {
 @JsonSerializable()
 class TodoObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  DateTime endDate;
+  DateTime? endDate;
   @HiveField(2)
-  String title;
+  String? title;
   @HiveField(3)
-  bool isDone;
+  bool? isDone;
   @HiveField(4)
-  String text;
+  String? text;
   @HiveField(5)
-  String name;
+  String? name;
   @HiveField(6)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(7)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(8)
-  DateTime updatedAt;
+  DateTime? updatedAt;
   @HiveField(9)
-  UserObject user;
+  UserObject? user;
 
   TodoObject(
       {this.id,

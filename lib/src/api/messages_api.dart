@@ -7,7 +7,7 @@ part 'messages_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class MessageRestClient {
-  factory MessageRestClient(Dio dio, {String baseUrl}) = _MessageRestClient;
+  factory MessageRestClient(Dio dio, {String? baseUrl}) = _MessageRestClient;
 
   @POST("/users/{userId}/sendMessage")
   Future<MessageObject> postMessageForUser(
@@ -25,13 +25,13 @@ abstract class MessageRestClient {
 @JsonSerializable()
 class MessageObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String title;
+  String? title;
   @HiveField(2)
-  String message;
+  String? message;
   @HiveField(3)
-  String htmlMessage;
+  String? htmlMessage;
 
   MessageObject({this.id, this.title, this.message, this.htmlMessage});
 

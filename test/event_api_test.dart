@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Events', () {
-    EventRestClient events;
+    late EventRestClient events;
     setUp(() {
       events = EventRestClient(
         Client.getDio,

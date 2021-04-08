@@ -7,38 +7,39 @@ part 'newsletters_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class NewsletterRestClient {
-  factory NewsletterRestClient(Dio dio, {String baseUrl}) =
+  factory NewsletterRestClient(Dio dio, {String? baseUrl}) =
       _NewsletterRestClient;
   @GET("/newsletters")
   Future<List<NewsletterObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/newsletters/registers/{email}")
   Future<List<NewsletterObject>> registerNewsletter(
-      {@Path("email") String email});
+      {@Path("email") String? email});
 
   @GET("/newsletters/registers/{email}")
   Future<List<NewsletterObject>> unRegisterNewsletter(
-      {@Path("email") String email, @Header('delete') String delete = 'true'});
+      {@Path("email") String? email,
+      @Header('delete') String? delete = 'true'});
 }
 
 @HiveType(typeId: 8)
 @JsonSerializable()
 class NewsletterObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String email;
+  String? email;
   @HiveField(2)
-  String verifyToken;
+  String? verifyToken;
   @HiveField(3)
-  bool activated;
+  bool? activated;
   @HiveField(4)
-  DateTime createdAt;
+  DateTime? createdAt;
 
   NewsletterObject(
       {this.id, this.email, this.verifyToken, this.activated, this.createdAt});

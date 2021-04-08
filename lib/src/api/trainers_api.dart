@@ -10,15 +10,15 @@ part 'trainers_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class TrainerRestClient {
-  factory TrainerRestClient(Dio dio, {String baseUrl}) = _TrainerRestClient;
+  factory TrainerRestClient(Dio dio, {String? baseUrl}) = _TrainerRestClient;
 
   @GET("/trainers")
   Future<List<TrainerObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/trainers/{id}")
   Future<TrainerObject> getOne(@Path('id') String id);
@@ -38,21 +38,21 @@ abstract class TrainerRestClient {
 @JsonSerializable()
 class TrainerObject extends HiveObject {
   @HiveField(0)
-  String name;
+  String? name;
   @HiveField(1)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(2)
-  String text;
+  String? text;
   @HiveField(3)
-  int id;
+  int? id;
   @HiveField(4)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(5)
-  DateTime updatedAt;
+  DateTime? updatedAt;
   @HiveField(6)
-  ImageObject image;
+  ImageObject? image;
   @HiveField(7)
-  UserObject user;
+  UserObject? user;
 
   TrainerObject(
       {this.id,

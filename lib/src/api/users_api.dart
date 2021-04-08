@@ -8,22 +8,22 @@ part 'users_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class UserRestClient {
-  factory UserRestClient(Dio dio, {String baseUrl}) = _UserRestClient;
+  factory UserRestClient(Dio dio, {String? baseUrl}) = _UserRestClient;
 
   /// [property] can have a value of `newsletter` or  `role`
   ///   Only when [property] has a value of `role` then [valueOfProperty] must be set!
   @GET("/users")
   Future<List<UserObject>> filterGetAll(
-      {@Header('property') String property,
-      @Header('value') String valueOfProperty});
+      {@Header('property') String? property,
+      @Header('value') String? valueOfProperty});
 
   @GET("/users")
   Future<List<UserObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/users/{id}")
   Future<UserObject> getOne(@Path("id") String id);
@@ -49,35 +49,35 @@ abstract class UserRestClient {
 @JsonSerializable()
 class UserObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String firstName;
+  String? firstName;
   @HiveField(2)
-  String lastName;
+  String? lastName;
   @HiveField(3)
-  String loginName;
+  String? loginName;
   @HiveField(4)
-  String password;
+  String? password;
   @HiveField(5)
-  String email;
+  String? email;
   @HiveField(6)
-  DateTime birthDate;
+  DateTime? birthDate;
   @HiveField(7)
-  DateTime lastLogin;
+  DateTime? lastLogin;
   @HiveField(8)
-  bool newsLetter;
+  bool? newsLetter;
   @HiveField(9)
-  String role;
+  String? role;
   @HiveField(10)
-  String externalId;
+  String? externalId;
   @HiveField(11)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(12)
-  List<TodoObject> todos;
+  List<TodoObject>? todos;
   @HiveField(13)
-  List<UserEventObject> eventParticipates;
+  List<UserEventObject>? eventParticipates;
   @HiveField(14)
-  List<UserTrainingObject> trainingParticipates;
+  List<UserTrainingObject>? trainingParticipates;
   UserObject(
       {this.id,
       this.firstName,
@@ -104,13 +104,13 @@ class UserObject extends HiveObject {
 @JsonSerializable()
 class PushTokenObject extends HiveObject {
   @HiveField(0)
-  String token;
+  String? token;
   @HiveField(1)
-  bool apn;
+  bool? apn;
   @HiveField(2)
-  bool hms;
+  bool? hms;
   @HiveField(3)
-  bool fcm;
+  bool? fcm;
   PushTokenObject({this.token, this.apn, this.hms, this.fcm});
   factory PushTokenObject.fromJson(Map<String, dynamic> json) =>
       _$PushTokenObjectFromJson(json);
@@ -121,13 +121,13 @@ class PushTokenObject extends HiveObject {
 @JsonSerializable()
 class UserEventObject extends HiveObject {
   @HiveField(0)
-  String name;
+  String? name;
   @HiveField(1)
-  int id;
+  int? id;
   @HiveField(2)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(3)
-  String text;
+  String? text;
   UserEventObject({this.id, this.shortDescription, this.name, this.text});
   factory UserEventObject.fromJson(Map<String, dynamic> json) =>
       _$UserEventObjectFromJson(json);
@@ -138,9 +138,9 @@ class UserEventObject extends HiveObject {
 @JsonSerializable()
 class UserTrainingObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  UserTrainingDateObject trainingDate;
+  UserTrainingDateObject? trainingDate;
 
   UserTrainingObject({this.id, this.trainingDate});
   factory UserTrainingObject.fromJson(Map<String, dynamic> json) =>
@@ -152,7 +152,7 @@ class UserTrainingObject extends HiveObject {
 @JsonSerializable()
 class UserTrainingDateObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
 
   UserTrainingDateObject({
     this.id,

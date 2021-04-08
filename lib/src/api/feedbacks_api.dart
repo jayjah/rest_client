@@ -7,15 +7,15 @@ part 'feedbacks_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class FeedbackRestClient {
-  factory FeedbackRestClient(Dio dio, {String baseUrl}) = _FeedbackRestClient;
+  factory FeedbackRestClient(Dio dio, {String? baseUrl}) = _FeedbackRestClient;
 
   @GET("/feedbacks")
   Future<List<FeedbackObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/feedbacks/{id}")
   Future<FeedbackObject> getOne(@Path("id") String id);
@@ -35,13 +35,13 @@ abstract class FeedbackRestClient {
 @JsonSerializable()
 class FeedbackObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String name;
+  String? name;
   @HiveField(2)
-  String message;
+  String? message;
   @HiveField(3)
-  DateTime createdAt;
+  DateTime? createdAt;
 
   FeedbackObject({
     this.id,

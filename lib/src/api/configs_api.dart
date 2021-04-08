@@ -7,7 +7,7 @@ part 'configs_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class ConfigRestClient {
-  factory ConfigRestClient(Dio dio, {String baseUrl}) = _ConfigRestClient;
+  factory ConfigRestClient(Dio dio, {String? baseUrl}) = _ConfigRestClient;
 
   @GET("/config/client/{id}")
   Future<ConfigObject> get(@Path("id") String id);
@@ -26,25 +26,25 @@ abstract class ConfigRestClient {
 @JsonSerializable()
 class ConfigObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  bool newsEnabled;
+  bool? newsEnabled;
   @HiveField(2)
-  bool eventsEnabled;
+  bool? eventsEnabled;
   @HiveField(3)
-  bool locationsEnabled;
+  bool? locationsEnabled;
   @HiveField(4)
-  bool trainersEnabled;
+  bool? trainersEnabled;
   @HiveField(5)
-  int newsPerPage;
+  int? newsPerPage;
   @HiveField(6)
-  int eventsPerPage;
+  int? eventsPerPage;
   @HiveField(7)
-  String gMapApiKey;
+  String? gMapApiKey;
   @HiveField(8)
-  String minVersion;
+  String? minVersion;
   @HiveField(9)
-  bool registrationEnabled;
+  bool? registrationEnabled;
 
   ConfigObject(
       {this.id,

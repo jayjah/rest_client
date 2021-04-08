@@ -6,16 +6,17 @@ homepage: https://www.jayjah.de
 repository: https://github.com/jayjah/dart_backend_client
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  dio: any
-  intl: any
-  hive: any
-  json_serializable: any
-  json_annotation: any
-  retrofit: any
-  logger: any
+  dio: 4.0.0
+  intl: 0.17.0
+  hive: 2.0.2
+  json_serializable: 4.1.0
+  json_annotation: 4.0.1
+  retrofit: 2.0.0-beta1
+  logger: 1.0.0
+  pretty_dio_logger: ^1.2.0-beta-1
   #dio_logger: any
 dev_dependencies:
   test: any

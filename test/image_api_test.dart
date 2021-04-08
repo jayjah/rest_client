@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Images', () {
-    ImageRestClient image;
+    late ImageRestClient image;
     setUp(() {
       image = ImageRestClient(
         Client.getDio,

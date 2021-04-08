@@ -9,15 +9,15 @@ part 'events_api.g.dart';
 
 @RestApi(autoCastResponse: true)
 abstract class EventRestClient {
-  factory EventRestClient(Dio dio, {String baseUrl}) = _EventRestClient;
+  factory EventRestClient(Dio dio, {String? baseUrl}) = _EventRestClient;
 
   @GET("/events")
   Future<List<EventObject>> getAll(
-      {@Header("pageById") int pageById,
-      @Header('pageByDate') DateTime pageByDate,
-      @Header('splitBy') int splitBy,
-      @Header('onlyIds') bool onlyIds,
-      @Header('pageByIds') List<int> pageByIds});
+      {@Header("pageById") int? pageById,
+      @Header('pageByDate') DateTime? pageByDate,
+      @Header('splitBy') int? splitBy,
+      @Header('onlyIds') bool? onlyIds,
+      @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/events/{id}")
   Future<EventObject> getOne(@Path("id") String id);
@@ -36,31 +36,31 @@ abstract class EventRestClient {
 @JsonSerializable()
 class EventObject extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
-  String youtubeUrl;
+  String? youtubeUrl;
   @HiveField(2)
-  String title;
+  String? title;
   @HiveField(3)
-  String wordPressId;
+  String? wordPressId;
   @HiveField(4)
-  String text;
+  String? text;
   @HiveField(5)
-  String name;
+  String? name;
   @HiveField(6)
-  String shortDescription;
+  String? shortDescription;
   @HiveField(7)
-  DateTime createdAt;
+  DateTime? createdAt;
   @HiveField(8)
-  DateTime updatedAt;
+  DateTime? updatedAt;
   @HiveField(9)
-  ImageObject image;
+  ImageObject? image;
   @HiveField(10)
-  String homepageLink;
+  String? homepageLink;
   @HiveField(11)
-  DateTime startDate;
+  DateTime? startDate;
   @HiveField(12)
-  DateTime endDate;
+  DateTime? endDate;
 
   EventObject(
       {this.id,
