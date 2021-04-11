@@ -45,6 +45,8 @@ class ConfigObject extends HiveObject {
   String? minVersion;
   @HiveField(9)
   bool? registrationEnabled;
+  @HiveField(10)
+  String? name;
 
   ConfigObject(
       {this.id,
@@ -56,7 +58,8 @@ class ConfigObject extends HiveObject {
       this.eventsPerPage,
       this.gMapApiKey,
       this.minVersion,
-      this.registrationEnabled});
+      this.registrationEnabled,
+      this.name});
 
   factory ConfigObject.fromJson(Map<String, dynamic> json) =>
       _$ConfigObjectFromJson(json);

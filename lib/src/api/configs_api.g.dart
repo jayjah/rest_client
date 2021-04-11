@@ -27,13 +27,14 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
       gMapApiKey: fields[7] as String?,
       minVersion: fields[8] as String?,
       registrationEnabled: fields[9] as bool?,
+      name: fields[10] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ConfigObject obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
       ..writeByte(8)
       ..write(obj.minVersion)
       ..writeByte(9)
-      ..write(obj.registrationEnabled);
+      ..write(obj.registrationEnabled)
+      ..writeByte(10)
+      ..write(obj.name);
   }
 
   @override
@@ -83,6 +86,7 @@ ConfigObject _$ConfigObjectFromJson(Map<String, dynamic> json) {
     gMapApiKey: json['gMapApiKey'] as String?,
     minVersion: json['minVersion'] as String?,
     registrationEnabled: json['registrationEnabled'] as bool?,
+    name: json['name'] as String?,
   );
 }
 
@@ -98,6 +102,7 @@ Map<String, dynamic> _$ConfigObjectToJson(ConfigObject instance) =>
       'gMapApiKey': instance.gMapApiKey,
       'minVersion': instance.minVersion,
       'registrationEnabled': instance.registrationEnabled,
+      'name': instance.name,
     };
 
 // **************************************************************************

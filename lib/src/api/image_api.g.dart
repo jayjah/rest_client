@@ -111,11 +111,11 @@ class _ImageRestClient implements ImageRestClient {
         _setStreamType<List<ImageObject>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{
-                  r'pageById': pageById,
-                  r'pageByDate': pageByDate,
-                  r'splitBy': splitBy,
-                  r'onlyIds': onlyIds,
-                  r'pageByIds': pageByIds
+                  if (pageById != null) r'pageById': pageById,
+                  if (pageByDate != null) r'pageByDate': pageByDate,
+                  if (splitBy != null) r'splitBy': splitBy,
+                  if (onlyIds != null) r'onlyIds': onlyIds,
+                  if (pageByIds != null) r'pageByIds': pageByIds
                 },
                 extra: _extra)
             .compose(_dio.options, '/images',
@@ -171,8 +171,8 @@ class _ImageRestClient implements ImageRestClient {
                 headers: <String, dynamic>{
                   r'filePath': filePath,
                   r'name': name,
-                  r'extraContent': extraContent,
-                  r'type': type
+                  if (extraContent != null) r'extraContent': extraContent,
+                  if (type != null) r'type': type
                 },
                 extra: _extra)
             .compose(_dio.options, '/images',
