@@ -60,7 +60,6 @@ void initModels() {
     ..registerAdapter(TodoObjectAdapter())
     ..registerAdapter(TrainerObjectAdapter())
     ..registerAdapter(TrainingDateObjectAdapter())
-    ..registerAdapter(TrainingDateObjectAdapter())
     ..registerAdapter(UserObjectAdapter())
     ..registerAdapter(PushTokenObjectAdapter())
     ..registerAdapter(UserTrainingDateObjectAdapter())
