@@ -86,6 +86,27 @@ class TrainingsObject extends HiveObject {
       this.timeTill,
       this.isAg});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrainingsObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          shortDescription == other.shortDescription &&
+          name == other.name &&
+          text == other.text &&
+          weekDay == other.weekDay &&
+          timeFrom == other.timeFrom &&
+          timeTill == other.timeTill &&
+          image == other.image &&
+          ageFrom == other.ageFrom &&
+          ageTill == other.ageTill &&
+          trainer == other.trainer &&
+          isAg == other.isAg;
+
   factory TrainingsObject.fromJson(Map<String, dynamic> json) =>
       _$TrainingsObjectFromJson(json);
   Map<String, dynamic> toJson() => _$TrainingsObjectToJson(this);

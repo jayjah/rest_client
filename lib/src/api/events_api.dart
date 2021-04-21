@@ -77,6 +77,22 @@ class EventObject extends HiveObject {
       this.endDate,
       this.text});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EventObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          shortDescription == other.shortDescription &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
+          startDate == other.startDate &&
+          endDate == other.endDate;
+
   factory EventObject.fromJson(Map<String, dynamic> json) =>
       _$EventObjectFromJson(json);
   Map<String, dynamic> toJson() => _$EventObjectToJson(this);

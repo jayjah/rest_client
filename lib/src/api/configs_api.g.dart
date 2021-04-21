@@ -17,7 +17,7 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ConfigObject(
-      id: fields[0] as int?,
+      id: fields[0] as String?,
       newsEnabled: fields[1] as bool?,
       eventsEnabled: fields[2] as bool?,
       locationsEnabled: fields[3] as bool?,
@@ -76,7 +76,7 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
 
 ConfigObject _$ConfigObjectFromJson(Map<String, dynamic> json) {
   return ConfigObject(
-    id: json['id'] as int?,
+    id: json['id'] as String?,
     newsEnabled: json['newsEnabled'] as bool?,
     eventsEnabled: json['eventsEnabled'] as bool?,
     locationsEnabled: json['locationsEnabled'] as bool?,

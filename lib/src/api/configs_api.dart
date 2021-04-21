@@ -27,7 +27,7 @@ abstract class ConfigRestClient {
 @JsonSerializable()
 class ConfigObject extends HiveObject {
   @HiveField(0)
-  int? id;
+  String? id;
   @HiveField(1)
   bool? newsEnabled;
   @HiveField(2)
@@ -61,6 +61,26 @@ class ConfigObject extends HiveObject {
       this.minVersion,
       this.registrationEnabled,
       this.name});
+
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ConfigObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          newsEnabled == other.newsEnabled &&
+          eventsEnabled == other.eventsEnabled &&
+          locationsEnabled == other.locationsEnabled &&
+          trainersEnabled == other.trainersEnabled &&
+          newsPerPage == other.newsPerPage &&
+          eventsPerPage == other.eventsPerPage &&
+          gMapApiKey == other.gMapApiKey &&
+          minVersion == other.minVersion &&
+          registrationEnabled == other.registrationEnabled &&
+          name == other.name;
 
   factory ConfigObject.fromJson(Map<String, dynamic> json) =>
       _$ConfigObjectFromJson(json);

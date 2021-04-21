@@ -72,6 +72,24 @@ class TodoObject extends HiveObject {
       this.user,
       this.text});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TodoObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          shortDescription == other.shortDescription &&
+          name == other.name &&
+          text == other.text &&
+          isDone == other.isDone &&
+          user == other.user &&
+          updatedAt == other.updatedAt &&
+          createdAt == other.createdAt &&
+          endDate == other.endDate;
+
   factory TodoObject.fromJson(Map<String, dynamic> json) =>
       _$TodoObjectFromJson(json);
   Map<String, dynamic> toJson() => _$TodoObjectToJson(this);

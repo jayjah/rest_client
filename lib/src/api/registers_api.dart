@@ -63,6 +63,23 @@ class RegisterObject extends HiveObject {
       this.activated,
       this.createdAt});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RegisterObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          firstName == other.firstName &&
+          lastName == other.lastName &&
+          verifyToken == other.verifyToken &&
+          email == other.email &&
+          birthDate == other.birthDate &&
+          activated == other.activated &&
+          createdAt == other.createdAt;
+
   factory RegisterObject.fromJson(Map<String, dynamic> json) =>
       _$RegisterObjectFromJson(json);
   Map<String, dynamic> toJson() => _$RegisterObjectToJson(this);

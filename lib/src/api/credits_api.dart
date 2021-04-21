@@ -49,4 +49,16 @@ class CreditObject extends HiveObject {
   factory CreditObject.fromJson(Map<String, dynamic> json) =>
       _$CreditObjectFromJson(json);
   Map<String, dynamic> toJson() => _$CreditObjectToJson(this);
+
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreditObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          value == other.value &&
+          type == other.type;
 }

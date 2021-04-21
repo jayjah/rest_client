@@ -44,6 +44,20 @@ class NewsletterObject extends HiveObject {
   NewsletterObject(
       {this.id, this.email, this.verifyToken, this.activated, this.createdAt});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NewsletterObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          verifyToken == other.verifyToken &&
+          email == other.email &&
+          activated == other.activated &&
+          createdAt == other.createdAt;
+
   factory NewsletterObject.fromJson(Map<String, dynamic> json) =>
       _$NewsletterObjectFromJson(json);
   Map<String, dynamic> toJson() => _$NewsletterObjectToJson(this);

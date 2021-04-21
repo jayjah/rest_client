@@ -95,6 +95,20 @@ class UserObject extends HiveObject {
       this.todos,
       this.trainingParticipates});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          firstName == other.firstName &&
+          lastName == other.lastName &&
+          loginName == other.loginName &&
+          role == other.role;
+
   factory UserObject.fromJson(Map<String, dynamic> json) =>
       _$UserObjectFromJson(json);
   Map<String, dynamic> toJson() => _$UserObjectToJson(this);

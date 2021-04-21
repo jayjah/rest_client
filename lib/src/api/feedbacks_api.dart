@@ -49,6 +49,18 @@ class FeedbackObject extends HiveObject {
     this.createdAt,
   });
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FeedbackObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          createdAt == other.createdAt;
+
   factory FeedbackObject.fromJson(Map<String, dynamic> json) =>
       _$FeedbackObjectFromJson(json);
   Map<String, dynamic> toJson() => _$FeedbackObjectToJson(this);

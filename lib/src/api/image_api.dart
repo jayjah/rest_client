@@ -62,6 +62,21 @@ class ImageObject extends HiveObject {
       this.youtubeUrl,
       this.title});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ImageObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          createdAt == other.createdAt &&
+          youtubeUrl == other.youtubeUrl &&
+          title == other.title &&
+          updatedAt == other.updatedAt;
+
   factory ImageObject.fromJson(Map<String, dynamic> json) =>
       _$ImageObjectFromJson(json);
   Map<String, dynamic> toJson() => _$ImageObjectToJson(this);

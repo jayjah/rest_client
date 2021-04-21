@@ -64,6 +64,23 @@ class TrainerObject extends HiveObject {
       this.user,
       this.image});
 
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrainerObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          shortDescription == other.shortDescription &&
+          name == other.name &&
+          text == other.text &&
+          image == other.image &&
+          user == other.user &&
+          updatedAt == other.updatedAt &&
+          createdAt == other.createdAt;
+
   factory TrainerObject.fromJson(Map<String, dynamic> json) =>
       _$TrainerObjectFromJson(json);
   Map<String, dynamic> toJson() => _$TrainerObjectToJson(this);
