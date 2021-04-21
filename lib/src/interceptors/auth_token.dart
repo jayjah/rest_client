@@ -1,5 +1,7 @@
 part of dart_backend_client;
 
+const bool kIsWeb = identical(0, 0.0);
+
 class AuthorizationInterceptor extends Interceptor {
   AuthorizationInterceptor();
 
@@ -9,7 +11,7 @@ class AuthorizationInterceptor extends Interceptor {
       options.headers.addAll({
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.acceptHeader: "application/json",
-        "charset": "utf-8",
+        if (!kIsWeb) "charset": "utf-8",
         HttpHeaders.acceptEncodingHeader: "utf-8",
         "Authorization": Client.authenticationToken.isNotEmpty
             ? "${Client.authenticationToken}"
@@ -19,7 +21,7 @@ class AuthorizationInterceptor extends Interceptor {
       options.headers.addAll({
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.acceptHeader: "application/json",
-        "charset": "utf-8",
+        if (!kIsWeb) "charset": "utf-8",
         HttpHeaders.acceptEncodingHeader: "utf-8"
       });
     }
