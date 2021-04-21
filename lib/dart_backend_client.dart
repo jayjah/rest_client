@@ -20,6 +20,7 @@ import 'package:hive/hive.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'src/api/configs_api.dart';
+import 'src/api/trainings_api.dart';
 
 export 'package:dio/dio.dart';
 export 'package:hive/hive.dart';
@@ -60,6 +61,7 @@ void initModels() {
     ..registerAdapter(TodoObjectAdapter())
     ..registerAdapter(TrainerObjectAdapter())
     ..registerAdapter(TrainingDateObjectAdapter())
+    ..registerAdapter(TrainingsObjectAdapter())
     ..registerAdapter(UserObjectAdapter())
     ..registerAdapter(PushTokenObjectAdapter())
     ..registerAdapter(UserTrainingDateObjectAdapter())
