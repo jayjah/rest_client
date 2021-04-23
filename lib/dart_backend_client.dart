@@ -30,6 +30,7 @@ export 'src/api/configs_api.dart';
 export 'src/api/credits_api.dart';
 export 'src/api/events_api.dart';
 export 'src/api/feedbacks_api.dart';
+export 'src/api/files_api.dart';
 export 'src/api/image_api.dart';
 export 'src/api/locations_api.dart';
 export 'src/api/messages_api.dart';
