@@ -10,17 +10,18 @@ abstract class ConfigRestClient {
   factory ConfigRestClient(Dio dio, {String? baseUrl}) = _ConfigRestClient;
 
   @GET("/config/client/{id}")
-  Future<ConfigObject> get(
+  Future<ConfigObject?> get(
       @Path("id") String id, @Header('config_x_auth_token') String xAuthToken);
 
   @PUT("/config/client/{id}")
-  Future<ConfigObject> update(@Path('id') String id, @Body() ConfigObject task);
+  Future<ConfigObject?> update(
+      @Path('id') String id, @Body() ConfigObject task);
 
   @DELETE("/config/client/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/config/client")
-  Future<ConfigObject> post(@Body() ConfigObject task);
+  Future<ConfigObject?> post(@Body() ConfigObject task);
 }
 
 @HiveType(typeId: 2)

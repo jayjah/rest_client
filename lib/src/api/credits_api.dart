@@ -12,10 +12,10 @@ abstract class CreditRestClient implements RestInterface<CreditObject> {
   factory CreditRestClient(Dio dio, {String? baseUrl}) = _CreditRestClient;
 
   @GET("/credits/{id}")
-  Future<CreditObject> getOne(@Path("id") String id);
+  Future<CreditObject?> getOne(@Path("id") String id);
 
   @GET("/credits")
-  Future<List<CreditObject>> getAll(
+  Future<List<CreditObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -23,16 +23,17 @@ abstract class CreditRestClient implements RestInterface<CreditObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @PUT("/credits/{id}")
-  Future<CreditObject> update(@Path('id') String id, @Body() CreditObject task);
+  Future<CreditObject?> update(
+      @Path('id') String id, @Body() CreditObject task);
 
   @DELETE("/credits/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/credits")
-  Future<CreditObject> post(@Body() CreditObject task);
+  Future<CreditObject?> post(@Body() CreditObject task);
 
   @POST("/users/{userId}/credits/{creditId}")
-  Future<CreditObject> userEarnedCredits(
+  Future<CreditObject?> userEarnedCredits(
       @Path('userId') String userId, @Path('creditId') String creditId);
 }
 

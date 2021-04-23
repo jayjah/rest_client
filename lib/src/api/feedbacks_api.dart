@@ -11,7 +11,7 @@ abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
   factory FeedbackRestClient(Dio dio, {String? baseUrl}) = _FeedbackRestClient;
 
   @GET("/feedbacks")
-  Future<List<FeedbackObject>> getAll(
+  Future<List<FeedbackObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -19,17 +19,17 @@ abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/feedbacks/{id}")
-  Future<FeedbackObject> getOne(@Path("id") String id);
+  Future<FeedbackObject?> getOne(@Path("id") String id);
 
   @PUT("/feedbacks/{id}")
-  Future<FeedbackObject> update(
+  Future<FeedbackObject?> update(
       @Path('id') String id, @Body() FeedbackObject task);
 
   @DELETE("/feedbacks/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/feedbacks")
-  Future<FeedbackObject> post(@Body() FeedbackObject task);
+  Future<FeedbackObject?> post(@Body() FeedbackObject task);
 }
 
 @HiveType(typeId: 4)
