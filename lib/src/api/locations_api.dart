@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -8,7 +9,7 @@ import 'image_api.dart';
 part 'locations_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class LocationRestClient {
+abstract class LocationRestClient implements RestInterface<LocationObject> {
   factory LocationRestClient(Dio dio, {String? baseUrl}) = _LocationRestClient;
 
   @GET("/locations")
@@ -35,7 +36,7 @@ abstract class LocationRestClient {
 
 @HiveType(typeId: 5)
 @JsonSerializable()
-class LocationObject extends HiveObject {
+class LocationObject extends HiveObject implements DataModel {
   @HiveField(0)
   num? longitude;
   @HiveField(1)

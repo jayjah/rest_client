@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -43,7 +44,7 @@ abstract class TrainingDaysRestClient {
 
 @HiveType(typeId: 19)
 @JsonSerializable()
-class TrainingDateObject extends HiveObject {
+class TrainingDateObject extends HiveObject implements DataModel {
   @HiveField(0)
   String? name;
   @HiveField(1)

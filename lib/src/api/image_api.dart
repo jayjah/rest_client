@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -8,7 +9,7 @@ import 'package:retrofit/retrofit.dart';
 part 'image_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class ImageRestClient {
+abstract class ImageRestClient implements RestInterface<ImageObject> {
   factory ImageRestClient(Dio dio, {String? baseUrl}) = _ImageRestClient;
 
   @GET("/images")
@@ -37,7 +38,7 @@ abstract class ImageRestClient {
 
 @HiveType(typeId: 0)
 @JsonSerializable()
-class ImageObject extends HiveObject {
+class ImageObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

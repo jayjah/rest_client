@@ -3,10 +3,12 @@ import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../dart_backend_client.dart';
+
 part 'credits_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class CreditRestClient {
+abstract class CreditRestClient implements RestInterface<CreditObject> {
   factory CreditRestClient(Dio dio, {String? baseUrl}) = _CreditRestClient;
 
   @GET("/credits/{id}")
@@ -36,7 +38,7 @@ abstract class CreditRestClient {
 
 @HiveType(typeId: 7)
 @JsonSerializable()
-class CreditObject extends HiveObject {
+class CreditObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

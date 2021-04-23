@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -6,7 +7,7 @@ import 'package:retrofit/retrofit.dart';
 part 'registers_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class RegisterRestClient {
+abstract class RegisterRestClient implements RestInterface<RegisterObject> {
   factory RegisterRestClient(Dio dio, {String? baseUrl}) = _RegisterRestClient;
   @GET("/registers")
   Future<List<RegisterObject>> getAll(
@@ -32,7 +33,7 @@ abstract class RegisterRestClient {
 
 @HiveType(typeId: 9)
 @JsonSerializable()
-class RegisterObject extends HiveObject {
+class RegisterObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

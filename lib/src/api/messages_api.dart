@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -23,7 +24,7 @@ abstract class MessageRestClient {
 
 @HiveType(typeId: 6)
 @JsonSerializable()
-class MessageObject extends HiveObject {
+class MessageObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

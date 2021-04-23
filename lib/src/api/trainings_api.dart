@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -9,12 +10,12 @@ import 'trainers_api.dart';
 part 'trainings_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class TrainingsRestClient {
+abstract class TrainingsRestClient implements RestInterface<TrainingsObject> {
   factory TrainingsRestClient(Dio dio, {String? baseUrl}) =
       _TrainingsRestClient;
 
   @GET("/trainings")
-  Future<List<TrainingsObject>> getAllTrainings(
+  Future<List<TrainingsObject>> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -22,22 +23,22 @@ abstract class TrainingsRestClient {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/trainings/{id}")
-  Future<TrainingsObject> getOneTraining(@Path('id') String id);
+  Future<TrainingsObject> getOne(@Path('id') String id);
 
   @PUT("/trainings/{id}")
-  Future<TrainingsObject> updateTraining(
+  Future<TrainingsObject> update(
       @Path('id') String id, @Body() TrainingsObject task);
 
   @DELETE("/trainings/{id}")
-  Future<void> deleteTraining(@Path('id') String id);
+  Future<void> delete(@Path('id') String id);
 
   @POST("/trainings")
-  Future<TrainingsObject> postTraining(@Body() TrainingsObject task);
+  Future<TrainingsObject> post(@Body() TrainingsObject task);
 }
 
 @HiveType(typeId: 18)
 @JsonSerializable()
-class TrainingsObject extends HiveObject {
+class TrainingsObject extends HiveObject implements DataModel {
   @HiveField(0)
   String? name;
   @HiveField(1)

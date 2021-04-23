@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -8,7 +9,7 @@ import 'image_api.dart';
 part 'news_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class NewsRestClient {
+abstract class NewsRestClient implements RestInterface<NewsObject> {
   factory NewsRestClient(Dio dio, {String? baseUrl}) = _NewsRestClient;
 
   @GET("/news")
@@ -34,7 +35,7 @@ abstract class NewsRestClient {
 
 @HiveType(typeId: 1)
 @JsonSerializable()
-class NewsObject extends HiveObject {
+class NewsObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

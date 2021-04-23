@@ -7,7 +7,7 @@ import 'package:retrofit/retrofit.dart';
 part 'users_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class UserRestClient {
+abstract class UserRestClient implements RestInterface<UserObject> {
   factory UserRestClient(Dio dio, {String? baseUrl}) = _UserRestClient;
 
   /// [property] can have a value of `newsletter` or  `role`
@@ -47,7 +47,7 @@ abstract class UserRestClient {
 
 @HiveType(typeId: 11)
 @JsonSerializable()
-class UserObject extends HiveObject {
+class UserObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

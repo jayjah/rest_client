@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -6,7 +7,7 @@ import 'package:retrofit/retrofit.dart';
 part 'feedbacks_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class FeedbackRestClient {
+abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
   factory FeedbackRestClient(Dio dio, {String? baseUrl}) = _FeedbackRestClient;
 
   @GET("/feedbacks")
@@ -33,7 +34,7 @@ abstract class FeedbackRestClient {
 
 @HiveType(typeId: 4)
 @JsonSerializable()
-class FeedbackObject extends HiveObject {
+class FeedbackObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

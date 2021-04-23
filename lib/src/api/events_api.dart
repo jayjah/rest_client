@@ -3,12 +3,13 @@ import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../dart_backend_client.dart';
 import 'image_api.dart';
 
 part 'events_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class EventRestClient {
+abstract class EventRestClient implements RestInterface<EventObject> {
   factory EventRestClient(Dio dio, {String? baseUrl}) = _EventRestClient;
 
   @GET("/events")
@@ -34,7 +35,7 @@ abstract class EventRestClient {
 
 @HiveType(typeId: 3)
 @JsonSerializable()
-class EventObject extends HiveObject {
+class EventObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

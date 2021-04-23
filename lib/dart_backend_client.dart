@@ -18,6 +18,7 @@ import 'package:dart_backend_client/src/api/users_api.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:retrofit/http.dart';
 
 import 'src/api/configs_api.dart';
 import 'src/api/trainings_api.dart';
@@ -45,6 +46,8 @@ export 'src/api/users_api.dart';
 part 'src/client.dart';
 part 'src/exception.dart';
 part 'src/interceptors/auth_token.dart';
+part 'src/interfaces/data_model.dart';
+part 'src/interfaces/rest_interface.dart';
 
 void initModels() {
   Hive

@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -8,7 +9,7 @@ import 'users_api.dart';
 part 'todos_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class TodoRestClient {
+abstract class TodoRestClient implements RestInterface<TodoObject> {
   factory TodoRestClient(Dio dio, {String? baseUrl}) = _TodoRestClient;
 
   @GET("/todos")
@@ -38,7 +39,7 @@ abstract class TodoRestClient {
 
 @HiveType(typeId: 10)
 @JsonSerializable()
-class TodoObject extends HiveObject {
+class TodoObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

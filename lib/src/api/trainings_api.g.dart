@@ -152,7 +152,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   String? baseUrl;
 
   @override
-  Future<List<TrainingsObject>> getAllTrainings(
+  Future<List<TrainingsObject>> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -179,7 +179,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<TrainingsObject> getOneTraining(id) async {
+  Future<TrainingsObject> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -194,7 +194,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<TrainingsObject> updateTraining(id, task) async {
+  Future<TrainingsObject> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -210,7 +210,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<void> deleteTraining(id) async {
+  Future<void> delete(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -223,7 +223,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<TrainingsObject> postTraining(task) async {
+  Future<TrainingsObject> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

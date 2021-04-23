@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -29,7 +30,7 @@ abstract class NewsletterRestClient {
 
 @HiveType(typeId: 8)
 @JsonSerializable()
-class NewsletterObject extends HiveObject {
+class NewsletterObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)

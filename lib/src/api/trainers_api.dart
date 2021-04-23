@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -9,7 +10,7 @@ import 'users_api.dart';
 part 'trainers_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class TrainerRestClient {
+abstract class TrainerRestClient implements RestInterface<TrainerObject> {
   factory TrainerRestClient(Dio dio, {String? baseUrl}) = _TrainerRestClient;
 
   @GET("/trainers")
@@ -36,7 +37,7 @@ abstract class TrainerRestClient {
 
 @HiveType(typeId: 17)
 @JsonSerializable()
-class TrainerObject extends HiveObject {
+class TrainerObject extends HiveObject implements DataModel {
   @HiveField(0)
   String? name;
   @HiveField(1)
