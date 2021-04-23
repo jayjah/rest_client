@@ -3,9 +3,9 @@ part of dart_backend_client;
 /// Basic rest interface
 ///   Any rest api should implement this interface.
 abstract class RestInterface<T> {
-  Future<T> getOne(@Path("id") String id);
+  Future<T?> getOne(@Path("id") String id);
 
-  Future<List<T>> getAll(
+  Future<List<T>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,

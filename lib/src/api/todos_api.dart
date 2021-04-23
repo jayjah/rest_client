@@ -13,7 +13,7 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
   factory TodoRestClient(Dio dio, {String? baseUrl}) = _TodoRestClient;
 
   @GET("/todos")
-  Future<List<TodoObject>> getAll(
+  Future<List<TodoObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -21,20 +21,20 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/todos/{id}")
-  Future<TodoObject> getOne(@Path("id") String id);
+  Future<TodoObject?> getOne(@Path("id") String id);
 
   @PUT("/todos/{id}")
-  Future<TodoObject> update(@Path('id') String id, @Body() TodoObject task);
+  Future<TodoObject?> update(@Path('id') String id, @Body() TodoObject task);
 
   @PUT("/users/{userId}/todos/{todoId}")
-  Future<TodoObject> todoIsDone(
+  Future<TodoObject?> todoIsDone(
       @Path('todoId') String todoId, @Path('userId') String userId);
 
   @DELETE("/todos/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/todos")
-  Future<TodoObject> post(@Body() TodoObject task);
+  Future<TodoObject?> post(@Body() TodoObject task);
 }
 
 @HiveType(typeId: 10)

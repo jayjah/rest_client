@@ -11,9 +11,9 @@ abstract class FilesRestClient {
 
   @GET("/files/files/{fileName}")
   @DioResponseType(ResponseType.plain)
-  Future<String> downloadFile(@Path("fileName") String fileName);
+  Future<String?> downloadFile(@Path("fileName") String fileName);
 
   @GET("/files/images/{fileName}")
   @DioResponseType(ResponseType.bytes)
-  Future<List<int>> downloadImageFile(@Path("fileName") String fileName);
+  Future<List<int>?> downloadImageFile(@Path("fileName") String fileName);
 }

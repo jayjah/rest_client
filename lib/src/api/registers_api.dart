@@ -10,7 +10,7 @@ part 'registers_api.g.dart';
 abstract class RegisterRestClient implements RestInterface<RegisterObject> {
   factory RegisterRestClient(Dio dio, {String? baseUrl}) = _RegisterRestClient;
   @GET("/registers")
-  Future<List<RegisterObject>> getAll(
+  Future<List<RegisterObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -18,17 +18,17 @@ abstract class RegisterRestClient implements RestInterface<RegisterObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/registers/{id}")
-  Future<RegisterObject> getOne(@Path("id") String id);
+  Future<RegisterObject?> getOne(@Path("id") String id);
 
   @PUT("/registers/{id}")
-  Future<RegisterObject> update(
+  Future<RegisterObject?> update(
       @Path('id') String id, @Body() RegisterObject task);
 
   @DELETE("/registers/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/registers")
-  Future<RegisterObject> post(@Body() RegisterObject task);
+  Future<RegisterObject?> post(@Body() RegisterObject task);
 }
 
 @HiveType(typeId: 9)

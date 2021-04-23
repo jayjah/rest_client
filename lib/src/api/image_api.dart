@@ -13,7 +13,7 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
   factory ImageRestClient(Dio dio, {String? baseUrl}) = _ImageRestClient;
 
   @GET("/images")
-  Future<List<ImageObject>> getAll(
+  Future<List<ImageObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -21,7 +21,7 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/images/{id}")
-  Future<ImageObject> getOne(@Path('id') String id);
+  Future<ImageObject?> getOne(@Path('id') String id);
 
   //PUT("/news/{id}")
   //Future<ImageObject> update(@Path() String id, @Body() ImageObject task);
@@ -30,7 +30,7 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
   Future<void> delete(@Path('id') String id);
 
   @POST("/images")
-  Future<ImageObject> post(@Header('filePath') String filePath,
+  Future<ImageObject?> post(@Header('filePath') String filePath,
       @Header('name') String name, @Part() File file,
       {@Header('extraContent') String? extraContent,
       @Header('type') String? type});

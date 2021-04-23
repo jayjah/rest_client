@@ -13,7 +13,7 @@ abstract class LocationRestClient implements RestInterface<LocationObject> {
   factory LocationRestClient(Dio dio, {String? baseUrl}) = _LocationRestClient;
 
   @GET("/locations")
-  Future<List<LocationObject>> getAll(
+  Future<List<LocationObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -21,17 +21,17 @@ abstract class LocationRestClient implements RestInterface<LocationObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/locations/{id}")
-  Future<LocationObject> getOne(@Path("id") String id);
+  Future<LocationObject?> getOne(@Path("id") String id);
 
   @PUT("/locations/{id}")
-  Future<LocationObject> update(
+  Future<LocationObject?> update(
       @Path('id') String id, @Body() LocationObject task);
 
   @DELETE("/locations/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/locations")
-  Future<LocationObject> post(@Body() LocationObject task);
+  Future<LocationObject?> post(@Body() LocationObject task);
 }
 
 @HiveType(typeId: 5)

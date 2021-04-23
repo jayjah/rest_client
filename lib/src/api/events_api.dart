@@ -13,7 +13,7 @@ abstract class EventRestClient implements RestInterface<EventObject> {
   factory EventRestClient(Dio dio, {String? baseUrl}) = _EventRestClient;
 
   @GET("/events")
-  Future<List<EventObject>> getAll(
+  Future<List<EventObject>?> getAll(
       {@Header("pageById") int? pageById,
       @Header('pageByDate') DateTime? pageByDate,
       @Header('splitBy') int? splitBy,
@@ -21,16 +21,16 @@ abstract class EventRestClient implements RestInterface<EventObject> {
       @Header('pageByIds') List<int>? pageByIds});
 
   @GET("/events/{id}")
-  Future<EventObject> getOne(@Path("id") String id);
+  Future<EventObject?> getOne(@Path("id") String id);
 
   @PUT("/events/{id}")
-  Future<EventObject> update(@Path('id') String id, @Body() EventObject task);
+  Future<EventObject?> update(@Path('id') String id, @Body() EventObject task);
 
   @DELETE("/events/{id}")
   Future<void> delete(@Path('id') String id);
 
   @POST("/events")
-  Future<EventObject> post(@Body() EventObject task);
+  Future<EventObject?> post(@Body() EventObject task);
 }
 
 @HiveType(typeId: 3)
