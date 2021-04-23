@@ -107,11 +107,17 @@ class UserObject extends HiveObject {
           firstName == other.firstName &&
           lastName == other.lastName &&
           loginName == other.loginName &&
+          email == other.email &&
+          birthDate == other.birthDate &&
           role == other.role;
 
   factory UserObject.fromJson(Map<String, dynamic> json) =>
       _$UserObjectFromJson(json);
   Map<String, dynamic> toJson() => _$UserObjectToJson(this);
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,firstName: "$firstName",lastName: $lastName,loginName: $loginName,role: $role,email: $email,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId)';
 }
 
 @HiveType(typeId: 12)

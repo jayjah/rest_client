@@ -61,4 +61,8 @@ class CreditObject extends HiveObject {
           id == other.id &&
           value == other.value &&
           type == other.type;
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(value: "$value",id: $id,type: $type)';
 }
