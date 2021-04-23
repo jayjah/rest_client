@@ -9,11 +9,11 @@ part 'files_api.g.dart';
 abstract class FilesRestClient {
   factory FilesRestClient(Dio dio, {String? baseUrl}) = _FilesRestClient;
 
-  @GET("/files/{fileName}")
+  @GET("/files/files/{fileName}")
   @DioResponseType(ResponseType.plain)
   Future<String> downloadFile(@Path("fileName") String fileName);
 
-  @GET("/images/{fileName}")
+  @GET("/files/images/{fileName}")
   @DioResponseType(ResponseType.bytes)
   Future<List<int>> downloadImageFile(@Path("fileName") String fileName);
 }
