@@ -117,7 +117,7 @@ class _ConfigRestClient implements ConfigRestClient {
   String? baseUrl;
 
   @override
-  Future<ConfigObject> get(id, xAuthToken) async {
+  Future<ConfigObject?> get(id, xAuthToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -134,7 +134,7 @@ class _ConfigRestClient implements ConfigRestClient {
   }
 
   @override
-  Future<ConfigObject> update(id, task) async {
+  Future<ConfigObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -163,7 +163,7 @@ class _ConfigRestClient implements ConfigRestClient {
   }
 
   @override
-  Future<ConfigObject> post(task) async {
+  Future<ConfigObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

@@ -101,7 +101,7 @@ class _ImageRestClient implements ImageRestClient {
   String? baseUrl;
 
   @override
-  Future<List<ImageObject>> getAll(
+  Future<List<ImageObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -128,7 +128,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject> getOne(id) async {
+  Future<ImageObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -156,7 +156,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject> post(filePath, name, file, {extraContent, type}) async {
+  Future<ImageObject?> post(filePath, name, file, {extraContent, type}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);

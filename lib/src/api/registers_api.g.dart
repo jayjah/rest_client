@@ -111,7 +111,7 @@ class _RegisterRestClient implements RegisterRestClient {
   String? baseUrl;
 
   @override
-  Future<List<RegisterObject>> getAll(
+  Future<List<RegisterObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -138,7 +138,7 @@ class _RegisterRestClient implements RegisterRestClient {
   }
 
   @override
-  Future<RegisterObject> getOne(id) async {
+  Future<RegisterObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -153,7 +153,7 @@ class _RegisterRestClient implements RegisterRestClient {
   }
 
   @override
-  Future<RegisterObject> update(id, task) async {
+  Future<RegisterObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -182,7 +182,7 @@ class _RegisterRestClient implements RegisterRestClient {
   }
 
   @override
-  Future<RegisterObject> post(task) async {
+  Future<RegisterObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

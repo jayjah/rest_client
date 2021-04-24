@@ -135,7 +135,7 @@ class _LocationRestClient implements LocationRestClient {
   String? baseUrl;
 
   @override
-  Future<List<LocationObject>> getAll(
+  Future<List<LocationObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -162,7 +162,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject> getOne(id) async {
+  Future<LocationObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -177,7 +177,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject> update(id, task) async {
+  Future<LocationObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -206,7 +206,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject> post(task) async {
+  Future<LocationObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

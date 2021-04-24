@@ -77,7 +77,7 @@ class _CreditRestClient implements CreditRestClient {
   String? baseUrl;
 
   @override
-  Future<CreditObject> getOne(id) async {
+  Future<CreditObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -92,7 +92,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<List<CreditObject>> getAll(
+  Future<List<CreditObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -119,7 +119,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<CreditObject> update(id, task) async {
+  Future<CreditObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -148,7 +148,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<CreditObject> post(task) async {
+  Future<CreditObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -164,7 +164,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<CreditObject> userEarnedCredits(userId, creditId) async {
+  Future<CreditObject?> userEarnedCredits(userId, creditId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

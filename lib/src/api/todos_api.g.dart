@@ -120,7 +120,7 @@ class _TodoRestClient implements TodoRestClient {
   String? baseUrl;
 
   @override
-  Future<List<TodoObject>> getAll(
+  Future<List<TodoObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -147,7 +147,7 @@ class _TodoRestClient implements TodoRestClient {
   }
 
   @override
-  Future<TodoObject> getOne(id) async {
+  Future<TodoObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -162,7 +162,7 @@ class _TodoRestClient implements TodoRestClient {
   }
 
   @override
-  Future<TodoObject> update(id, task) async {
+  Future<TodoObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -178,7 +178,7 @@ class _TodoRestClient implements TodoRestClient {
   }
 
   @override
-  Future<TodoObject> todoIsDone(todoId, userId) async {
+  Future<TodoObject?> todoIsDone(todoId, userId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -206,7 +206,7 @@ class _TodoRestClient implements TodoRestClient {
   }
 
   @override
-  Future<TodoObject> post(task) async {
+  Future<TodoObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

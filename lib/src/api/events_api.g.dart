@@ -137,7 +137,7 @@ class _EventRestClient implements EventRestClient {
   String? baseUrl;
 
   @override
-  Future<List<EventObject>> getAll(
+  Future<List<EventObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -164,7 +164,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<EventObject> getOne(id) async {
+  Future<EventObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -179,7 +179,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<EventObject> update(id, task) async {
+  Future<EventObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -208,7 +208,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<EventObject> post(task) async {
+  Future<EventObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

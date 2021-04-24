@@ -82,7 +82,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   String? baseUrl;
 
   @override
-  Future<List<FeedbackObject>> getAll(
+  Future<List<FeedbackObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -109,7 +109,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   }
 
   @override
-  Future<FeedbackObject> getOne(id) async {
+  Future<FeedbackObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -124,7 +124,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   }
 
   @override
-  Future<FeedbackObject> update(id, task) async {
+  Future<FeedbackObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -153,7 +153,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   }
 
   @override
-  Future<FeedbackObject> post(task) async {
+  Future<FeedbackObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

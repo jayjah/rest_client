@@ -118,7 +118,7 @@ class _NewsRestClient implements NewsRestClient {
   String? baseUrl;
 
   @override
-  Future<List<NewsObject>> getAll(
+  Future<List<NewsObject>?> getAll(
       {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -145,7 +145,7 @@ class _NewsRestClient implements NewsRestClient {
   }
 
   @override
-  Future<NewsObject> getOne(id) async {
+  Future<NewsObject?> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -160,7 +160,7 @@ class _NewsRestClient implements NewsRestClient {
   }
 
   @override
-  Future<NewsObject> update(id, task) async {
+  Future<NewsObject?> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -189,7 +189,7 @@ class _NewsRestClient implements NewsRestClient {
   }
 
   @override
-  Future<NewsObject> post(task) async {
+  Future<NewsObject?> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

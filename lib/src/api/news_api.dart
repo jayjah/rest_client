@@ -30,7 +30,7 @@ abstract class NewsRestClient implements RestInterface<NewsObject> {
   Future<void> delete(@Path('id') String id);
 
   @POST("/news")
-  Future<NewsObject> post(@Body() NewsObject task);
+  Future<NewsObject?> post(@Body() NewsObject task);
 }
 
 @HiveType(typeId: 1)
