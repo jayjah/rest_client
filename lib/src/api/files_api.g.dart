@@ -23,7 +23,7 @@ class _FilesRestClient implements FilesRestClient {
             headers: <String, dynamic>{},
             extra: _extra,
             responseType: ResponseType.plain)
-        .compose(_dio.options, '/files/$fileName',
+        .compose(_dio.options, '/files/files/$fileName',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!;
@@ -41,7 +41,7 @@ class _FilesRestClient implements FilesRestClient {
                 headers: <String, dynamic>{},
                 extra: _extra,
                 responseType: ResponseType.bytes)
-            .compose(_dio.options, '/images/$fileName',
+            .compose(_dio.options, '/files/images/$fileName',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!.cast<int>();
