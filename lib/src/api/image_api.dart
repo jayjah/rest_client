@@ -23,14 +23,18 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
   @GET("/images/{id}")
   Future<ImageObject?> getOne(@Path('id') String id);
 
-  //PUT("/news/{id}")
-  //Future<ImageObject> update(@Path() String id, @Body() ImageObject task);
+  @PUT("/images/{id}")
+  Future<ImageObject?> update(@Path() String id, @Body() ImageObject task);
 
   @DELETE("/images/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @deprecated
+  Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
+      'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');
+
   @POST("/images")
-  Future<ImageObject?> post(@Header('filePath') String filePath,
+  Future<ImageObject?> postImage(@Header('filePath') String filePath,
       @Header('name') String name, @Part() File file,
       {@Header('extraContent') String? extraContent,
       @Header('type') String? type});

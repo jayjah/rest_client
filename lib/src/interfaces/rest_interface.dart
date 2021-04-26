@@ -12,9 +12,9 @@ abstract class RestInterface<T> {
       @Header('onlyIds') bool? onlyIds,
       @Header('pageByIds') List<int>? pageByIds});
 
-  //Future<T> update(@Path('id') String id, @Body() T task);
+  Future<T?> update(@Path('id') String id, @Body() T task);
 
   Future<void> delete(@Path('id') String id);
 
-  //Future<T> post(@Body() T task);
+  Future<T?> post(@Body() T task);
 }

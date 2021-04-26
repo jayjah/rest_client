@@ -143,6 +143,22 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
+  Future<ImageObject?> update(id, task) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(task.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ImageObject>(
+            Options(method: 'PUT', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/images/$id',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ImageObject.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<void> delete(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -156,7 +172,8 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject?> post(filePath, name, file, {extraContent, type}) async {
+  Future<ImageObject?> postImage(filePath, name, file,
+      {extraContent, type}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -194,4 +211,8 @@ class _ImageRestClient implements ImageRestClient {
     }
     return requestOptions;
   }
+
+  @override
+  Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
+      'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');
 }
