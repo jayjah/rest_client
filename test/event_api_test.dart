@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:test/test.dart';
 
@@ -5,6 +7,9 @@ void main() {
   group('Events', () {
     late EventRestClient events;
     setUp(() {
+      Client.guestAuthenticationToken =
+          '${base64.encode('guest:guest'.codeUnits)}';
+      Client.enableLogging();
       events = EventRestClient(
         Client.getDio,
         baseUrl: 'https://movementfam.jayjah.de/v3',
