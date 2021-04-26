@@ -89,8 +89,46 @@ class _NewsletterRestClient implements NewsletterRestClient {
   String? baseUrl;
 
   @override
-  Future<List<NewsletterObject>> getAll(
-      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+  Future<List<int>> getAllIds({onlyIds = true}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'onlyIds': onlyIds},
+                extra: _extra)
+            .compose(_dio.options, '/newsletters',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<int>();
+    return value;
+  }
+
+  @override
+  Future<Map<String, List<NewsletterObject>>> getAllSplit(splitBy) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Map<String, List<NewsletterObject>>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'splitBy': splitBy},
+                extra: _extra)
+            .compose(_dio.options, '/newsletters',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => NewsletterObject.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
+    return value;
+  }
+
+  @override
+  Future<List<NewsletterObject>> getAll({pageById, pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -100,10 +138,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{
                   if (pageById != null) r'pageById': pageById,
-                  if (pageByDate != null) r'pageByDate': pageByDate,
-                  if (splitBy != null) r'splitBy': splitBy,
-                  if (onlyIds != null) r'onlyIds': onlyIds,
-                  if (pageByIds != null) r'pageByIds': pageByIds
+                  if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
             .compose(_dio.options, '/newsletters',

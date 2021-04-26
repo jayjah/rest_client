@@ -14,12 +14,20 @@ abstract class TrainerRestClient implements RestInterface<TrainerObject> {
   factory TrainerRestClient(Dio dio, {String? baseUrl}) = _TrainerRestClient;
 
   @GET("/trainers")
-  Future<List<TrainerObject>> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/trainers")
+  Future<Map<String, List<TrainerObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/trainers")
+  Future<List<TrainerObject>> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //  @Header('splitBy') int? splitBy,
+    //  @Header('onlyIds') bool? onlyIds,
+    // @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/trainers/{id}")
   Future<TrainerObject> getOne(@Path('id') String id);

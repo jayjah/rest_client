@@ -15,12 +15,20 @@ abstract class TrainingDaysRestClient {
   Future<TrainingDateObject> cancelTraining(@Path('id') String trainingDateId);
 
   @GET("/trainingdays")
-  Future<List<TrainingDateObject>> getAllTrainingDates(
-      {@Header('pageById') int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/trainingdays")
+  Future<Map<String, List<TrainingDateObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/trainingdays")
+  Future<List<TrainingDateObject>> getAllTrainingDates({
+    @Header('pageById') int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //@Header('splitBy') int? splitBy,
+    //@Header('onlyIds') bool? onlyIds,
+    //@Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/trainingdays/{dateFrom}/{dateTill}")
   Future<List<TrainingDateObject>> getTrainingDatesBetween({

@@ -11,12 +11,20 @@ abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
   factory FeedbackRestClient(Dio dio, {String? baseUrl}) = _FeedbackRestClient;
 
   @GET("/feedbacks")
-  Future<List<FeedbackObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/feedbacks")
+  Future<Map<String, List<FeedbackObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/feedbacks")
+  Future<List<FeedbackObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //   @Header('splitBy') int? splitBy,
+    //   @Header('onlyIds') bool? onlyIds,
+    //   @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/feedbacks/{id}")
   Future<FeedbackObject?> getOne(@Path("id") String id);

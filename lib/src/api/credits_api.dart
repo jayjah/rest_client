@@ -15,12 +15,20 @@ abstract class CreditRestClient implements RestInterface<CreditObject> {
   Future<CreditObject?> getOne(@Path("id") String id);
 
   @GET("/credits")
-  Future<List<CreditObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/credits")
+  Future<Map<String, List<CreditObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/credits")
+  Future<List<CreditObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //    @Header('splitBy') int? splitBy,
+    //     @Header('onlyIds') bool? onlyIds,
+//      @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @PUT("/credits/{id}")
   Future<CreditObject?> update(

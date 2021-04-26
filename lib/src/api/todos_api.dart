@@ -13,12 +13,20 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
   factory TodoRestClient(Dio dio, {String? baseUrl}) = _TodoRestClient;
 
   @GET("/todos")
-  Future<List<TodoObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/todos")
+  Future<Map<String, List<TodoObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/todos")
+  Future<List<TodoObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //@Header('splitBy') int? splitBy,
+    //@Header('onlyIds') bool? onlyIds,
+    //@Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/todos/{id}")
   Future<TodoObject?> getOne(@Path("id") String id);

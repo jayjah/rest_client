@@ -101,8 +101,46 @@ class _ImageRestClient implements ImageRestClient {
   String? baseUrl;
 
   @override
-  Future<List<ImageObject>?> getAll(
-      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+  Future<List<int>> getAllIds({onlyIds = true}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'onlyIds': onlyIds},
+                extra: _extra)
+            .compose(_dio.options, '/images',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<int>();
+    return value;
+  }
+
+  @override
+  Future<Map<String, List<ImageObject>>> getAllSplit(splitBy) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Map<String, List<ImageObject>>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'splitBy': splitBy},
+                extra: _extra)
+            .compose(_dio.options, '/images',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => ImageObject.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
+    return value;
+  }
+
+  @override
+  Future<List<ImageObject>> getAll({pageById, pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -112,10 +150,7 @@ class _ImageRestClient implements ImageRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{
                   if (pageById != null) r'pageById': pageById,
-                  if (pageByDate != null) r'pageByDate': pageByDate,
-                  if (splitBy != null) r'splitBy': splitBy,
-                  if (onlyIds != null) r'onlyIds': onlyIds,
-                  if (pageByIds != null) r'pageByIds': pageByIds
+                  if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
             .compose(_dio.options, '/images',
@@ -128,7 +163,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject?> getOne(id) async {
+  Future<ImageObject> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -143,7 +178,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject?> update(id, task) async {
+  Future<ImageObject> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -172,7 +207,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject?> postImage(filePath, name, file,
+  Future<ImageObject> postImage(filePath, name, file,
       {extraContent, type}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -199,6 +234,10 @@ class _ImageRestClient implements ImageRestClient {
     return value;
   }
 
+  @deprecated
+  Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
+      'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
@@ -211,8 +250,4 @@ class _ImageRestClient implements ImageRestClient {
     }
     return requestOptions;
   }
-
-  @override
-  Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
-      'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');
 }

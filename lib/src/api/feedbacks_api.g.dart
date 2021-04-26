@@ -82,8 +82,46 @@ class _FeedbackRestClient implements FeedbackRestClient {
   String? baseUrl;
 
   @override
-  Future<List<FeedbackObject>?> getAll(
-      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+  Future<List<int>> getAllIds({onlyIds = true}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'onlyIds': onlyIds},
+                extra: _extra)
+            .compose(_dio.options, '/feedbacks',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<int>();
+    return value;
+  }
+
+  @override
+  Future<Map<String, List<FeedbackObject>>> getAllSplit(splitBy) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Map<String, List<FeedbackObject>>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'splitBy': splitBy},
+                extra: _extra)
+            .compose(_dio.options, '/feedbacks',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => FeedbackObject.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
+    return value;
+  }
+
+  @override
+  Future<List<FeedbackObject>> getAll({pageById, pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -93,10 +131,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{
                   if (pageById != null) r'pageById': pageById,
-                  if (pageByDate != null) r'pageByDate': pageByDate,
-                  if (splitBy != null) r'splitBy': splitBy,
-                  if (onlyIds != null) r'onlyIds': onlyIds,
-                  if (pageByIds != null) r'pageByIds': pageByIds
+                  if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
             .compose(_dio.options, '/feedbacks',
@@ -109,7 +144,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   }
 
   @override
-  Future<FeedbackObject?> getOne(id) async {
+  Future<FeedbackObject> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -124,7 +159,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   }
 
   @override
-  Future<FeedbackObject?> update(id, task) async {
+  Future<FeedbackObject> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -153,7 +188,7 @@ class _FeedbackRestClient implements FeedbackRestClient {
   }
 
   @override
-  Future<FeedbackObject?> post(task) async {
+  Future<FeedbackObject> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

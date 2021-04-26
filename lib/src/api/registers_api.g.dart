@@ -111,8 +111,46 @@ class _RegisterRestClient implements RegisterRestClient {
   String? baseUrl;
 
   @override
-  Future<List<RegisterObject>?> getAll(
-      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+  Future<List<int>> getAllIds({onlyIds = true}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'onlyIds': onlyIds},
+                extra: _extra)
+            .compose(_dio.options, '/registers',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<int>();
+    return value;
+  }
+
+  @override
+  Future<Map<String, List<RegisterObject>>> getAllSplit(splitBy) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Map<String, List<RegisterObject>>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'splitBy': splitBy},
+                extra: _extra)
+            .compose(_dio.options, '/registers',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => RegisterObject.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
+    return value;
+  }
+
+  @override
+  Future<List<RegisterObject>> getAll({pageById, pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -122,10 +160,7 @@ class _RegisterRestClient implements RegisterRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{
                   if (pageById != null) r'pageById': pageById,
-                  if (pageByDate != null) r'pageByDate': pageByDate,
-                  if (splitBy != null) r'splitBy': splitBy,
-                  if (onlyIds != null) r'onlyIds': onlyIds,
-                  if (pageByIds != null) r'pageByIds': pageByIds
+                  if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
             .compose(_dio.options, '/registers',
@@ -138,7 +173,7 @@ class _RegisterRestClient implements RegisterRestClient {
   }
 
   @override
-  Future<RegisterObject?> getOne(id) async {
+  Future<RegisterObject> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -153,7 +188,7 @@ class _RegisterRestClient implements RegisterRestClient {
   }
 
   @override
-  Future<RegisterObject?> update(id, task) async {
+  Future<RegisterObject> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -182,7 +217,7 @@ class _RegisterRestClient implements RegisterRestClient {
   }
 
   @override
-  Future<RegisterObject?> post(task) async {
+  Future<RegisterObject> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

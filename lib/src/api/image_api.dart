@@ -13,12 +13,20 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
   factory ImageRestClient(Dio dio, {String? baseUrl}) = _ImageRestClient;
 
   @GET("/images")
-  Future<List<ImageObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/images")
+  Future<Map<String, List<ImageObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/images")
+  Future<List<ImageObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //@Header('splitBy') int? splitBy,
+    //@Header('onlyIds') bool? onlyIds,
+    // @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/images/{id}")
   Future<ImageObject?> getOne(@Path('id') String id);

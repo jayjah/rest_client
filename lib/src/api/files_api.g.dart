@@ -14,7 +14,7 @@ class _FilesRestClient implements FilesRestClient {
   String? baseUrl;
 
   @override
-  Future<String?> downloadFile(fileName) async {
+  Future<String> downloadFile(fileName) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -31,7 +31,7 @@ class _FilesRestClient implements FilesRestClient {
   }
 
   @override
-  Future<List<int>?> downloadImageFile(fileName) async {
+  Future<List<int>> downloadImageFile(fileName) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

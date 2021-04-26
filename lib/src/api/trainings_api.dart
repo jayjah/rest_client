@@ -15,12 +15,20 @@ abstract class TrainingsRestClient implements RestInterface<TrainingsObject> {
       _TrainingsRestClient;
 
   @GET("/trainings")
-  Future<List<TrainingsObject>> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/trainings")
+  Future<Map<String, List<TrainingsObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/trainings")
+  Future<List<TrainingsObject>> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //   @Header('splitBy') int? splitBy,
+    //  @Header('onlyIds') bool? onlyIds,
+    // @Header('pageByIds') List<int>? pageByIds},
+  });
 
   @GET("/trainings/{id}")
   Future<TrainingsObject> getOne(@Path('id') String id);

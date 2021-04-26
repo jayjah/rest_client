@@ -135,8 +135,46 @@ class _LocationRestClient implements LocationRestClient {
   String? baseUrl;
 
   @override
-  Future<List<LocationObject>?> getAll(
-      {pageById, pageByDate, splitBy, onlyIds, pageByIds}) async {
+  Future<List<int>> getAllIds({onlyIds = true}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'onlyIds': onlyIds},
+                extra: _extra)
+            .compose(_dio.options, '/locations',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<int>();
+    return value;
+  }
+
+  @override
+  Future<Map<String, List<LocationObject>>> getAllSplit(splitBy) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Map<String, List<LocationObject>>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'splitBy': splitBy},
+                extra: _extra)
+            .compose(_dio.options, '/locations',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => LocationObject.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
+    return value;
+  }
+
+  @override
+  Future<List<LocationObject>> getAll({pageById, pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -146,10 +184,7 @@ class _LocationRestClient implements LocationRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{
                   if (pageById != null) r'pageById': pageById,
-                  if (pageByDate != null) r'pageByDate': pageByDate,
-                  if (splitBy != null) r'splitBy': splitBy,
-                  if (onlyIds != null) r'onlyIds': onlyIds,
-                  if (pageByIds != null) r'pageByIds': pageByIds
+                  if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
             .compose(_dio.options, '/locations',
@@ -162,7 +197,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject?> getOne(id) async {
+  Future<LocationObject> getOne(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -177,7 +212,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject?> update(id, task) async {
+  Future<LocationObject> update(id, task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -206,7 +241,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject?> post(task) async {
+  Future<LocationObject> post(task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

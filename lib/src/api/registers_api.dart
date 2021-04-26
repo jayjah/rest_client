@@ -9,13 +9,22 @@ part 'registers_api.g.dart';
 @RestApi(autoCastResponse: true)
 abstract class RegisterRestClient implements RestInterface<RegisterObject> {
   factory RegisterRestClient(Dio dio, {String? baseUrl}) = _RegisterRestClient;
+
   @GET("/registers")
-  Future<List<RegisterObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/registers")
+  Future<Map<String, List<RegisterObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/registers")
+  Future<List<RegisterObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //@Header('splitBy') int? splitBy,
+    //@Header('onlyIds') bool? onlyIds,
+    //@Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/registers/{id}")
   Future<RegisterObject?> getOne(@Path("id") String id);

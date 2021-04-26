@@ -13,12 +13,20 @@ abstract class EventRestClient implements RestInterface<EventObject> {
   factory EventRestClient(Dio dio, {String? baseUrl}) = _EventRestClient;
 
   @GET("/events")
-  Future<List<EventObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/events")
+  Future<Map<String, List<EventObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/events")
+  Future<List<EventObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //   @Header('splitBy') int? splitBy,
+    //  @Header('onlyIds') bool? onlyIds,
+    //  @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/events/{id}")
   Future<EventObject?> getOne(@Path("id") String id);

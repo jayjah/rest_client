@@ -18,12 +18,20 @@ abstract class UserRestClient implements RestInterface<UserObject> {
       @Header('value') String? valueOfProperty});
 
   @GET("/users")
-  Future<List<UserObject>> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/users")
+  Future<Map<String, List<UserObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/users")
+  Future<List<UserObject>> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    // @Header('splitBy') int? splitBy,
+    // @Header('onlyIds') bool? onlyIds,
+    //@Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/users/{id}")
   Future<UserObject> getOne(@Path("id") String id);

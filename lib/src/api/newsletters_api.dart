@@ -10,13 +10,22 @@ part 'newsletters_api.g.dart';
 abstract class NewsletterRestClient {
   factory NewsletterRestClient(Dio dio, {String? baseUrl}) =
       _NewsletterRestClient;
+
   @GET("/newsletters")
-  Future<List<NewsletterObject>> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/newsletters")
+  Future<Map<String, List<NewsletterObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/newsletters")
+  Future<List<NewsletterObject>> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //@Header('splitBy') int? splitBy,
+    //@Header('onlyIds') bool? onlyIds,
+    //@Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/newsletters/registers/{email}")
   Future<List<NewsletterObject>> registerNewsletter(

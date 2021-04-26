@@ -13,12 +13,20 @@ abstract class LocationRestClient implements RestInterface<LocationObject> {
   factory LocationRestClient(Dio dio, {String? baseUrl}) = _LocationRestClient;
 
   @GET("/locations")
-  Future<List<LocationObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/locations")
+  Future<Map<String, List<LocationObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/locations")
+  Future<List<LocationObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //  @Header('splitBy') int? splitBy,
+    //   @Header('onlyIds') bool? onlyIds,
+    //   @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/locations/{id}")
   Future<LocationObject?> getOne(@Path("id") String id);

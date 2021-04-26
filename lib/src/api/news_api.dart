@@ -13,12 +13,20 @@ abstract class NewsRestClient implements RestInterface<NewsObject> {
   factory NewsRestClient(Dio dio, {String? baseUrl}) = _NewsRestClient;
 
   @GET("/news")
-  Future<List<NewsObject>?> getAll(
-      {@Header("pageById") int? pageById,
-      @Header('pageByDate') DateTime? pageByDate,
-      @Header('splitBy') int? splitBy,
-      @Header('onlyIds') bool? onlyIds,
-      @Header('pageByIds') List<int>? pageByIds});
+  Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
+
+  @GET("/news")
+  Future<Map<String, List<NewsObject>>?> getAllSplit(
+      @Header('splitBy') int splitBy);
+
+  @GET("/news")
+  Future<List<NewsObject>?> getAll({
+    @Header("pageById") int? pageById,
+    @Header('pageByDate') DateTime? pageByDate,
+    //@Header('splitBy') int? splitBy,
+    // @Header('onlyIds') bool? onlyIds,
+    //  @Header('pageByIds') List<int>? pageByIds,
+  });
 
   @GET("/news/{id}")
   Future<NewsObject?> getOne(@Path("id") String id);
