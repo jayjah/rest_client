@@ -19,11 +19,11 @@ class ImageObjectAdapter extends TypeAdapter<ImageObject> {
     return ImageObject(
       id: fields[0] as int?,
       name: fields[1] as String?,
-      shortDescription: fields[2] as String?,
+      filePath: fields[2] as String?,
       createdAt: fields[3] as DateTime?,
       updatedAt: fields[4] as DateTime?,
-      youtubeUrl: fields[5] as String?,
-      title: fields[6] as String?,
+      extraContent: fields[5] as String?,
+      type: fields[6] as String?,
     );
   }
 
@@ -36,15 +36,15 @@ class ImageObjectAdapter extends TypeAdapter<ImageObject> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.shortDescription)
+      ..write(obj.filePath)
       ..writeByte(3)
       ..write(obj.createdAt)
       ..writeByte(4)
       ..write(obj.updatedAt)
       ..writeByte(5)
-      ..write(obj.youtubeUrl)
+      ..write(obj.extraContent)
       ..writeByte(6)
-      ..write(obj.title);
+      ..write(obj.type);
   }
 
   @override
@@ -66,15 +66,15 @@ ImageObject _$ImageObjectFromJson(Map<String, dynamic> json) {
   return ImageObject(
     id: json['id'] as int?,
     name: json['name'] as String?,
-    shortDescription: json['shortDescription'] as String?,
+    filePath: json['filePath'] as String?,
     createdAt: json['createdAt'] == null
         ? null
         : DateTime.parse(json['createdAt'] as String),
     updatedAt: json['updatedAt'] == null
         ? null
         : DateTime.parse(json['updatedAt'] as String),
-    youtubeUrl: json['youtubeUrl'] as String?,
-    title: json['title'] as String?,
+    extraContent: json['extraContent'] as String?,
+    type: json['title'] as String?,
   );
 }
 
@@ -82,11 +82,11 @@ Map<String, dynamic> _$ImageObjectToJson(ImageObject instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'shortDescription': instance.shortDescription,
+      'filePath': instance.filePath,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'youtubeUrl': instance.youtubeUrl,
-      'title': instance.title,
+      'extraContent': instance.extraContent,
+      'title': instance.type,
     };
 
 // **************************************************************************

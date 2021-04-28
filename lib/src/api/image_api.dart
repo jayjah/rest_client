@@ -56,24 +56,26 @@ class ImageObject extends HiveObject implements DataModel {
   @HiveField(1)
   String? name;
   @HiveField(2)
-  String? shortDescription;
+  String? filePath;
   @HiveField(3)
   DateTime? createdAt;
   @HiveField(4)
   DateTime? updatedAt;
   @HiveField(5)
-  String? youtubeUrl;
+  String? extraContent;
+
+  // enum FileType { users, locations, news, events, all, create }
   @HiveField(6)
-  String? title;
+  String? type;
 
   ImageObject(
       {this.id,
       this.name,
-      this.shortDescription,
+      this.filePath,
       this.createdAt,
       this.updatedAt,
-      this.youtubeUrl,
-      this.title});
+      this.extraContent,
+      this.type});
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
@@ -84,10 +86,11 @@ class ImageObject extends HiveObject implements DataModel {
       other is ImageObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
+          filePath == other.filePath &&
           name == other.name &&
           createdAt == other.createdAt &&
-          youtubeUrl == other.youtubeUrl &&
-          title == other.title &&
+          extraContent == other.extraContent &&
+          type == other.type &&
           updatedAt == other.updatedAt;
 
   factory ImageObject.fromJson(Map<String, dynamic> json) =>
