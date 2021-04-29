@@ -379,8 +379,8 @@ class _UserRestClient implements UserRestClient {
         _setStreamType<List<UserObject>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{
-                  r'property': property,
-                  r'value': valueOfProperty
+                  if (property != null) r'property': property,
+                  if (valueOfProperty != null) r'value': valueOfProperty
                 },
                 extra: _extra)
             .compose(_dio.options, '/users',
@@ -441,8 +441,8 @@ class _UserRestClient implements UserRestClient {
         _setStreamType<List<UserObject>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{
-                  r'pageById': pageById,
-                  r'pageByDate': pageByDate
+                  if (pageById != null) r'pageById': pageById,
+                  if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
             .compose(_dio.options, '/users',
