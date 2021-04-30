@@ -73,4 +73,8 @@ class FeedbackObject extends HiveObject implements DataModel {
   factory FeedbackObject.fromJson(Map<String, dynamic> json) =>
       _$FeedbackObjectFromJson(json);
   Map<String, dynamic> toJson() => _$FeedbackObjectToJson(this);
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,name: $name,message: $message,createdAt: ${createdAt?.toIso8601String()})';
 }

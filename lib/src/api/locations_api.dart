@@ -113,5 +113,5 @@ class LocationObject extends HiveObject implements DataModel {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: "$name",city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '${this.runtimeType}(id: $id,name: $name,city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 }

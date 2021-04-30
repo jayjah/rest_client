@@ -71,4 +71,8 @@ class NewsletterObject extends HiveObject implements DataModel {
   factory NewsletterObject.fromJson(Map<String, dynamic> json) =>
       _$NewsletterObjectFromJson(json);
   Map<String, dynamic> toJson() => _$NewsletterObjectToJson(this);
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()})';
 }

@@ -105,5 +105,5 @@ class TodoObject extends HiveObject implements DataModel {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: "$name",title: $title,shortDescription: $shortDescription,text: $text,isDone: $isDone,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
+      '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,isDone: $isDone,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
 }

@@ -89,5 +89,5 @@ class ConfigObject extends HiveObject {
 
   @override
   String toString() =>
-      '${this.runtimeType}(name: "$name",id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
+      '${this.runtimeType}(name: $name,id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
 }

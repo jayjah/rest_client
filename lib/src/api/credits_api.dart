@@ -74,6 +74,5 @@ class CreditObject extends HiveObject implements DataModel {
           type == other.type;
 
   @override
-  String toString() =>
-      '${this.runtimeType}(value: "$value",id: $id,type: $type)';
+  String toString() => '${this.runtimeType}(id: $id,value: $value,type: $type)';
 }

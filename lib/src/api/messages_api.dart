@@ -52,4 +52,8 @@ class MessageObject extends HiveObject implements DataModel {
           htmlMessage == other.htmlMessage &&
           title == other.title &&
           message == other.message;
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,title: $title,message: $message,htmlMessage: $htmlMessage)';
 }

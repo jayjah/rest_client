@@ -99,5 +99,5 @@ class ImageObject extends HiveObject implements DataModel {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: "$name",filePath: $filePath,type: $type,extraContent: $extraContent,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '${this.runtimeType}(id: $id,name: $name,filePath: $filePath,type: $type,extraContent: $extraContent,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 }
