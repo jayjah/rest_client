@@ -4,7 +4,7 @@ abstract class Client {
   // To reset this value, just set it to an empty string
   static String authenticationToken = '';
   // To reset this value, just set it to an empty string
-  static String guestAuthenticationToken =
+  static String basicAuthenticationToken =
       '${base64.encode('guest:guest'.codeUnits)}';
   static final _logger = PrettyDioLogger(
       requestBody: true,

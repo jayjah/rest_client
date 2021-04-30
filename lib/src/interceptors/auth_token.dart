@@ -13,7 +13,7 @@ class AuthorizationInterceptor extends Interceptor {
         HttpHeaders.acceptEncodingHeader: "utf-8",
         "Authorization": Client.authenticationToken.isNotEmpty
             ? "${Client.authenticationToken}"
-            : "Basic ${Client.guestAuthenticationToken}",
+            : "Basic ${Client.basicAuthenticationToken}",
       });
     } else {
       options.headers.addAll({
