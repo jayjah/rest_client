@@ -105,4 +105,8 @@ class EventObject extends HiveObject implements DataModel {
   factory EventObject.fromJson(Map<String, dynamic> json) =>
       _$EventObjectFromJson(json);
   Map<String, dynamic> toJson() => _$EventObjectToJson(this);
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,name: "$name",title: $title,shortDescription: $shortDescription,text: $text,startDate: ${startDate?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
 }

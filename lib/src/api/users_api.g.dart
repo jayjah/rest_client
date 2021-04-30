@@ -17,28 +17,28 @@ class UserObjectAdapter extends TypeAdapter<UserObject> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserObject(
-      id: fields[0] as int?,
-      firstName: fields[1] as String?,
-      lastName: fields[2] as String?,
-      createdAt: fields[11] as DateTime?,
-      loginName: fields[3] as String?,
-      password: fields[4] as String?,
-      email: fields[5] as String?,
-      birthDate: fields[6] as DateTime?,
-      lastLogin: fields[7] as DateTime?,
-      newsLetter: fields[8] as bool?,
-      role: fields[9] as String?,
-      externalId: fields[10] as String?,
-      eventParticipates: (fields[13] as List?)?.cast<UserEventObject>(),
-      todos: (fields[12] as List?)?.cast<TodoObject>(),
-      trainingParticipates: (fields[14] as List?)?.cast<UserTrainingObject>(),
-    );
+        id: fields[0] as int?,
+        firstName: fields[1] as String?,
+        lastName: fields[2] as String?,
+        createdAt: fields[11] as DateTime?,
+        loginName: fields[3] as String?,
+        password: fields[4] as String?,
+        email: fields[5] as String?,
+        birthDate: fields[6] as DateTime?,
+        lastLogin: fields[7] as DateTime?,
+        newsLetter: fields[8] as bool?,
+        role: fields[9] as String?,
+        externalId: fields[10] as String?,
+        eventParticipates: (fields[13] as List?)?.cast<UserEventObject>(),
+        todos: (fields[12] as List?)?.cast<TodoObject>(),
+        trainingParticipates: (fields[14] as List?)?.cast<UserTrainingObject>(),
+        creditPoints: fields[15] as int?);
   }
 
   @override
   void write(BinaryWriter writer, UserObject obj) {
     writer
-      ..writeByte(15)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -68,7 +68,9 @@ class UserObjectAdapter extends TypeAdapter<UserObject> {
       ..writeByte(13)
       ..write(obj.eventParticipates)
       ..writeByte(14)
-      ..write(obj.trainingParticipates);
+      ..write(obj.trainingParticipates)
+      ..writeByte(15)
+      ..write(obj.creditPoints);
   }
 
   @override
@@ -262,6 +264,7 @@ UserObject _$UserObjectFromJson(Map<String, dynamic> json) {
         ? null
         : DateTime.parse(json['lastLogin'] as String),
     newsLetter: json['newsLetter'] as bool?,
+    creditPoints: json['creditPoints'] as int?,
     role: json['role'] as String?,
     externalId: json['externalId'] as String?,
     eventParticipates: (json['eventParticipates'] as List<dynamic>?)
@@ -283,6 +286,7 @@ Map<String, dynamic> _$UserObjectToJson(UserObject instance) =>
       'lastName': instance.lastName,
       'loginName': instance.loginName,
       'password': instance.password,
+      'creditPoints': instance.creditPoints,
       'email': instance.email,
       'birthDate': instance.birthDate?.toIso8601String(),
       'lastLogin': instance.lastLogin?.toIso8601String(),

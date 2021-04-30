@@ -96,6 +96,7 @@ class LocationObject extends HiveObject implements DataModel {
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&
+          text == other.text &&
           createdAt == other.createdAt &&
           latitude == other.latitude &&
           longitude == other.longitude &&
@@ -103,9 +104,14 @@ class LocationObject extends HiveObject implements DataModel {
           image == other.image &&
           images == other.images &&
           postalCode == other.postalCode &&
+          address == other.address &&
           city == other.city;
 
   factory LocationObject.fromJson(Map<String, dynamic> json) =>
       _$LocationObjectFromJson(json);
   Map<String, dynamic> toJson() => _$LocationObjectToJson(this);
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,name: "$name",city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 }

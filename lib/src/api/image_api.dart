@@ -96,4 +96,8 @@ class ImageObject extends HiveObject implements DataModel {
   factory ImageObject.fromJson(Map<String, dynamic> json) =>
       _$ImageObjectFromJson(json);
   Map<String, dynamic> toJson() => _$ImageObjectToJson(this);
+
+  @override
+  String toString() =>
+      '${this.runtimeType}(id: $id,name: "$name",filePath: $filePath,type: $type,extraContent: $extraContent,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 }

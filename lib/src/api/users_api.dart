@@ -86,6 +86,8 @@ class UserObject extends HiveObject implements DataModel {
   List<UserEventObject>? eventParticipates;
   @HiveField(14)
   List<UserTrainingObject>? trainingParticipates;
+  @HiveField(15)
+  int? creditPoints;
   UserObject(
       {this.id,
       this.firstName,
@@ -101,7 +103,8 @@ class UserObject extends HiveObject implements DataModel {
       this.externalId,
       this.eventParticipates,
       this.todos,
-      this.trainingParticipates});
+      this.trainingParticipates,
+      this.creditPoints});
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
@@ -115,8 +118,11 @@ class UserObject extends HiveObject implements DataModel {
           firstName == other.firstName &&
           lastName == other.lastName &&
           loginName == other.loginName &&
+          newsLetter == other.newsLetter &&
           email == other.email &&
+          externalId == other.externalId &&
           birthDate == other.birthDate &&
+          creditPoints == other.creditPoints &&
           role == other.role;
 
   factory UserObject.fromJson(Map<String, dynamic> json) =>
