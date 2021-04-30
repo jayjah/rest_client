@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:test/test.dart';
 
@@ -7,8 +5,6 @@ void main() {
   group('Images', () {
     late ImageRestClient image;
     setUp(() {
-      Client.guestAuthenticationToken =
-          '${base64.encode('guest:guest'.codeUnits)}';
       Client.enableLogging();
       image = ImageRestClient(
         Client.getDio,
