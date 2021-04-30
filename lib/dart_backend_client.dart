@@ -1,5 +1,6 @@
 library dart_backend_client;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_backend_client/src/api/credits_api.dart';
