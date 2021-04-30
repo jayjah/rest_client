@@ -34,7 +34,15 @@ class AuthorizationInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // TODO: implement onResponse
+    // handle successful response of `users/[:id]`
+    // to save authorization header
+    if (response.statusCode == 200 &&
+        response.realUri.path.contains(r"((users)(\/)([1-9]+){1}[^/])") &&
+        response.headers['authorization'] != null) {
+      print(
+          'ClientRestCommunication :: AuthValidator :: set authorization header!');
+      Client.authenticationToken = response.headers['authorization'] as String;
+    }
     super.onResponse(response, handler);
   }
 }
