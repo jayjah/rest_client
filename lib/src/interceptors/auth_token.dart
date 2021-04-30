@@ -2,7 +2,8 @@ part of dart_backend_client;
 
 class AuthorizationInterceptor extends Interceptor {
   AuthorizationInterceptor();
-
+  final RegExp loginRoute = RegExp('([authenticate][\/][login]{1}[^/])');
+  static const authTokenResponseHeader = 'authtoken';
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (!options.headers.containsKey(HttpHeaders.authorizationHeader)) {
@@ -37,11 +38,18 @@ class AuthorizationInterceptor extends Interceptor {
     // handle successful response of `users/[:id]`
     // to save authorization header
     if (response.statusCode == 200 &&
-        response.realUri.path.contains(r"((users)(\/)([1-9]+){1}[^/])") &&
-        response.headers['authorization'] != null) {
+        response.realUri.path.contains(loginRoute) &&
+        response.headers[AuthorizationInterceptor.authTokenResponseHeader] !=
+            null) {
+      final token =
+          response.headers[AuthorizationInterceptor.authTokenResponseHeader];
+      if (token is List && token!.isNotEmpty) {
+        Client.authenticationToken = token[0];
+      } else if (token is String) {
+        Client.authenticationToken = token as String;
+      }
       print(
-          'ClientRestCommunication :: AuthValidator :: set authorization header!');
-      Client.authenticationToken = response.headers['authorization'] as String;
+          'ClientRestCommunication :: AuthValidator :: set authorization header: ${Client.authenticationToken}');
     }
     super.onResponse(response, handler);
   }
