@@ -16,4 +16,10 @@ abstract class FilesRestClient {
   @GET("/files/images/{fileName}")
   @DioResponseType(ResponseType.bytes)
   Future<List<int>?> downloadImageFile(@Path("fileName") String fileName);
+
+  @POST("/images/upload")
+  Future<String> uploadImage(@Body() List<int> file,
+      @Header('filePath') String filePath, @Header('name') String name,
+      {@Header('extraContent') String? extraContent,
+      @Header('type') String? type});
 }

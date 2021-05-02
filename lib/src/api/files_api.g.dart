@@ -48,6 +48,27 @@ class _FilesRestClient implements FilesRestClient {
     return value;
   }
 
+  @override
+  Future<String> uploadImage(file, filePath, name, {extraContent, type}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = file;
+    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{
+              r'filePath': filePath,
+              r'name': name,
+              if (extraContent != null) r'extraContent': extraContent,
+              if (type != null) r'type': type
+            },
+            extra: _extra)
+        .compose(_dio.options, '/images/upload',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
