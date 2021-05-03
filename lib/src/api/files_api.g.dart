@@ -10,8 +10,8 @@ class _FilesRestClient implements FilesRestClient {
   _FilesRestClient(this._dio, {this.baseUrl});
 
   final Dio _dio;
-
   String? baseUrl;
+  static const String boundary = '--7d82a244f2ea5xd0s046';
 
   @override
   Future<String> downloadFile(fileName) async {
@@ -52,7 +52,7 @@ class _FilesRestClient implements FilesRestClient {
   Future<String> uploadImage(file, filePath, name,
       {extraContent,
       type,
-      boundary = '--7d82a244f2ea5xd0s046',
+      boundary = boundary,
       content = 'multipart/form-data'}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -86,5 +86,47 @@ class _FilesRestClient implements FilesRestClient {
       }
     }
     return requestOptions;
+  }
+
+  @override
+  Future<http.Response> uploadFile(
+    String imageName, {
+    String? extraContent,
+    String? type,
+    List<int>? bytes,
+    String? imagePath,
+  }) {
+    late dynamic body;
+    if (bytes == null && imagePath != null) {
+      body = io.File(imagePath);
+    } else if (bytes != null) {
+      body = bytes;
+    } else {
+      throw const BackendClientException(
+          'ERROR WRONG PARAMETERS! Weather bytes OR imagePath must be set!');
+    }
+
+    final encodedBody = const MultipartBodyParser(boundary).parse([
+      FileBodyPart(
+        imageName.split('.')[0],
+        imageName,
+        body,
+      ),
+    ]);
+    final headers = <String, String>{
+      'Content-Type': 'multipart/form-data',
+      'boundary': boundary,
+      'Charset': 'utf-8',
+      'name': imageName,
+      'filePath': imageName,
+      if (type != null) 'type': type,
+      if (extraContent != null) 'extraContent': extraContent,
+      'authorization': Client.authenticationToken
+    };
+
+    return http.post(
+        Uri.parse('${Client.getDio.options.baseUrl}/images/upload'),
+        body: encodedBody,
+        headers: headers);
   }
 }

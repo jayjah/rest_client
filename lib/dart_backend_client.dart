@@ -47,6 +47,7 @@ export 'src/api/users_api.dart';
 
 part 'src/client.dart';
 part 'src/exception.dart';
+part 'src/helpers/file_upload_parser.dart';
 part 'src/interceptors/auth_token.dart';
 part 'src/interfaces/data_model.dart';
 part 'src/interfaces/rest_interface.dart';
