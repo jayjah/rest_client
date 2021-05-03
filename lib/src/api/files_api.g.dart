@@ -125,8 +125,9 @@ class _FilesRestClient implements FilesRestClient {
     };
 
     return http.post(
-        Uri.parse('${Client.getDio.options.baseUrl}/images/upload'),
-        body: encodedBody,
-        headers: headers);
+      Uri.parse('${baseUrl ?? Client.getDio.options.baseUrl}/images/upload'),
+      body: encodedBody,
+      headers: headers,
+    );
   }
 }
