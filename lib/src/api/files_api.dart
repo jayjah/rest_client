@@ -21,5 +21,7 @@ abstract class FilesRestClient {
   Future<String> uploadImage(@Body() List<int> file,
       @Header('filePath') String filePath, @Header('name') String name,
       {@Header('extraContent') String? extraContent,
-      @Header('type') String? type});
+      @Header('type') String? type,
+      @Header('boundary') String boundary = '--7d82a244f2ea5xd0s046',
+      @Header('Content-Type') String content = 'multipart/form-data'});
 }

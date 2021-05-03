@@ -49,7 +49,11 @@ class _FilesRestClient implements FilesRestClient {
   }
 
   @override
-  Future<String> uploadImage(file, filePath, name, {extraContent, type}) async {
+  Future<String> uploadImage(file, filePath, name,
+      {extraContent,
+      type,
+      boundary = '--7d82a244f2ea5xd0s046',
+      content = 'multipart/form-data'}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = file;
@@ -59,7 +63,9 @@ class _FilesRestClient implements FilesRestClient {
               r'filePath': filePath,
               r'name': name,
               if (extraContent != null) r'extraContent': extraContent,
-              if (type != null) r'type': type
+              if (type != null) r'type': type,
+              r'boundary': boundary,
+              r'Content-Type': content
             },
             extra: _extra)
         .compose(_dio.options, '/images/upload',
