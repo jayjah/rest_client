@@ -65,7 +65,7 @@ class _FilesRestClient implements FilesRestClient {
               if (extraContent != null) r'extraContent': extraContent,
               if (type != null) r'type': type,
               r'boundary': boundary,
-              r'Content-Type': content
+              'contentType': content
             },
             extra: _extra)
         .compose(_dio.options, '/images/upload',
