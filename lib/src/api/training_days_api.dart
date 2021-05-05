@@ -11,7 +11,7 @@ abstract class TrainingDaysRestClient {
   factory TrainingDaysRestClient(Dio dio, {String? baseUrl}) =
       _TrainingDaysRestClient;
 
-  @PUT("/trainingdays/{id}")
+  @PUT("/trainingdays/{id}/cancel")
   Future<TrainingDateObject> cancelTraining(@Path('id') String trainingDateId);
 
   @GET("/trainingdays")
