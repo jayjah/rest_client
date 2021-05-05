@@ -51,6 +51,7 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
 @HiveType(typeId: 0)
 @JsonSerializable()
 class ImageObject extends HiveObject implements DataModel {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
