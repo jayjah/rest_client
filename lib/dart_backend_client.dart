@@ -42,6 +42,7 @@ export 'src/api/participate_trainings_api.dart';
 export 'src/api/registers_api.dart';
 export 'src/api/todos_api.dart';
 export 'src/api/trainers_api.dart';
+export 'src/api/training_days_api.dart';
 export 'src/api/trainings_api.dart';
 export 'src/api/users_api.dart';
 
