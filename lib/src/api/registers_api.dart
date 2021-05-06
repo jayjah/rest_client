@@ -93,7 +93,9 @@ class RegisterObject extends HiveObject implements DataModel {
   factory RegisterObject.fromJson(Map<String, dynamic> json) =>
       _$RegisterObjectFromJson(json);
   Map<String, dynamic> toJson() => _$RegisterObjectToJson(this);
-
+  @override
+  RegisterObject fromJson(Map<String, dynamic> json) =>
+      RegisterObject.fromJson(json);
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()},birthDate: ${birthDate?.toIso8601String()})';

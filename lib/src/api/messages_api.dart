@@ -39,7 +39,9 @@ class MessageObject extends HiveObject implements DataModel {
   factory MessageObject.fromJson(Map<String, dynamic> json) =>
       _$MessageObjectFromJson(json);
   Map<String, dynamic> toJson() => _$MessageObjectToJson(this);
-
+  @override
+  MessageObject fromJson(Map<String, dynamic> json) =>
+      MessageObject.fromJson(json);
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
 

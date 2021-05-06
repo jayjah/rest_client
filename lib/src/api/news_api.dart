@@ -98,7 +98,8 @@ class NewsObject extends HiveObject implements DataModel {
   factory NewsObject.fromJson(Map<String, dynamic> json) =>
       _$NewsObjectFromJson(json);
   Map<String, dynamic> toJson() => _$NewsObjectToJson(this);
-
+  @override
+  NewsObject fromJson(Map<String, dynamic> json) => NewsObject.fromJson(json);
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,image: $image,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';

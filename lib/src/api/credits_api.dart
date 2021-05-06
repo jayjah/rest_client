@@ -60,7 +60,9 @@ class CreditObject extends HiveObject implements DataModel {
   factory CreditObject.fromJson(Map<String, dynamic> json) =>
       _$CreditObjectFromJson(json);
   Map<String, dynamic> toJson() => _$CreditObjectToJson(this);
-
+  @override
+  CreditObject fromJson(Map<String, dynamic> json) =>
+      CreditObject.fromJson(json);
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
 
