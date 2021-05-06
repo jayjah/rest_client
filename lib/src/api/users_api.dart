@@ -55,7 +55,7 @@ abstract class UserRestClient implements RestInterface<UserObject> {
 
 @HiveType(typeId: 11)
 @JsonSerializable()
-class UserObject extends HiveObject implements DataModel<UserObject> {
+class UserObject extends HiveObject implements DataModel {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -133,9 +133,6 @@ class UserObject extends HiveObject implements DataModel<UserObject> {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,loginName: $loginName,role: $role,email: $email,creditPoints: $creditPoints,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId)';
-
-  @override
-  UserObject fromJson(Map<String, dynamic> json) => UserObject.fromJson(json);
 }
 
 @HiveType(typeId: 12)

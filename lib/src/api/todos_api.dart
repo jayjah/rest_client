@@ -103,8 +103,6 @@ class TodoObject extends HiveObject implements DataModel {
       _$TodoObjectFromJson(json);
   Map<String, dynamic> toJson() => _$TodoObjectToJson(this);
   @override
-  TodoObject fromJson(Map<String, dynamic> json) => TodoObject.fromJson(json);
-  @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,isDone: $isDone,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
 }

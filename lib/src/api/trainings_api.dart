@@ -119,9 +119,7 @@ class TrainingsObject extends HiveObject implements DataModel {
   factory TrainingsObject.fromJson(Map<String, dynamic> json) =>
       _$TrainingsObjectFromJson(json);
   Map<String, dynamic> toJson() => _$TrainingsObjectToJson(this);
-  @override
-  TrainingsObject fromJson(Map<String, dynamic> json) =>
-      TrainingsObject.fromJson(json);
+
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
