@@ -259,7 +259,11 @@ UserObject _$UserObjectFromJson(Map<String, dynamic> json) {
     email: json['email'] as String?,
     birthDate: json['birthDate'] == null
         ? null
-        : DateTime.parse(json['birthDate'] as String),
+        : json['birthDate'] is String
+            ? DateTime.parse(json['birthDate'] as String)
+            : json['birthDate'] is DateTime
+                ? json['birthDate'] as DateTime
+                : DateTime.parse(json['birthDate'].toString()),
     lastLogin: json['lastLogin'] == null
         ? null
         : DateTime.parse(json['lastLogin'] as String),
