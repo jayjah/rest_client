@@ -104,6 +104,7 @@ Map<String, dynamic> _$NewsObjectToJson(NewsObject instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'image': instance.image,
+      'imageId': instance.image?.id,
     };
 
 // **************************************************************************

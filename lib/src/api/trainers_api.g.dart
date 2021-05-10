@@ -95,6 +95,7 @@ Map<String, dynamic> _$TrainerObjectToJson(TrainerObject instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'image': instance.image,
+      'imageId': instance.image?.id,
       'user': instance.user,
     };
 

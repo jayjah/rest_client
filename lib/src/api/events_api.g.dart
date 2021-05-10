@@ -120,6 +120,7 @@ Map<String, dynamic> _$EventObjectToJson(EventObject instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'image': instance.image,
+      'imageId': instance.image?.id,
       'homepageLink': instance.homepageLink,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),

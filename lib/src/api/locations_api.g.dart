@@ -120,7 +120,8 @@ Map<String, dynamic> _$LocationObjectToJson(LocationObject instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'image': instance.image,
-      'images': instance.images,
+      'imageId': instance.image?.id,
+      'images': instance.images?.map((e) => e.id).toList(growable: false),
     };
 
 // **************************************************************************
