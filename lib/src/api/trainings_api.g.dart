@@ -110,12 +110,26 @@ TrainingsObject _$TrainingsObjectFromJson(Map<String, dynamic> json) {
     lastCreatedTrainingDates: json['lastCreatedTrainingDates'] == null
         ? null
         : DateTime.parse(json['lastCreatedTrainingDates'] as String),
-    timeFrom: json['timeFrom'] == null
-        ? null
-        : DateTime.parse(json['timeFrom'] as String),
-    timeTill: json['timeTill'] == null
-        ? null
-        : DateTime.parse(json['timeTill'] as String),
+    timeFrom:
+  json['timeFrom'] == null
+  ? null : json['timeFrom'] is String ? DateTime.parse(json['timeFrom'] as String)
+      : json['timeFrom'] is DateTime
+  ? json['timeFrom'] as DateTime
+      : DateTime.parse(
+  json['timeFrom'].toString(),
+
+
+    timeTill:
+  json['timeTill'] == null ? null
+      : json['timeTill'] is String
+  ? DateTime.parse(json['timeTill'] as String)
+      : json['timeTill'] is DateTime
+  ? json['timeTill'] as DateTime
+      : DateTime.parse(
+  json['timeTill'].toString(),
+
+
+
     isAg: json['isAg'] as bool?,
   );
 }

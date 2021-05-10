@@ -100,10 +100,22 @@ EventObject _$EventObjectFromJson(Map<String, dynamic> json) {
     homepageLink: json['homepageLink'] as String?,
     startDate: json['startDate'] == null
         ? null
-        : DateTime.parse(json['startDate'] as String),
+        : json['startDate'] is String
+            ? DateTime.parse(json['startDate'] as String)
+            : json['startDate'] is DateTime
+                ? json['startDate'] as DateTime
+                : DateTime.parse(
+                    json['startDate'].toString(),
+                  ),
     endDate: json['endDate'] == null
         ? null
-        : DateTime.parse(json['endDate'] as String),
+        : json['endDate'] is String
+            ? DateTime.parse(json['endDate'] as String)
+            : json['endDate'] is DateTime
+                ? json['endDate'] as DateTime
+                : DateTime.parse(
+                    json['endDate'].toString(),
+                  ),
     text: json['text'] as String?,
   );
 }
