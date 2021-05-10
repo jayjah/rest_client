@@ -74,7 +74,7 @@ ImageObject _$ImageObjectFromJson(Map<String, dynamic> json) {
         ? null
         : DateTime.parse(json['updatedAt'] as String),
     extraContent: json['extraContent'] as String?,
-    type: json['title'] as String?,
+    type: json['type'] as String?,
   );
 }
 
@@ -86,7 +86,7 @@ Map<String, dynamic> _$ImageObjectToJson(ImageObject instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'extraContent': instance.extraContent,
-      'title': instance.type,
+      'type': instance.type,
     };
 
 // **************************************************************************
