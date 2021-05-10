@@ -292,7 +292,7 @@ Map<String, dynamic> _$UserObjectToJson(UserObject instance) =>
       'password': instance.password,
       'creditPoints': instance.creditPoints,
       'email': instance.email,
-      'birthDate': instance.birthDate?.toIso8601String(),
+      'birthDate': formatDate(instance.birthDate), //?.toIso8601String(),
       'lastLogin': instance.lastLogin?.toIso8601String(),
       'newsLetter': instance.newsLetter,
       'role': instance.role,

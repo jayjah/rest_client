@@ -134,8 +134,8 @@ Map<String, dynamic> _$EventObjectToJson(EventObject instance) =>
       'image': instance.image,
       'imageId': instance.image?.id,
       'homepageLink': instance.homepageLink,
-      'startDate': instance.startDate?.toIso8601String(),
-      'endDate': instance.endDate?.toIso8601String(),
+      'startDate': formatDateTime(instance.startDate), //?.toIso8601String(),
+      'endDate': formatDateTime(instance.endDate),
     };
 
 // **************************************************************************

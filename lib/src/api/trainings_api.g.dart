@@ -147,8 +147,8 @@ Map<String, dynamic> _$TrainingsObjectToJson(TrainingsObject instance) =>
       'weekDay': instance.weekDay,
       'lastCreatedTrainingDates':
           instance.lastCreatedTrainingDates?.toIso8601String(),
-      'timeFrom': instance.timeFrom?.toIso8601String(),
-      'timeTill': instance.timeTill?.toIso8601String(),
+      'timeFrom': formatTime(instance.timeFrom), //?.toIso8601String(),
+      'timeTill': formatTime(instance.timeTill), //?.toIso8601String(),
       'isAg': instance.isAg,
     };
 

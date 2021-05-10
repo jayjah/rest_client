@@ -18,6 +18,8 @@ import 'package:dart_backend_client/src/api/training_days_api.dart';
 import 'package:dart_backend_client/src/api/users_api.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/http.dart';
 
@@ -49,11 +51,19 @@ export 'src/api/users_api.dart';
 part 'src/client.dart';
 part 'src/exception.dart';
 part 'src/helpers/file_upload_parser.dart';
+part 'src/helpers/formatting.dart';
 part 'src/interceptors/auth_token.dart';
 part 'src/interfaces/data_model.dart';
 part 'src/interfaces/rest_interface.dart';
 
+Future<void> initLocales(List<String> locales) async {
+  for (final locale in locales) {
+    await initializeDateFormatting(locale);
+  }
+}
+
 void initModels() {
+  // initialize datetime format
   Hive
     ..registerAdapter(ConfigObjectAdapter())
     ..registerAdapter(CreditObjectAdapter())
