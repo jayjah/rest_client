@@ -1,6 +1,6 @@
 name: dart_backend_client
 description: A dart package to provide a rest interface
-version: 0.1.0-pre
+version: 0.2.0-pre
 author: jayjah <jah@jayjah.de>
 homepage: https://www.jayjah.de
 repository: https://github.com/jayjah/dart_backend_client
@@ -12,7 +12,7 @@ dependencies:
   dio: 4.0.0
   intl: 0.17.0
   hive: 2.0.4
-  json_serializable: 4.1.1
+  json_serializable: 4.1.2
   json_annotation: 4.0.1
   retrofit: 2.0.0-beta1
   logger: 1.0.0
