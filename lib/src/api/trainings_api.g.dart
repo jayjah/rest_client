@@ -142,6 +142,7 @@ Map<String, dynamic> _$TrainingsObjectToJson(TrainingsObject instance) =>
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'image': instance.image,
       'trainer': instance.trainer,
+      'trainerId': instance.trainer?.id,
       'ageTill': instance.ageTill,
       'ageFrom': instance.ageFrom,
       'weekDay': instance.weekDay,
