@@ -124,7 +124,8 @@ class LocationObject extends HiveObject implements DataModel {
     final houseNumber = addressDetails['house_number'] as String?;
     final latitude = place.lat;
     final longitude = place.lon;
-    final text = place.category;
+    final text = addressDetails['suburb'] as String? ??
+        addressDetails['city_district'] as String?;
     final postalCode = addressDetails['postcode']?.toString();
     return LocationObject(
       postalCode: postalCode,
