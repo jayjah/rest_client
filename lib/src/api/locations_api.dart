@@ -115,6 +115,7 @@ class LocationObject extends HiveObject implements DataModel {
     if (addressDetails == null) {
       return LocationObject();
     }
+    print('LocationObject :: ADDRESSDETAILS :. $addressDetails');
     final city = addressDetails['city'] as String? ??
         addressDetails['town'] as String? ??
         addressDetails['village'];
