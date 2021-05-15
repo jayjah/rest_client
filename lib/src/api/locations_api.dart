@@ -129,6 +129,7 @@ class LocationObject extends HiveObject implements DataModel {
       city: city,
       latitude: latitude,
       longitude: longitude,
+      name: place.displayName,
       address: '${street ?? ''} ${houseNumber ?? ''}',
       text: text,
     );
