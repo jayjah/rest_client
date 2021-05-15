@@ -118,13 +118,14 @@ class LocationObject extends HiveObject implements DataModel {
     print('LocationObject :: ADDRESSDETAILS :. $addressDetails');
     final city = addressDetails['city'] as String? ??
         addressDetails['town'] as String? ??
-        addressDetails['village'];
+        addressDetails['village'] as String? ??
+        addressDetails['state'] as String?;
     final street = addressDetails['road'] as String?;
     final houseNumber = addressDetails['house_number'] as String?;
     final latitude = place.lat;
     final longitude = place.lon;
     final text = place.category;
-    final postalCode = addressDetails['postal_code'] as String?;
+    final postalCode = addressDetails['postcode']?.toString();
     return LocationObject(
       postalCode: postalCode,
       city: city,
