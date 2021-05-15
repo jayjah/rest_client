@@ -120,19 +120,18 @@ class LocationObject extends HiveObject implements DataModel {
         addressDetails['village'];
     final street = addressDetails['road'] as String?;
     final houseNumber = addressDetails['house_number'] as String?;
-    final name = place.displayName;
     final latitude = place.lat;
     final longitude = place.lon;
     final text = place.category;
-    final postalCode = addressDetails['postalcode'] as String?;
+    final postalCode = addressDetails['postal_code'] as String?;
     return LocationObject(
-        postalCode: postalCode,
-        city: city,
-        name: name,
-        latitude: latitude,
-        longitude: longitude,
-        address: '${street ?? ''} ${houseNumber ?? ''}',
-        text: text);
+      postalCode: postalCode,
+      city: city,
+      latitude: latitude,
+      longitude: longitude,
+      address: '${street ?? ''} ${houseNumber ?? ''}',
+      text: text,
+    );
   }
   Map<String, dynamic> toJson() => _$LocationObjectToJson(this);
 
