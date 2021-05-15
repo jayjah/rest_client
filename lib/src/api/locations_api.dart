@@ -2,6 +2,7 @@ import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:osm_nominatim/osm_nominatim.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'image_api.dart';
@@ -109,7 +110,56 @@ class LocationObject extends HiveObject implements DataModel {
 
   factory LocationObject.fromJson(Map<String, dynamic> json) =>
       _$LocationObjectFromJson(json);
+  factory LocationObject.fromPlace(Place place) {
+    final addressDetails = place.address;
+    if (addressDetails == null) {
+      return LocationObject();
+    }
+    final city = addressDetails['city'] as String? ??
+        addressDetails['town'] as String? ??
+        addressDetails['village'];
+    final street = addressDetails['road'] as String?;
+    final houseNumber = addressDetails['house_number'] as String?;
+    final name = place.displayName;
+    final latitude = place.lat;
+    final longitude = place.lon;
+    final text = place.category;
+    final postalCode = addressDetails['postalcode'] as String?;
+    return LocationObject(
+        postalCode: postalCode,
+        city: city,
+        name: name,
+        latitude: latitude,
+        longitude: longitude,
+        address: '${street ?? ''} ${houseNumber ?? ''}',
+        text: text);
+  }
   Map<String, dynamic> toJson() => _$LocationObjectToJson(this);
+
+  static Future<Iterable<LocationObject>> fromQuery(String pattern) async {
+    final locations = await Nominatim.searchByName(
+      query: pattern,
+      limit: 5,
+      addressDetails: true,
+      extraTags: false,
+      nameDetails: true,
+    );
+    return locations.map(
+      (e) => LocationObject.fromPlace(e),
+    );
+  }
+
+  static Future<LocationObject> fromLatLong(
+      double latitude, double longitude) async {
+    final location = await Nominatim.reverseSearch(
+      lon: longitude,
+      lat: latitude,
+      addressDetails: true,
+      extraTags: false,
+      nameDetails: true,
+    );
+    return LocationObject.fromPlace(location);
+  }
 
   @override
   String toString() =>
