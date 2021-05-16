@@ -77,23 +77,27 @@ class TrainingsObject extends HiveObject implements DataModel {
   DateTime? timeTill;
   @HiveField(14)
   bool? isAg;
+  @HiveField(15)
+  LocationObject? location;
 
-  TrainingsObject(
-      {this.id,
-      this.name,
-      this.shortDescription,
-      this.text,
-      this.createdAt,
-      this.updatedAt,
-      this.image,
-      this.trainer,
-      this.ageFrom,
-      this.ageTill,
-      this.weekDay,
-      this.lastCreatedTrainingDates,
-      this.timeFrom,
-      this.timeTill,
-      this.isAg});
+  TrainingsObject({
+    this.id,
+    this.name,
+    this.shortDescription,
+    this.text,
+    this.createdAt,
+    this.updatedAt,
+    this.image,
+    this.trainer,
+    this.ageFrom,
+    this.ageTill,
+    this.weekDay,
+    this.lastCreatedTrainingDates,
+    this.timeFrom,
+    this.timeTill,
+    this.isAg,
+    this.location,
+  });
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
@@ -122,5 +126,5 @@ class TrainingsObject extends HiveObject implements DataModel {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,location: $location, image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 }

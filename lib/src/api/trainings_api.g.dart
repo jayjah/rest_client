@@ -32,13 +32,14 @@ class TrainingsObjectAdapter extends TypeAdapter<TrainingsObject> {
       timeFrom: fields[12] as DateTime?,
       timeTill: fields[13] as DateTime?,
       isAg: fields[14] as bool?,
+      location: fields[15] as LocationObject?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TrainingsObject obj) {
     writer
-      ..writeByte(15)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -68,7 +69,9 @@ class TrainingsObjectAdapter extends TypeAdapter<TrainingsObject> {
       ..writeByte(13)
       ..write(obj.timeTill)
       ..writeByte(14)
-      ..write(obj.isAg);
+      ..write(obj.isAg)
+      ..writeByte(15)
+      ..write(obj.location);
   }
 
   @override
@@ -104,6 +107,9 @@ TrainingsObject _$TrainingsObjectFromJson(Map<String, dynamic> json) {
     trainer: json['trainer'] == null
         ? null
         : TrainerObject.fromJson(json['trainer'] as Map<String, dynamic>),
+    location: json['location'] == null
+        ? null
+        : LocationObject.fromJson(json['location'] as Map<String, dynamic>),
     ageFrom: int.tryParse(json['ageFrom']?.toString() ?? ''),
     ageTill: int.tryParse(json['ageTill']?.toString() ?? ''),
     weekDay: json['weekDay'] as String?,
@@ -146,6 +152,8 @@ Map<String, dynamic> _$TrainingsObjectToJson(TrainingsObject instance) =>
       'ageTill': instance.ageTill,
       'ageFrom': instance.ageFrom,
       'weekDay': instance.weekDay,
+      'location': instance.location,
+      'locationId': instance.location?.id,
       'lastCreatedTrainingDates':
           instance.lastCreatedTrainingDates?.toIso8601String(),
       'timeFrom': formatTime(instance.timeFrom), //?.toIso8601String(),
