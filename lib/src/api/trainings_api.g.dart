@@ -104,8 +104,8 @@ TrainingsObject _$TrainingsObjectFromJson(Map<String, dynamic> json) {
     trainer: json['trainer'] == null
         ? null
         : TrainerObject.fromJson(json['trainer'] as Map<String, dynamic>),
-    ageFrom: json['ageFrom'] as int?,
-    ageTill: json['ageTill'] as int?,
+    ageFrom: int.tryParse(json['ageFrom']?.toString() ?? ''),
+    ageTill: int.tryParse(json['ageTill']?.toString() ?? ''),
     weekDay: json['weekDay'] as String?,
     lastCreatedTrainingDates: json['lastCreatedTrainingDates'] == null
         ? null
