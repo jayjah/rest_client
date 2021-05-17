@@ -43,7 +43,7 @@ abstract class EventRestClient implements RestInterface<EventObject> {
 
 @HiveType(typeId: 3)
 @JsonSerializable()
-class EventObject extends HiveObject implements DataModel {
+class EventObject extends HiveObject implements DataModel, CalendarDate {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -85,6 +85,9 @@ class EventObject extends HiveObject implements DataModel {
       this.startDate,
       this.endDate,
       this.text});
+
+  @override
+  DateTime? get date => startDate;
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;

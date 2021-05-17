@@ -4,3 +4,7 @@ part of dart_backend_client;
 abstract class DataModel {
   int? id;
 }
+
+abstract class CalendarDate {
+  DateTime? get date;
+}

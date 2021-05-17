@@ -52,7 +52,7 @@ abstract class TrainingDaysRestClient {
 
 @HiveType(typeId: 19)
 @JsonSerializable()
-class TrainingDateObject extends HiveObject implements DataModel {
+class TrainingDateObject extends HiveObject implements DataModel, CalendarDate {
   @HiveField(0)
   String? name;
   @HiveField(1)

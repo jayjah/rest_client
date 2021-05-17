@@ -47,7 +47,7 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
 
 @HiveType(typeId: 10)
 @JsonSerializable()
-class TodoObject extends HiveObject implements DataModel {
+class TodoObject extends HiveObject implements DataModel, CalendarDate {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -80,6 +80,9 @@ class TodoObject extends HiveObject implements DataModel {
       this.title,
       this.user,
       this.text});
+
+  @override
+  DateTime? get date => endDate;
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
