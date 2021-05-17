@@ -14,9 +14,9 @@ final DateFormat _defaultDateFormat = DateFormat(
 String? formatDateTime(DateTime? dateTime) =>
     dateTime == null ? null : _defaultDateFormat.format(dateTime);
 
-final DateFormat _timeFormat = DateFormat(
+final DateFormat timeFormat = DateFormat(
   'HH:mm:ss',
   'DE',
 );
 String? formatTime(DateTime? time) =>
-    time == null ? null : _timeFormat.format(time);
+    time == null ? null : timeFormat.format(time);
