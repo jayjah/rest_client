@@ -26,13 +26,14 @@ class TrainingDateObjectAdapter extends TypeAdapter<TrainingDateObject> {
       date: fields[6] as DateTime?,
       maxParticipation: fields[8] as int?,
       isCanceled: fields[7] as bool?,
+      training: fields[8] as TrainingsObject?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TrainingDateObject obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -50,7 +51,9 @@ class TrainingDateObjectAdapter extends TypeAdapter<TrainingDateObject> {
       ..writeByte(7)
       ..write(obj.isCanceled)
       ..writeByte(8)
-      ..write(obj.maxParticipation);
+      ..write(obj.maxParticipation)
+      ..writeByte(9)
+      ..write(obj.training);
   }
 
   @override
@@ -83,6 +86,9 @@ TrainingDateObject _$TrainingDateObjectFromJson(Map<String, dynamic> json) {
     date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
     maxParticipation: json['maxParticipation'] as int?,
     isCanceled: json['isCanceled'] as bool?,
+    training: json['training'] == null
+        ? null
+        : TrainingsObject.fromJson(json['training'] as Map<String, dynamic>),
   );
 }
 
@@ -97,6 +103,7 @@ Map<String, dynamic> _$TrainingDateObjectToJson(TrainingDateObject instance) =>
       'date': instance.date?.toIso8601String(),
       'isCanceled': instance.isCanceled,
       'maxParticipation': instance.maxParticipation,
+      'training': instance.training,
     };
 
 // **************************************************************************

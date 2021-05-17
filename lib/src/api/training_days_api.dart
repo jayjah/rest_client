@@ -71,6 +71,8 @@ class TrainingDateObject extends HiveObject implements DataModel {
   bool? isCanceled;
   @HiveField(8)
   int? maxParticipation;
+  @HiveField(9)
+  TrainingsObject? training;
 
   TrainingDateObject({
     this.id,
@@ -82,6 +84,7 @@ class TrainingDateObject extends HiveObject implements DataModel {
     this.date,
     this.maxParticipation,
     this.isCanceled,
+    this.training,
   });
 
   @override
