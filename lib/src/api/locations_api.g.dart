@@ -86,8 +86,20 @@ LocationObject _$LocationObjectFromJson(Map<String, dynamic> json) {
     name: json['name'] as String?,
     shortDescription: json['shortDescription'] as String?,
     text: json['text'] as String?,
-    latitude: json['latitude'] as num?,
-    longitude: json['longitude'] as num?,
+    latitude: json['latitude'] == null
+        ? null
+        : json['latitude'] is num
+            ? json['latitude'] as num
+            : double.tryParse(
+                json['latitude'].toString(),
+              ),
+    longitude: json['longitude'] == null
+        ? null
+        : json['longitude'] is num
+            ? json['longitude'] as num
+            : double.tryParse(
+                json['longitude'].toString(),
+              ),
     address: json['address'] as String?,
     city: json['city'] as String?,
     postalCode: json['postalCode'] as String?,
