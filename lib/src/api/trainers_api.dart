@@ -45,7 +45,7 @@ abstract class TrainerRestClient implements RestInterface<TrainerObject> {
 
 @HiveType(typeId: 17)
 @JsonSerializable()
-class TrainerObject extends HiveObject implements DataModel {
+class TrainerObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   String? name;
   @HiveField(1)
@@ -96,4 +96,22 @@ class TrainerObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,image: $image,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+
+  @override
+  String? get content => text;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => shortDescription;
+
+  @override
+  String? get youtubeUrl => null;
+
+  @override
+  DateTime? get createdDate => createdAt;
 }

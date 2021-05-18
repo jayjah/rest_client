@@ -43,9 +43,10 @@ abstract class NewsRestClient implements RestInterface<NewsObject> {
 
 @HiveType(typeId: 1)
 @JsonSerializable()
-class NewsObject extends HiveObject implements DataModel {
+class NewsObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
+  @override
   @HiveField(1)
   String? youtubeUrl;
   @HiveField(2)
@@ -65,17 +66,18 @@ class NewsObject extends HiveObject implements DataModel {
   @HiveField(9)
   ImageObject? image;
 
-  NewsObject(
-      {this.id,
-      this.name,
-      this.shortDescription,
-      this.createdAt,
-      this.updatedAt,
-      this.image,
-      this.youtubeUrl,
-      this.title,
-      this.wordPressId,
-      this.text});
+  NewsObject({
+    this.id,
+    this.name,
+    this.shortDescription,
+    this.createdAt,
+    this.updatedAt,
+    this.image,
+    this.youtubeUrl,
+    this.title,
+    this.wordPressId,
+    this.text,
+  });
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
@@ -102,4 +104,19 @@ class NewsObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,image: $image,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+
+  @override
+  String? get content => text;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get homepageLink => homepageLink;
+
+  @override
+  String? get subHeader => shortDescription;
+
+  @override
+  DateTime? get createdDate => createdAt;
 }

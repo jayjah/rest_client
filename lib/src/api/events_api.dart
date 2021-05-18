@@ -43,9 +43,11 @@ abstract class EventRestClient implements RestInterface<EventObject> {
 
 @HiveType(typeId: 3)
 @JsonSerializable()
-class EventObject extends HiveObject implements DataModel, CalendarDate {
+class EventObject extends HiveObject
+    implements DataModel, CalendarDate, DetailData {
   @HiveField(0)
   int? id;
+  @override
   @HiveField(1)
   String? youtubeUrl;
   @HiveField(2)
@@ -64,6 +66,7 @@ class EventObject extends HiveObject implements DataModel, CalendarDate {
   DateTime? updatedAt;
   @HiveField(9)
   ImageObject? image;
+  @override
   @HiveField(10)
   String? homepageLink;
   @HiveField(11)
@@ -112,4 +115,16 @@ class EventObject extends HiveObject implements DataModel, CalendarDate {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,startDate: ${startDate?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
+
+  @override
+  String? get content => text;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get subHeader => shortDescription;
+
+  @override
+  DateTime? get createdDate => createdAt;
 }
