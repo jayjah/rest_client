@@ -55,7 +55,7 @@ abstract class UserRestClient implements RestInterface<UserObject> {
 
 @HiveType(typeId: 11)
 @JsonSerializable()
-class UserObject extends HiveObject implements DataModel {
+class UserObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -133,6 +133,24 @@ class UserObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,loginName: $loginName,role: $role,email: $email,creditPoints: $creditPoints,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId)';
+
+  @override
+  String? get content => throw UnimplementedError();
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => '${firstName ?? ''} ${lastName ?? ''}';
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => email;
+
+  @override
+  String? get youtubeUrl => null;
 }
 
 @HiveType(typeId: 12)

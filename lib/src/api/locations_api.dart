@@ -45,7 +45,7 @@ abstract class LocationRestClient implements RestInterface<LocationObject> {
 
 @HiveType(typeId: 5)
 @JsonSerializable()
-class LocationObject extends HiveObject implements DataModel {
+class LocationObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   num? longitude;
   @HiveField(1)
@@ -167,4 +167,22 @@ class LocationObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+
+  @override
+  String? get content => text;
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => shortDescription;
+
+  @override
+  String? get youtubeUrl => null;
 }
