@@ -125,7 +125,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<TrainingDateObject>(
             Options(method: 'PUT', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/trainingdays/$trainingDateId',
+                .compose(_dio.options, '/trainingdays/$trainingDateId/cancel',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = TrainingDateObject.fromJson(_result.data!);
