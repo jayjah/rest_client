@@ -10,7 +10,7 @@ abstract class ParticipateTrainingRestClient {
   factory ParticipateTrainingRestClient(Dio dio, {String? baseUrl}) =
       _ParticipateTrainingRestClient;
 
-  @GET("/trainings/{id}/participates")
+  @GET("/trainingdays/{id}/participates")
   Future<List<TrainingDateObject>> getAllOfTraining({@Path("id") int? id});
 
   @DELETE("/users/{userId}/trainings/{trainingId}/participate")
