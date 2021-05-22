@@ -10,7 +10,7 @@ abstract class ParticipateEventRestClient {
       _ParticipateEventRestClient;
 
   @GET("/events/{id}/participates")
-  Future<List<UserEventObject>> getAllOfEvent({@Path("id") int? id});
+  Future<List<UserObject>> getAllOfEvent({@Path("id") int? id});
 
   @DELETE("/users/{userId}/events/{eventId}/participate")
   Future<void> unParticipateEvent(

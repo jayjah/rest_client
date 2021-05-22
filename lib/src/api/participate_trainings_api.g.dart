@@ -14,20 +14,19 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
   String? baseUrl;
 
   @override
-  Future<List<TrainingDateObject>> getAllOfTraining({id}) async {
+  Future<List<UserObject>> getAllOfTraining({id}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<TrainingDateObject>>(
+        _setStreamType<List<UserObject>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/trainingdays/$id/participates',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) =>
-            TrainingDateObject.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => UserObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

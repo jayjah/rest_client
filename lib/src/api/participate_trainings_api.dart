@@ -1,3 +1,4 @@
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -11,7 +12,7 @@ abstract class ParticipateTrainingRestClient {
       _ParticipateTrainingRestClient;
 
   @GET("/trainingdays/{id}/participates")
-  Future<List<TrainingDateObject>> getAllOfTraining({@Path("id") int? id});
+  Future<List<UserObject>> getAllOfTraining({@Path("id") int? id});
 
   @DELETE("/users/{userId}/trainings/{trainingId}/participate")
   Future<void> unParticipateTraining(
