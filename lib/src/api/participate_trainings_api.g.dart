@@ -22,7 +22,7 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<TrainingDateObject>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/trainings/$id/participates',
+                .compose(_dio.options, '/trainingdays/$id/participates',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
