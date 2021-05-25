@@ -42,7 +42,7 @@ abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
 
 @HiveType(typeId: 4)
 @JsonSerializable()
-class FeedbackObject extends HiveObject implements DataModel {
+class FeedbackObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -76,4 +76,22 @@ class FeedbackObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,message: $message,createdAt: ${createdAt?.toIso8601String()})';
+
+  @override
+  String? get content => '$name $message';
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => message;
+
+  @override
+  String? get youtubeUrl => null;
 }
