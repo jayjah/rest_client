@@ -39,7 +39,7 @@ abstract class NewsletterRestClient {
 
 @HiveType(typeId: 8)
 @JsonSerializable()
-class NewsletterObject extends HiveObject implements DataModel {
+class NewsletterObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -75,4 +75,22 @@ class NewsletterObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()})';
+
+  @override
+  String? get content => 'activated: $activated';
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => '$id ${email ?? ''}';
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => verifyToken;
+
+  @override
+  String? get youtubeUrl => null;
 }

@@ -42,7 +42,7 @@ abstract class RegisterRestClient implements RestInterface<RegisterObject> {
 
 @HiveType(typeId: 9)
 @JsonSerializable()
-class RegisterObject extends HiveObject implements DataModel {
+class RegisterObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -97,4 +97,22 @@ class RegisterObject extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()},birthDate: ${birthDate?.toIso8601String()})';
+
+  @override
+  String? get content => 'activated: ${activated ?? false}';
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => '${firstName ?? ''} ${lastName ?? false}';
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => email;
+
+  @override
+  String? get youtubeUrl => null;
 }
