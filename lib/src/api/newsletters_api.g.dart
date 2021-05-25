@@ -98,7 +98,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{r'onlyIds': onlyIds},
                 extra: _extra)
-            .compose(_dio.options, '/newsletters',
+            .compose(_dio.options, '/newsletters/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!.cast<int>();
@@ -115,7 +115,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
                 method: 'GET',
                 headers: <String, dynamic>{r'splitBy': splitBy},
                 extra: _extra)
-            .compose(_dio.options, '/newsletters',
+            .compose(_dio.options, '/newsletters/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!.map((k, dynamic v) => MapEntry(
@@ -141,7 +141,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
                   if (pageByDate != null) r'pageByDate': pageByDate
                 },
                 extra: _extra)
-            .compose(_dio.options, '/newsletters',
+            .compose(_dio.options, '/newsletters/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!

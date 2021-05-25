@@ -11,14 +11,14 @@ abstract class NewsletterRestClient {
   factory NewsletterRestClient(Dio dio, {String? baseUrl}) =
       _NewsletterRestClient;
 
-  @GET("/newsletters")
+  @GET("/newsletters/registers")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
-  @GET("/newsletters")
+  @GET("/newsletters/registers")
   Future<Map<String, List<NewsletterObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
-  @GET("/newsletters")
+  @GET("/newsletters/registers")
   Future<List<NewsletterObject>> getAll({
     @Header("pageById") int? pageById,
     @Header('pageByDate') DateTime? pageByDate,
