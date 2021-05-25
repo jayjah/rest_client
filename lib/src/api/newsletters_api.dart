@@ -28,11 +28,10 @@ abstract class NewsletterRestClient {
   });
 
   @GET("/newsletters/registers/{email}")
-  Future<List<NewsletterObject>> registerNewsletter(
-      {@Path("email") String? email});
+  Future<NewsletterObject> post({@Path("email") String? email});
 
   @GET("/newsletters/registers/{email}")
-  Future<List<NewsletterObject>> unRegisterNewsletter(
+  Future<NewsletterObject> delete(
       {@Path("email") String? email,
       @Header('delete') String? delete = 'true'});
 }

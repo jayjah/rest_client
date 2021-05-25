@@ -152,32 +152,28 @@ class _NewsletterRestClient implements NewsletterRestClient {
   }
 
   @override
-  Future<List<NewsletterObject>> registerNewsletter({email}) async {
+  Future<NewsletterObject> post({email}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<List<NewsletterObject>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/newsletters/registers/$email',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map(
-            (dynamic i) => NewsletterObject.fromJson(i as Map<String, dynamic>))
-        .toList();
+    var value = NewsletterObject.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<List<NewsletterObject>> unRegisterNewsletter(
-      {email, delete = 'true'}) async {
+  Future<NewsletterObject> delete({email, delete = 'true'}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<List<NewsletterObject>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{r'delete': delete},
@@ -185,10 +181,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
             .compose(_dio.options, '/newsletters/registers/$email',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map(
-            (dynamic i) => NewsletterObject.fromJson(i as Map<String, dynamic>))
-        .toList();
+    var value = NewsletterObject.fromJson(_result.data!);
     return value;
   }
 
