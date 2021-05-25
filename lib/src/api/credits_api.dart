@@ -47,7 +47,7 @@ abstract class CreditRestClient implements RestInterface<CreditObject> {
 
 @HiveType(typeId: 7)
 @JsonSerializable()
-class CreditObject extends HiveObject implements DataModel {
+class CreditObject extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -74,4 +74,22 @@ class CreditObject extends HiveObject implements DataModel {
 
   @override
   String toString() => '${this.runtimeType}(id: $id,value: $value,type: $type)';
+
+  @override
+  String? get content => null;
+
+  @override
+  DateTime? get createdDate => null;
+
+  @override
+  String? get header => '${id ?? ''} ${type ?? ''}';
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => value?.toString();
+
+  @override
+  String? get youtubeUrl => null;
 }
