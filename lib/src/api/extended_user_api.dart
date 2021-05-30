@@ -19,7 +19,7 @@ abstract class ExtendedUserRestClient {
 
 @HiveType(typeId: 6)
 @JsonSerializable()
-class ExtendedData extends HiveObject implements DataModel {
+class ExtendedData extends HiveObject implements DataModel, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -55,6 +55,24 @@ class ExtendedData extends HiveObject implements DataModel {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,date: ${date?.toIso8601String()}, name: $name, shortDescription: $shortDescription)';
+
+  @override
+  String? get content => null;
+
+  @override
+  DateTime? get createdDate => null;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => shortDescription;
+
+  @override
+  String? get youtubeUrl => null;
 }
 
 enum Role {
