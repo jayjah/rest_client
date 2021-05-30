@@ -99,19 +99,22 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
   }
 
   @override
-  Future<List<ExtendedData>> calenderData(id) async {
+  Future<Map<DateTime, List<ExtendedData>>> calenderData(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<ExtendedData>>(
+    final _result = await _dio.fetch<Map<DateTime, dynamic>>(
+        _setStreamType<Map<DateTime, List<ExtendedData>>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/users/$id/calender/all',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
-        .toList();
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => ExtendedData.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
     return value;
   }
 
