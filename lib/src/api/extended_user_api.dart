@@ -11,7 +11,8 @@ abstract class ExtendedUserRestClient {
       _ExtendedUserRestClient;
 
   @GET("/users/{id}/next")
-  Future<List<ExtendedData>> next(@Path("id") String id);
+  Future<List<ExtendedData>> next(@Path("id") String id,
+      {@Header('date') DateTime? now});
 
   @GET("/users/{id}/calender/all")
   Future<Map<DateTime, List<ExtendedData>>> calenderData(@Path("id") String id);

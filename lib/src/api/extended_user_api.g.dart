@@ -82,16 +82,21 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
   String? baseUrl;
 
   @override
-  Future<List<ExtendedData>> next(id) async {
+  Future<List<ExtendedData>> next(id, {now}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<ExtendedData>>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/users/$id/next',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<List<ExtendedData>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{
+                  r'date': now ?? DateTime.now().toIso8601String()
+                },
+                extra: _extra)
+            .compose(_dio.options, '/users/$id/next',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
         .toList();
