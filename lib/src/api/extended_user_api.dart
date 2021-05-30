@@ -11,10 +11,10 @@ abstract class ExtendedUserRestClient {
       _ExtendedUserRestClient;
 
   @GET("/users/{id}/next")
-  Future<ExtendedData> next(@Path("id") String id);
+  Future<List<ExtendedData>> next(@Path("id") String id);
 
   @GET("/users/{id}/calender/all")
-  Future<ExtendedData> calenderData(@Path("id") String id);
+  Future<List<ExtendedData>> calenderData(@Path("id") String id);
 }
 
 @HiveType(typeId: 6)

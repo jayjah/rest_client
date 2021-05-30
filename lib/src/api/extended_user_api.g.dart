@@ -56,13 +56,7 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   return ExtendedData(
     id: json['id'] as int?,
-    date: json['date'] == null
-        ? null
-        : json['date'] is String
-            ? DateTime.parse(json['date'] as String)
-            : json['date'] is DateTime
-                ? json['date'] as DateTime
-                : DateTime.parse(json['date'].toString()),
+    date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
     name: json['name'] as String?,
     shortDescription: json['shortDescription'] as String?,
   );
@@ -88,32 +82,36 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
   String? baseUrl;
 
   @override
-  Future<ExtendedData> next(id) async {
+  Future<List<ExtendedData>> next(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ExtendedData>(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<ExtendedData>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/users/$id/next',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ExtendedData.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
   @override
-  Future<ExtendedData> calenderData(id) async {
+  Future<List<ExtendedData>> calenderData(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ExtendedData>(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<ExtendedData>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/users/$id/calender/all',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ExtendedData.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
