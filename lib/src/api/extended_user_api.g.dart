@@ -56,7 +56,13 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   return ExtendedData(
     id: json['id'] as int?,
-    date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
+    date: json['date'] == null
+        ? null
+        : json['date'] is String
+            ? DateTime.parse(json['date'] as String)
+            : json['date'] is DateTime
+                ? json['date'] as DateTime
+                : DateTime.parse(json['date'].toString()),
     name: json['name'] as String?,
     shortDescription: json['shortDescription'] as String?,
   );

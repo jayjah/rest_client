@@ -82,13 +82,13 @@ TodoObject _$TodoObjectFromJson(Map<String, dynamic> json) {
     updatedAt: json['updatedAt'] == null
         ? null
         : DateTime.parse(json['updatedAt'] as String),
-    endDate: json['endDate'] == null
+    endDate: json['date'] == null
         ? null
-        : json['endDate'] is String
-            ? DateTime.parse(json['endDate'] as String)
-            : json['endDate'] is DateTime
-                ? json['endDate'] as DateTime
-                : DateTime.parse(json['endDate'].toString()),
+        : json['date'] is String
+            ? DateTime.parse(json['date'] as String)
+            : json['date'] is DateTime
+                ? json['date'] as DateTime
+                : DateTime.parse(json['date'].toString()),
     isDone: json['isDone'] as bool?,
     title: json['title'] as String?,
     user: json['user'] == null
