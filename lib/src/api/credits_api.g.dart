@@ -53,12 +53,12 @@ class CreditObjectAdapter extends TypeAdapter<CreditObject> {
 CreditObject _$CreditObjectFromJson(Map<String, dynamic> json) {
   return CreditObject(
     id: json['id'] as int?,
-    value: json['value'] == null
+    value: json['counter'] == null
         ? null
-        : json['value'] is int
-            ? json['value'] as int
+        : json['counter'] is int
+            ? json['counter'] as int
             : int.tryParse(
-                json['value'].toString(),
+                json['counter'].toString(),
               ),
     type: json['type'] as String?,
   );
