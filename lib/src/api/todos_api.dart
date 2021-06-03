@@ -50,7 +50,8 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
 
 @HiveType(typeId: 10)
 @JsonSerializable()
-class TodoObject extends HiveObject implements DataModel, CalendarDate {
+class TodoObject extends HiveObject
+    implements DataModel, CalendarDate, DetailData {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -111,4 +112,22 @@ class TodoObject extends HiveObject implements DataModel, CalendarDate {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,isDone: $isDone,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
+
+  @override
+  String? get content => 'User: ${user?.id ?? ''} isDone: $isDone';
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => '${name ?? ''} ${title ?? ''}';
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => '${shortDescription ?? ''} ${text ?? ''}';
+
+  @override
+  String? get youtubeUrl => null;
 }
