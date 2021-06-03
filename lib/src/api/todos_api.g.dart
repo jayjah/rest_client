@@ -142,6 +142,23 @@ class _TodoRestClient implements TodoRestClient {
   }
 
   @override
+  Future<List<TodoObject>> todosOfUser(userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<TodoObject>>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/users/$userId/todos',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => TodoObject.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
   Future<Map<String, List<TodoObject>>> getAllSplit(splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
