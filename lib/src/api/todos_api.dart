@@ -34,6 +34,9 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
   @PUT("/todos/{id}")
   Future<TodoObject?> update(@Path('id') String id, @Body() TodoObject task);
 
+  @GET("/users/{userId}/todos")
+  Future<List<TodoObject>?> todosOfUser(@Path('userId') String userId);
+
   @PUT("/users/{userId}/todos/{todoId}")
   Future<TodoObject?> todoIsDone(
       @Path('todoId') String todoId, @Path('userId') String userId);
