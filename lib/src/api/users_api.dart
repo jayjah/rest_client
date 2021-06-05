@@ -128,6 +128,10 @@ class UserObject extends HiveObject implements DataModel, DetailData {
   factory UserObject.fromJson(Map<String, dynamic> json) =>
       _$UserObjectFromJson(json);
 
+  bool get isAdmin => role == 'admin';
+  bool get isTrainer => role == 'trainer';
+  bool get isMember => role == 'member';
+
   Map<String, dynamic> toJson() => _$UserObjectToJson(this);
 
   @override
