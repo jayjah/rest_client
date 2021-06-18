@@ -190,4 +190,32 @@ class _ConfigRestClient implements ConfigRestClient {
     }
     return requestOptions;
   }
+
+  @deprecated
+  @override
+  Future<List<ConfigObject>?> getAll({int? pageById, DateTime? pageByDate}) {
+    // TODO: implement getAll
+    throw UnimplementedError();
+  }
+
+  @deprecated
+  @override
+  Future<List<int>?> getAllIds({bool onlyIds = true}) {
+    // TODO: implement getAllIds
+    throw UnimplementedError();
+  }
+
+  @deprecated
+  @override
+  Future<Map<String, List<ConfigObject>>?> getAllSplit(int splitBy) {
+    // TODO: implement getAllSplit
+    throw UnimplementedError();
+  }
+
+  @deprecated
+  @override
+  Future<ConfigObject?> getOne(String id) {
+    // TODO: implement getOne
+    throw UnimplementedError();
+  }
 }

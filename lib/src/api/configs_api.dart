@@ -3,10 +3,12 @@ import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../dart_backend_client.dart';
+
 part 'configs_api.g.dart';
 
 @RestApi(autoCastResponse: true)
-abstract class ConfigRestClient {
+abstract class ConfigRestClient implements RestInterface<ConfigObject> {
   factory ConfigRestClient(Dio dio, {String? baseUrl}) = _ConfigRestClient;
 
   @GET("/config/client/{id}")
