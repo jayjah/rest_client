@@ -28,7 +28,7 @@ abstract class ConfigRestClient implements RestInterface<ConfigObject> {
 
 @HiveType(typeId: 2)
 @JsonSerializable()
-class ConfigObject extends HiveObject {
+class ConfigObject extends HiveObject implements DetailData {
   @HiveField(0)
   String? id;
   @HiveField(1)
@@ -92,4 +92,22 @@ class ConfigObject extends HiveObject {
   @override
   String toString() =>
       '${this.runtimeType}(name: $name,id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
+
+  @override
+  String? get content => toString();
+
+  @override
+  DateTime? get createdDate => null;
+
+  @override
+  String? get header => '$name';
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => null;
+
+  @override
+  String? get youtubeUrl => null;
 }
