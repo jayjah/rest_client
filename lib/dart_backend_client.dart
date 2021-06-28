@@ -43,6 +43,7 @@ export 'src/api/newsletters_api.dart';
 export 'src/api/participate_events_api.dart';
 export 'src/api/participate_trainings_api.dart';
 export 'src/api/registers_api.dart';
+export 'src/api/status_api.dart';
 export 'src/api/todos_api.dart';
 export 'src/api/trainers_api.dart';
 export 'src/api/training_days_api.dart';
