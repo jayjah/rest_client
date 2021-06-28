@@ -45,7 +45,8 @@ abstract class LocationRestClient implements RestInterface<LocationObject> {
 
 @HiveType(typeId: 5)
 @JsonSerializable()
-class LocationObject extends HiveObject implements DataModel, DetailData {
+class LocationObject extends HiveObject
+    implements DataModel, DetailData, ImageData, ImagesData {
   @HiveField(0)
   num? longitude;
   @HiveField(1)
@@ -86,6 +87,12 @@ class LocationObject extends HiveObject implements DataModel, DetailData {
       this.updatedAt,
       this.image,
       this.images});
+
+  @override
+  int? get imageId => image?.id;
+
+  @override
+  List<int?>? get imageIds => images?.map((e) => e.id).toList(growable: false);
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;

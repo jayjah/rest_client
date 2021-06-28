@@ -43,7 +43,8 @@ abstract class NewsRestClient implements RestInterface<NewsObject> {
 
 @HiveType(typeId: 1)
 @JsonSerializable()
-class NewsObject extends HiveObject implements DataModel, DetailData {
+class NewsObject extends HiveObject
+    implements DataModel, DetailData, ImageData {
   @HiveField(0)
   int? id;
   @override
@@ -104,6 +105,9 @@ class NewsObject extends HiveObject implements DataModel, DetailData {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,image: $image,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+
+  @override
+  int? get imageId => image?.id;
 
   @override
   String? get content => text;

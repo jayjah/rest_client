@@ -17,3 +17,11 @@ abstract class DetailData {
   String? get homepageLink;
   DateTime? get createdDate;
 }
+
+abstract class ImageData {
+  int? get imageId;
+}
+
+abstract class ImagesData {
+  List<int?>? get imageIds;
+}
