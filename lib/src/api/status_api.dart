@@ -21,7 +21,7 @@ class StatusObject extends HiveObject {
   @HiveField(1)
   DateTime? alive_time;
   @HiveField(2)
-  bool? db_reachable;
+  String? db_reachable;
 
   StatusObject({
     this.status,

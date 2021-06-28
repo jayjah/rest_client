@@ -19,7 +19,7 @@ class StatusObjectAdapter extends TypeAdapter<StatusObject> {
     return StatusObject(
       status: fields[0] as String?,
       alive_time: fields[1] as DateTime?,
-      db_reachable: fields[2] as bool?,
+      db_reachable: fields[2] as String?,
     );
   }
 
@@ -56,7 +56,7 @@ StatusObject _$StatusObjectFromJson(Map<String, dynamic> json) {
     alive_time: json['alive_time'] == null
         ? null
         : DateTime.parse(json['alive_time'] as String),
-    db_reachable: json['db_reachable'] as bool?,
+    db_reachable: json['db_reachable'] as String?,
   );
 }
 
