@@ -116,7 +116,7 @@ class NewsObject extends HiveObject
   String? get header => name;
 
   @override
-  String? get homepageLink => homepageLink;
+  String? get homepageLink => null;
 
   @override
   String? get subHeader => shortDescription;

@@ -46,7 +46,7 @@ abstract class TrainingsRestClient implements RestInterface<TrainingsObject> {
 
 @HiveType(typeId: 18)
 @JsonSerializable()
-class TrainingsObject extends HiveObject implements DataModel {
+class TrainingsObject extends HiveObject implements DataModel, ImageData {
   @HiveField(0)
   String? name;
   @HiveField(1)
@@ -98,6 +98,9 @@ class TrainingsObject extends HiveObject implements DataModel {
     this.isAg,
     this.location,
   });
+
+  @override
+  int? get imageId => image?.id;
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
