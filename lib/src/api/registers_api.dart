@@ -105,7 +105,7 @@ class RegisterObject extends HiveObject implements DataModel, DetailData {
   DateTime? get createdDate => createdAt;
 
   @override
-  String? get header => '${firstName ?? ''} ${lastName ?? false}';
+  String? get header => '${firstName ?? ''} ${lastName ?? ''}';
 
   @override
   String? get homepageLink => null;

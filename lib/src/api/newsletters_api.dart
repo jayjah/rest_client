@@ -76,19 +76,19 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
       '${this.runtimeType}(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()})';
 
   @override
-  String? get content => 'activated: $activated';
+  String? get content => null;
 
   @override
   DateTime? get createdDate => createdAt;
 
   @override
-  String? get header => '$id ${email ?? ''}';
+  String? get header => 'ID: $id ${email ?? ''}';
 
   @override
   String? get homepageLink => null;
 
   @override
-  String? get subHeader => verifyToken;
+  String? get subHeader => 'verified: $activated';
 
   @override
   String? get youtubeUrl => null;
