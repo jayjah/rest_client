@@ -21,13 +21,14 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       date: fields[1] as DateTime?,
       name: fields[2] as String?,
       shortDescription: fields[3] as String?,
+      type: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ExtendedData obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       ..writeByte(2)
       ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.shortDescription);
+      ..write(obj.shortDescription)
+      ..writeByte(4)
+      ..write(obj.type);
   }
 
   @override
@@ -55,11 +58,16 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   return ExtendedData(
-    id: json['id'] as int?,
-    date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
-    name: json['name'] as String?,
-    shortDescription: json['shortDescription'] as String?,
-  );
+      id: json['id'] as int?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      name: json['name'] as String?,
+      shortDescription: json['shortDescription'] as String?,
+      type: json['isDone'] != null
+          ? 'todo'
+          : json['event'] != null
+              ? 'event'
+              : 'training');
 }
 
 Map<String, dynamic> _$ExtendedDataToJson(ExtendedData instance) =>
