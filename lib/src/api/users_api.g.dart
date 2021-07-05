@@ -274,13 +274,13 @@ UserObject _$UserObjectFromJson(Map<String, dynamic> json) {
     creditPoints: json['creditPoints'] as int?,
     role: json['role'] as String?,
     externalId: json['externalId'] as String?,
-    eventParticipates: (json['eventParticipates'] as List<dynamic>?)
+    eventParticipates: (json['events'] as List<dynamic>?)
         ?.map((e) => UserEventObject.fromJson(e as Map<String, dynamic>))
         .toList(),
     todos: (json['todos'] as List<dynamic>?)
         ?.map((e) => TodoObject.fromJson(e as Map<String, dynamic>))
         .toList(),
-    trainingParticipates: (json['trainingParticipates'] as List<dynamic>?)
+    trainingParticipates: (json['trainings'] as List<dynamic>?)
         ?.map((e) => UserTrainingObject.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
