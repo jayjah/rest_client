@@ -142,13 +142,14 @@ class UserEventObjectAdapter extends TypeAdapter<UserEventObject> {
       shortDescription: fields[2] as String?,
       name: fields[0] as String?,
       text: fields[3] as String?,
+      eventId: fields[4] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserEventObject obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -156,7 +157,9 @@ class UserEventObjectAdapter extends TypeAdapter<UserEventObject> {
       ..writeByte(2)
       ..write(obj.shortDescription)
       ..writeByte(3)
-      ..write(obj.text);
+      ..write(obj.text)
+      ..writeByte(4)
+      ..write(obj.eventId);
   }
 
   @override
@@ -326,6 +329,7 @@ UserEventObject _$UserEventObjectFromJson(Map<String, dynamic> json) {
     shortDescription: json['shortDescription'] as String?,
     name: json['name'] as String?,
     text: json['text'] as String?,
+    eventId: json['event']['id'] as int?,
   );
 }
 

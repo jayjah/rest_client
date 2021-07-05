@@ -185,7 +185,16 @@ class UserEventObject extends HiveObject {
   String? shortDescription;
   @HiveField(3)
   String? text;
-  UserEventObject({this.id, this.shortDescription, this.name, this.text});
+  @HiveField(4)
+  int? eventId;
+
+  UserEventObject({
+    this.id,
+    this.shortDescription,
+    this.name,
+    this.text,
+    this.eventId,
+  });
   factory UserEventObject.fromJson(Map<String, dynamic> json) =>
       _$UserEventObjectFromJson(json);
   Map<String, dynamic> toJson() => _$UserEventObjectToJson(this);
