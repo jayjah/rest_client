@@ -120,21 +120,17 @@ TrainingsObject _$TrainingsObjectFromJson(Map<String, dynamic> json) {
     timeFrom: json['timeFrom'] == null
         ? null
         : json['timeFrom'] is String
-            ? timeFormat.parse(json['timeFrom'] as String)
+            ? DateTime.parse(json['timeFrom'] as String)
             : json['timeFrom'] is DateTime
                 ? json['timeFrom'] as DateTime
-                : timeFormat.parse(
-                    json['timeFrom'].toString(),
-                  ),
+                : DateTime.tryParse(json['timeFrom'].toString()),
     timeTill: json['timeTill'] == null
         ? null
         : json['timeTill'] is String
-            ? timeFormat.parse(json['timeTill'] as String)
+            ? DateTime.parse(json['timeTill'] as String)
             : json['timeTill'] is DateTime
                 ? json['timeTill'] as DateTime
-                : timeFormat.parse(
-                    json['timeTill'].toString(),
-                  ),
+                : DateTime.tryParse(json['timeTill'].toString()),
   );
 }
 
