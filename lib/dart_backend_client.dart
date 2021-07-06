@@ -84,7 +84,8 @@ void initModels() {
     ..registerAdapter(UserObjectAdapter())
     ..registerAdapter(PushTokenObjectAdapter())
     ..registerAdapter(UserTrainingDateObjectAdapter())
-    ..registerAdapter(UserEventObjectAdapter());
+    ..registerAdapter(UserEventObjectAdapter())
+    ..registerAdapter(UserTrainingObjectAdapter());
 }
 
 abstract class StorageRepository<T> {
