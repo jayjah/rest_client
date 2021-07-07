@@ -56,18 +56,41 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 // JsonSerializableGenerator
 // **************************************************************************
 
+enum _Type { train, event, todo }
+
+extension TypeConverter on _Type {
+  String get toStringType => toString().split('.')[1];
+}
+
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
+  final type = json['isDone'] != null
+      ? _Type.todo
+      : json['event'] != null
+          ? _Type.event
+          : _Type.train;
+  DateTime? date;
+
+  switch (type) {
+    case _Type.train:
+      date = json['date'] == null
+          ? null
+          : DateTime.parse(
+              '${json['date'] as String} ${json['training']['training']['timeFrom'] as String}',
+            );
+      break;
+    default:
+      date =
+          json['date'] == null ? null : DateTime.parse(json['date'] as String);
+      break;
+  }
+
   return ExtendedData(
-      id: json['id'] as int?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      name: json['name'] as String?,
-      shortDescription: json['shortDescription'] as String?,
-      type: json['isDone'] != null
-          ? 'Todo'
-          : json['event'] != null
-              ? 'Event'
-              : 'Training');
+    id: json['id'] as int?,
+    date: date,
+    name: json['name'] as String?,
+    shortDescription: json['shortDescription'] as String?,
+    type: type.toStringType,
+  );
 }
 
 Map<String, dynamic> _$ExtendedDataToJson(ExtendedData instance) =>
