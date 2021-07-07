@@ -64,10 +64,10 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
       name: json['name'] as String?,
       shortDescription: json['shortDescription'] as String?,
       type: json['isDone'] != null
-          ? 'todo'
+          ? 'Todo'
           : json['event'] != null
-              ? 'event'
-              : 'training');
+              ? 'Event'
+              : 'Training');
 }
 
 Map<String, dynamic> _$ExtendedDataToJson(ExtendedData instance) =>
