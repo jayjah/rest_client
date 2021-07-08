@@ -56,7 +56,7 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-enum _Type { train, event, todo }
+enum _Type { Training, Event, Todo }
 
 extension TypeConverter on _Type {
   String get toStringType => toString().split('.')[1];
@@ -64,14 +64,14 @@ extension TypeConverter on _Type {
 
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   final type = json['isDone'] != null
-      ? _Type.todo
+      ? _Type.Todo
       : json['event'] != null
-          ? _Type.event
-          : _Type.train;
+          ? _Type.Event
+          : _Type.Training;
   DateTime? date;
 
   switch (type) {
-    case _Type.train:
+    case _Type.Training:
       date = json['date'] == null
           ? null
           : DateTime.parse(
