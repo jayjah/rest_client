@@ -92,7 +92,7 @@ class LocationObject extends HiveObject
   int? get imageId => image?.id;
 
   @override
-  List<int?>? get imageIds => images?.map((e) => e.id).toList(growable: false);
+  List<int?>? get imageIds => images?.map((e) => e.id).toList()?..add(imageId);
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
