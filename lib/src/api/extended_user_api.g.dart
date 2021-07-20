@@ -22,13 +22,14 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       name: fields[2] as String?,
       shortDescription: fields[3] as String?,
       type: fields[4] as String?,
+      externId: fields[5] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ExtendedData obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       ..writeByte(3)
       ..write(obj.shortDescription)
       ..writeByte(4)
-      ..write(obj.type);
+      ..write(obj.type)
+      ..writeByte(5)
+      ..write(obj.externId);
   }
 
   @override
@@ -69,9 +72,16 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
           ? _Type.Event
           : _Type.Training;
   DateTime? date;
-
+  int? externId;
   switch (type) {
+    case _Type.Todo:
+      externId = json['todo']['id'] as int?;
+      break;
+    case _Type.Event:
+      externId = json['event']['id'] as int?;
+      break;
     case _Type.Training:
+      externId = json['training']['id'] as int?;
       date = json['date'] == null
           ? null
           : DateTime.parse(
@@ -90,6 +100,7 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
     name: json['name'] as String?,
     shortDescription: json['shortDescription'] as String?,
     type: type.toStringType,
+    externId: externId,
   );
 }
 
@@ -99,6 +110,8 @@ Map<String, dynamic> _$ExtendedDataToJson(ExtendedData instance) =>
       'date': instance.date?.toIso8601String(),
       'name': instance.name,
       'shortDescription': instance.shortDescription,
+      'tyoe': instance.type,
+      'externId': instance.externId,
     };
 
 // **************************************************************************

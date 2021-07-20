@@ -31,12 +31,15 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   String? shortDescription;
   @HiveField(4)
   String? type;
+  @HiveField(5)
+  int? externId;
   ExtendedData({
     this.id,
     this.date,
     this.name,
     this.shortDescription,
     this.type,
+    this.externId,
   });
 
   factory ExtendedData.fromJson(Map<String, dynamic> json) =>
