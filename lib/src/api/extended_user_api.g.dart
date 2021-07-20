@@ -75,13 +75,13 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   int? externId;
   switch (type) {
     case _Type.Todo:
-      externId = json['todo']['id'] as int?;
+      externId = json['todo']['todo']['id'] as int?;
       break;
     case _Type.Event:
-      externId = json['event']['id'] as int?;
+      externId = json['event']['event']['id'] as int?;
       break;
     case _Type.Training:
-      externId = json['training']['id'] as int?;
+      externId = json['training']['training']['id'] as int?;
       date = json['date'] == null
           ? null
           : DateTime.parse(
