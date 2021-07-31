@@ -9,11 +9,22 @@ class MockDio extends DioForNative {
 
   Future<Response<T>> _getValue<T>() {
     assert(_data != null);
-    assert(_data is List<T>);
 
     return Future.value(
       Response(
         data: _data!.first as T,
+        requestOptions: RequestOptions(path: ''),
+      ),
+    );
+  }
+
+  @override
+  Future<Response<T>> fetch<T>(RequestOptions requestOptions) {
+    assert(_data != null);
+
+    return Future.value(
+      Response(
+        data: _data! as T,
         requestOptions: RequestOptions(path: ''),
       ),
     );

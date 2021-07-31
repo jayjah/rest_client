@@ -13,5 +13,13 @@ void main() {
       expect(val, isNotNull);
       expect(val.data, obj);
     });
+    test('MockDio Integration Test', () async {
+      final obj = ImageObject();
+      final dio = MockDio()..data = [obj.toJson()];
+      final restClient = ImageRestClient(dio);
+      final val = await restClient.getAll();
+      expect(val, isNotNull);
+      expect(val!.first, obj);
+    });
   });
 }
