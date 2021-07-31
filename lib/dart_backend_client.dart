@@ -17,6 +17,7 @@ import 'package:dart_backend_client/src/api/trainers_api.dart';
 import 'package:dart_backend_client/src/api/training_days_api.dart';
 import 'package:dart_backend_client/src/api/users_api.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/native_imp.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -57,6 +58,7 @@ part 'src/helpers/formatting.dart';
 part 'src/interceptors/auth_token.dart';
 part 'src/interfaces/data_model.dart';
 part 'src/interfaces/rest_interface.dart';
+part 'src/mock_dio.dart';
 
 Future<void> initLocales(List<String> locales) async {
   for (final locale in locales) {
