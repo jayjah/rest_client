@@ -27,3 +27,8 @@ final DateFormat timeFormat = DateFormat(
 );
 String? formatTime(DateTime? time) =>
     time == null ? null : timeFormat.format(time);
+
+final DateFormat simpleTimeFormat = DateFormat(
+  'HH:mm',
+  'DE',
+);

@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -79,7 +78,7 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   DateTime? get createdDate => null;
 
   @override
-  String? get header => '($type) $name';
+  String? get header => '($type)    $name';
 
   @override
   String? get homepageLink => null;

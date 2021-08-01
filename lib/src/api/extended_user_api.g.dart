@@ -118,12 +118,9 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
     id: json['id'] as int?,
     date: date,
     name: json['name'] as String?,
-    shortDescription: timeTill == null
+    shortDescription: timeTill == null || date == null
         ? json['shortDescription'] as String?
-        : '${DateFormat(
-            'HH:mm',
-            'DE',
-          ).format(timeTill)}  ${json['shortDescription'] as String? ?? ''}',
+        : '${json['shortDescription'] as String? ?? ''}   ${simpleTimeFormat.format(date)} - ${simpleTimeFormat.format(timeTill)}',
     type: type.toStringType,
     externId: externId,
     extraId: extraId,
