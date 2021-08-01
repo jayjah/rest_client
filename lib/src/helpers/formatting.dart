@@ -11,8 +11,15 @@ final DateFormat _defaultDateFormat = DateFormat(
   'yyyy-MM-dd HH:mm:ss',
   'DE',
 );
+final DateFormat _displayDateFormat = DateFormat(
+  'dd.MM.yy HH:mm',
+  'DE',
+);
 String? formatDateTime(DateTime? dateTime) =>
     dateTime == null ? null : _defaultDateFormat.format(dateTime);
+
+String? formatDisplayDateTime(DateTime? dateTime) =>
+    dateTime == null ? null : _displayDateFormat.format(dateTime);
 
 final DateFormat timeFormat = DateFormat(
   'HH:mm:ss',

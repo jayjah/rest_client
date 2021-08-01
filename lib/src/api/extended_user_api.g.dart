@@ -61,10 +61,6 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 
 enum _Type { Training, Event, Todo }
 
-extension TypeConverter on _Type {
-  String get toStringType => toString().split('.')[1];
-}
-
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   final type = json['isDone'] != null
       ? _Type.Todo
@@ -79,6 +75,11 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
       break;
     case _Type.Event:
       externId = json['event']['event']['id'] as int?;
+      date = json['date'] == null
+          ? null
+          : DateTime.parse(
+              '${json['date'] as String}',
+            );
       break;
     case _Type.Training:
       externId = json['training']['training']['id'] as int?;

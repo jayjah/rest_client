@@ -18,6 +18,10 @@ abstract class ExtendedUserRestClient {
   Future<Map<DateTime, List<ExtendedData>>> calenderData(@Path("id") String id);
 }
 
+extension TypeConverter on _Type {
+  String get toStringType => toString().split('.')[1];
+}
+
 @HiveType(typeId: 6)
 @JsonSerializable()
 class ExtendedData extends HiveObject implements DataModel, DetailData {
@@ -70,13 +74,14 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   DateTime? get createdDate => null;
 
   @override
-  String? get header => name;
+  String? get header => '($type) $name';
 
   @override
   String? get homepageLink => null;
 
   @override
-  String? get subHeader => shortDescription;
+  String? get subHeader =>
+      '$shortDescription${date == null ? '' : '\t\t\t${formatDisplayDateTime(date)}'}';
 
   @override
   String? get youtubeUrl => null;
