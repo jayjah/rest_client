@@ -72,10 +72,10 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   DateTime? timeTill;
   switch (type) {
     case _Type.Todo:
-      externId = json['todo']['todo']['id'] as int?;
+      externId = json['participationId'] as int?;
       break;
     case _Type.Event:
-      externId = json['event']['id'] as int?;
+      externId = json['participationId'] as int?;
       timeTill = json['event']['endDate'] == null
           ? null
           : DateTime.parse(
@@ -88,7 +88,7 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
             );
       break;
     case _Type.Training:
-      externId = json['training']['training']['id'] as int?;
+      externId = json['participationId'] as int?;
       date = json['date'] == null
           ? null
           : DateTime.parse(
