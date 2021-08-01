@@ -36,8 +36,10 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   String? shortDescription;
   @HiveField(4)
   String? type;
+  // training -> trainingDateId || todo -> userId || event -> eventId
   @HiveField(5)
   int? externId;
+  // training ->  trainingId || todo -> null || event -> null
   @HiveField(6)
   int? extraId;
   ExtendedData({

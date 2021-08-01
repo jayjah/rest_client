@@ -71,8 +71,9 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
           ? _Type.Event
           : _Type.Training;
   DateTime? date;
-  int? externId;
-  int? extraId;
+  int?
+      externId; // training -> trainingDateId || todo -> userId || event -> eventId
+  int? extraId; // training ->  trainingId || todo -> null || event -> null
   DateTime? timeTill;
 
   switch (type) {
