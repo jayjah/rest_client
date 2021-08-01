@@ -85,8 +85,7 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   String? get homepageLink => null;
 
   @override
-  String? get subHeader =>
-      '$shortDescription${date == null ? '' : '\t\t\t${formatDisplayDateTime(date)}'}';
+  String? get subHeader => shortDescription;
 
   @override
   String? get youtubeUrl => null;
