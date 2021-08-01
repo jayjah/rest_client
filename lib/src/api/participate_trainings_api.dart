@@ -23,7 +23,7 @@ abstract class ParticipateTrainingRestClient {
       @Path('userId') String userId, @Path('trainingId') String trainingId);
 
   @POST("/users/{userId}/trainings/{trainingId}/participate")
-  Future<List<TrainingDateObject>> participateTraining(
+  Future<List<TrainingDateObject>?> participateTraining(
       @Path('userId') String userId, @Path('trainingId') String trainingId);
 
   @POST(

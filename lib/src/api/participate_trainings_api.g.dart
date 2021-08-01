@@ -63,12 +63,12 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
   }
 
   @override
-  Future<List<TrainingDateObject>> participateTraining(
+  Future<List<TrainingDateObject>?> participateTraining(
       userId, trainingId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<TrainingDateObject>>(
+    final _result = await _dio.fetch<List<dynamic>?>(
         _setStreamType<TrainingDateObject>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
