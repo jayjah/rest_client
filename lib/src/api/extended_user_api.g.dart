@@ -69,12 +69,18 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
           : _Type.Training;
   DateTime? date;
   int? externId;
+  DateTime? timeTill;
   switch (type) {
     case _Type.Todo:
       externId = json['todo']['todo']['id'] as int?;
       break;
     case _Type.Event:
-      externId = json['event']['event']['id'] as int?;
+      externId = json['event']['id'] as int?;
+      timeTill = json['event']['endDate'] == null
+          ? null
+          : DateTime.parse(
+              '${json['event']['endDate'] as String}',
+            );
       date = json['date'] == null
           ? null
           : DateTime.parse(
@@ -88,6 +94,12 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
           : DateTime.parse(
               '${json['date'] as String} ${json['training']['training']['timeFrom'] as String}',
             );
+      timeTill = json['training']['training']['timeTill'] == null ||
+              date == null
+          ? null
+          : DateTime.parse(
+              '${formatDate(DateTime.parse(formatDate(date)!))} ${json['training']['training']['timeTill']}');
+
       break;
     default:
       date =
@@ -99,7 +111,12 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
     id: json['id'] as int?,
     date: date,
     name: json['name'] as String?,
-    shortDescription: json['shortDescription'] as String?,
+    shortDescription: timeTill == null
+        ? json['shortDescription'] as String?
+        : '${json['shortDescription'] as String? ?? ''}  ${DateFormat(
+            'HH:mm',
+            'DE',
+          ).format(timeTill)}',
     type: type.toStringType,
     externId: externId,
   );
