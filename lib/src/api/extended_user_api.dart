@@ -38,6 +38,8 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   String? type;
   @HiveField(5)
   int? externId;
+  @HiveField(6)
+  int? extraId;
   ExtendedData({
     this.id,
     this.date,
@@ -45,6 +47,7 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
     this.shortDescription,
     this.type,
     this.externId,
+    this.extraId,
   });
 
   factory ExtendedData.fromJson(Map<String, dynamic> json) =>
@@ -59,9 +62,8 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
       other is ExtendedData &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          date == other.date &&
+          externId == other.externId &&
           name == other.name &&
-          type == other.type &&
           shortDescription == other.shortDescription;
 
   @override

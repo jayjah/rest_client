@@ -23,13 +23,14 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       shortDescription: fields[3] as String?,
       type: fields[4] as String?,
       externId: fields[5] as int?,
+      extraId: fields[6] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ExtendedData obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       ..writeByte(4)
       ..write(obj.type)
       ..writeByte(5)
-      ..write(obj.externId);
+      ..write(obj.externId)
+      ..write(6)
+      ..write(obj.extraId);
   }
 
   @override
@@ -69,7 +72,9 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
           : _Type.Training;
   DateTime? date;
   int? externId;
+  int? extraId;
   DateTime? timeTill;
+
   switch (type) {
     case _Type.Todo:
       externId = json['participationId'] as int?;
@@ -89,6 +94,7 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
       break;
     case _Type.Training:
       externId = json['participationId'] as int?;
+      extraId = json['training']['training']['id'] as int?;
       date = json['date'] == null
           ? null
           : DateTime.parse(
@@ -113,12 +119,13 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
     name: json['name'] as String?,
     shortDescription: timeTill == null
         ? json['shortDescription'] as String?
-        : '${json['shortDescription'] as String? ?? ''}  ${DateFormat(
+        : '${DateFormat(
             'HH:mm',
             'DE',
-          ).format(timeTill)}',
+          ).format(timeTill)}  ${json['shortDescription'] as String? ?? ''}',
     type: type.toStringType,
     externId: externId,
+    extraId: extraId,
   );
 }
 
