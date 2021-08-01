@@ -79,6 +79,8 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   switch (type) {
     case _Type.Todo:
       externId = json['participationId'] as int?;
+      date =
+          json['date'] == null ? null : DateTime.parse(json['date'] as String);
       break;
     case _Type.Event:
       externId = json['participationId'] as int?;
