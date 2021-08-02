@@ -52,7 +52,8 @@ abstract class TrainingDaysRestClient {
 
 @HiveType(typeId: 19)
 @JsonSerializable()
-class TrainingDateObject extends HiveObject implements DataModel, CalendarDate {
+class TrainingDateObject extends HiveObject
+    implements DataModel, CalendarDate, DetailData {
   @HiveField(0)
   String? name;
   @HiveField(1)
@@ -112,4 +113,22 @@ class TrainingDateObject extends HiveObject implements DataModel, CalendarDate {
   @override
   String toString() =>
       '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,isCanceled: $isCanceled,maxParticipation: $maxParticipation,date: ${date?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+
+  @override
+  String? get content => text;
+
+  @override
+  DateTime? get createdDate => createdAt;
+
+  @override
+  String? get header => name;
+
+  @override
+  String? get homepageLink => null;
+
+  @override
+  String? get subHeader => shortDescription;
+
+  @override
+  String? get youtubeUrl => null;
 }
