@@ -151,13 +151,13 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
   String? baseUrl;
 
   @override
-  Future<List<ExtendedData>> next(id, {now}) async {
+  Future<Map<DateTime, List<ExtendedData>>> next(id, {now}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<ExtendedData>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Map<DateTime, List<ExtendedData>>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{
                   r'date': now ?? DateTime.now().toIso8601String()
@@ -166,9 +166,12 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
             .compose(_dio.options, '/users/$id/next',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
-        .toList();
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        DateTime.parse(k),
+        (v as List)
+            .map((i) => ExtendedData.fromJson(i as Map<String, dynamic>))
+            .toList()));
+
     return value;
   }
 
