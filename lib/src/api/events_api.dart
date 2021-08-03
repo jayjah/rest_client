@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -88,6 +89,10 @@ class EventObject extends HiveObject
       this.startDate,
       this.endDate,
       this.text});
+
+  String get startEndAsString => startDate == null || endDate == null
+      ? ''
+      : '${simpleTimeFormat.format(startDate!)} - ${DateFormat('HH:mm   dd.MM.yyyy', 'DE').format(endDate!)}';
 
   @override
   int? get imageId => image?.id;
