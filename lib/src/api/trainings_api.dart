@@ -103,7 +103,7 @@ class TrainingsObject extends HiveObject
   @override
   int? get imageId => image?.id;
 
-  String? ageAsString({String locale = 'de'}) {
+  String ageAsString({String locale = 'de'}) {
     if (ageFrom == null || ageTill == null) {
       return '';
     }
