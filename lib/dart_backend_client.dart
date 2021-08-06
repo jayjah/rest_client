@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:dart_backend_client/src/api/credits_api.dart';
 import 'package:dart_backend_client/src/api/events_api.dart';
+import 'package:dart_backend_client/src/api/extended_user_api.dart';
 import 'package:dart_backend_client/src/api/feedbacks_api.dart';
 import 'package:dart_backend_client/src/api/image_api.dart';
 import 'package:dart_backend_client/src/api/locations_api.dart';
@@ -87,7 +88,8 @@ void initModels() {
     ..registerAdapter(PushTokenObjectAdapter())
     ..registerAdapter(UserTrainingDateObjectAdapter())
     ..registerAdapter(UserEventObjectAdapter())
-    ..registerAdapter(UserTrainingObjectAdapter());
+    ..registerAdapter(UserTrainingObjectAdapter())
+    ..registerAdapter(ExtendedDataAdapter());
 }
 
 abstract class StorageRepository<T> {
