@@ -136,10 +136,10 @@ class TrainingsObject extends HiveObject
   String? get content => text;
 
   @override
-  DateTime? get createdDate => createdDate;
+  DateTime? get createdDate => this.createdDate;
 
   @override
-  String? get header => name;
+  String? get header => '$name${isAg == true ? '   AG' : ''}';
 
   @override
   String? get homepageLink => null;
