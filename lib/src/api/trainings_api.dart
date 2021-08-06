@@ -136,7 +136,7 @@ class TrainingsObject extends HiveObject
   String? get content => text;
 
   @override
-  DateTime? get createdDate => this.createdDate;
+  DateTime? get createdDate => createdAt;
 
   @override
   String? get header => '$name${isAg == true ? '   AG' : ''}';
