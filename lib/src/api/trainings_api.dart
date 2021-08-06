@@ -104,6 +104,10 @@ class TrainingsObject extends HiveObject
   int? get imageId => image?.id;
 
   String? ageAsString({String locale = 'de'}) {
+    if (ageFrom == null || ageTill == null) {
+      return '';
+    }
+
     final buffer = StringBuffer();
     if (ageFrom != 0) {
       if (ageTill == 100) {
@@ -125,6 +129,7 @@ class TrainingsObject extends HiveObject
     } else {
       buffer.write(' years');
     }
+
     return buffer.toString();
   }
 
