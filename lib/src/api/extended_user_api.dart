@@ -22,7 +22,7 @@ extension TypeConverter on _Type {
   String get toStringType => toString().split('.')[1];
 }
 
-@HiveType(typeId: 6)
+@HiveType(typeId: 21)
 @JsonSerializable()
 class ExtendedData extends HiveObject implements DataModel, DetailData {
   @HiveField(0)

@@ -8,7 +8,7 @@ part of 'extended_user_api.dart';
 
 class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
   @override
-  final int typeId = 6;
+  final int typeId = 21;
 
   @override
   ExtendedData read(BinaryReader reader) {
