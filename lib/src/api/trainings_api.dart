@@ -103,6 +103,31 @@ class TrainingsObject extends HiveObject
   @override
   int? get imageId => image?.id;
 
+  String? ageAsString({String locale = 'de'}) {
+    final buffer = StringBuffer();
+    if (ageFrom != 0) {
+      if (ageTill == 100) {
+        if (locale == 'de') {
+          buffer.write('ab');
+        } else {
+          buffer.write('from');
+        }
+        buffer.write(' ');
+      }
+      buffer.write('$ageFrom');
+    }
+    if (ageTill != 100) {
+      buffer.write('- $ageTill');
+    }
+
+    if (locale == 'de') {
+      buffer.write(' Jahre');
+    } else {
+      buffer.write(' years');
+    }
+    return buffer.toString();
+  }
+
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
 
