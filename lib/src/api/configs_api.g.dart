@@ -18,23 +18,26 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
     };
     return ConfigObject(
       id: fields[0] as String?,
-      newsEnabled: fields[1] as bool?,
-      eventsEnabled: fields[2] as bool?,
-      locationsEnabled: fields[3] as bool?,
-      trainersEnabled: fields[4] as bool?,
+      newsEnabled: fields[1] as int?,
+      eventsEnabled: fields[2] as int?,
+      locationsEnabled: fields[3] as int?,
+      trainersEnabled: fields[4] as int?,
       newsPerPage: fields[5] as int?,
       eventsPerPage: fields[6] as int?,
       gMapApiKey: fields[7] as String?,
       minVersion: fields[8] as String?,
-      registrationEnabled: fields[9] as bool?,
+      registrationEnabled: fields[9] as int?,
       name: fields[10] as String?,
+      imprintPath: fields[11] as String?,
+      aboutUsPath: fields[12] as String?,
+      defaultYoutubeId: fields[13] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ConfigObject obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,7 +59,13 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
       ..writeByte(9)
       ..write(obj.registrationEnabled)
       ..writeByte(10)
-      ..write(obj.name);
+      ..write(obj.name)
+      ..writeByte(11)
+      ..write(obj.imprintPath)
+      ..writeByte(12)
+      ..write(obj.aboutUsPath)
+      ..writeByte(13)
+      ..write(obj.defaultYoutubeId);
   }
 
   @override
@@ -77,16 +86,19 @@ class ConfigObjectAdapter extends TypeAdapter<ConfigObject> {
 ConfigObject _$ConfigObjectFromJson(Map<String, dynamic> json) {
   return ConfigObject(
     id: json['id'] as String?,
-    newsEnabled: json['newsEnabled'] as bool?,
-    eventsEnabled: json['eventsEnabled'] as bool?,
-    locationsEnabled: json['locationsEnabled'] as bool?,
-    trainersEnabled: json['trainersEnabled'] as bool?,
+    newsEnabled: json['newsEnabled'] as int?,
+    eventsEnabled: json['eventsEnabled'] as int?,
+    locationsEnabled: json['locationsEnabled'] as int?,
+    trainersEnabled: json['trainersEnabled'] as int?,
     newsPerPage: json['newsPerPage'] as int?,
     eventsPerPage: json['eventsPerPage'] as int?,
     gMapApiKey: json['gMapApiKey'] as String?,
     minVersion: json['minVersion'] as String?,
-    registrationEnabled: json['registrationEnabled'] as bool?,
+    registrationEnabled: json['registrationEnabled'] as int?,
     name: json['name'] as String?,
+    defaultYoutubeId: json['youtubeId'] as String?,
+    aboutUsPath: json['aboutUsPath'] as String?,
+    imprintPath: json['imprintPath'] as String?,
   );
 }
 
@@ -103,6 +115,9 @@ Map<String, dynamic> _$ConfigObjectToJson(ConfigObject instance) =>
       'minVersion': instance.minVersion,
       'registrationEnabled': instance.registrationEnabled,
       'name': instance.name,
+      'imprintPath': instance.imprintPath,
+      'aboutUsPath': instance.aboutUsPath,
+      'youtubeId': instance.defaultYoutubeId,
     };
 
 // **************************************************************************

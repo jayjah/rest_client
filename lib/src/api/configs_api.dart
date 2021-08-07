@@ -32,13 +32,13 @@ class ConfigObject extends HiveObject implements DetailData {
   @HiveField(0)
   String? id;
   @HiveField(1)
-  bool? newsEnabled;
+  int? newsEnabled;
   @HiveField(2)
-  bool? eventsEnabled;
+  int? eventsEnabled;
   @HiveField(3)
-  bool? locationsEnabled;
+  int? locationsEnabled;
   @HiveField(4)
-  bool? trainersEnabled;
+  int? trainersEnabled;
   @HiveField(5)
   int? newsPerPage;
   @HiveField(6)
@@ -48,22 +48,31 @@ class ConfigObject extends HiveObject implements DetailData {
   @HiveField(8)
   String? minVersion;
   @HiveField(9)
-  bool? registrationEnabled;
+  int? registrationEnabled;
   @HiveField(10)
   String? name;
-
-  ConfigObject(
-      {this.id,
-      this.newsEnabled,
-      this.eventsEnabled,
-      this.locationsEnabled,
-      this.trainersEnabled,
-      this.newsPerPage,
-      this.eventsPerPage,
-      this.gMapApiKey,
-      this.minVersion,
-      this.registrationEnabled,
-      this.name});
+  @HiveField(11)
+  String? imprintPath;
+  @HiveField(12)
+  String? aboutUsPath;
+  @HiveField(13)
+  String? defaultYoutubeId;
+  ConfigObject({
+    this.id,
+    this.newsEnabled,
+    this.eventsEnabled,
+    this.locationsEnabled,
+    this.trainersEnabled,
+    this.newsPerPage,
+    this.eventsPerPage,
+    this.gMapApiKey,
+    this.minVersion,
+    this.registrationEnabled,
+    this.name,
+    this.defaultYoutubeId,
+    this.aboutUsPath,
+    this.imprintPath,
+  });
 
   factory ConfigObject.fromJson(Map<String, dynamic> json) =>
       _$ConfigObjectFromJson(json);
