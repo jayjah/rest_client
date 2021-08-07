@@ -55,13 +55,13 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
       _$ExtendedDataFromJson(json);
   Map<String, dynamic> toJson() => _$ExtendedDataToJson(this);
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+  int get hashCode =>
+      id.hashCode ^ runtimeType.hashCode ^ externId.hashCode ^ date.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ExtendedData &&
-          runtimeType == other.runtimeType &&
           id == other.id &&
           externId == other.externId &&
           name == other.name &&
