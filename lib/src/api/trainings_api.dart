@@ -1,6 +1,7 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -103,11 +104,14 @@ class TrainingsObject extends HiveObject
   @override
   int? get imageId => image?.id;
 
-  String ageAsString({String locale = 'de'}) {
-    if (ageFrom == null || ageTill == null) {
+  String ageAsString() {
+    if (ageFrom == null ||
+        ageTill == null ||
+        (ageFrom == 0 && ageTill == 100)) {
       return '';
     }
 
+    final locale = Intl.getCurrentLocale();
     final buffer = StringBuffer();
     if (ageFrom != 0) {
       if (ageTill == 100) {
@@ -124,10 +128,12 @@ class TrainingsObject extends HiveObject
       buffer.write('- $ageTill');
     }
 
-    if (locale == 'de') {
-      buffer.write(' Jahre');
-    } else {
-      buffer.write(' years');
+    if (buffer.isNotEmpty) {
+      if (locale == 'de') {
+        buffer.write(' Jahre');
+      } else {
+        buffer.write(' years');
+      }
     }
 
     return buffer.toString();
