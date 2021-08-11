@@ -125,14 +125,14 @@ class TrainingsObject extends HiveObject
       buffer.write('$ageFrom ');
     }
     if (ageTill != 100) {
-      buffer.write('- $ageTill');
+      buffer.write('- $ageTill ');
     }
 
     if (buffer.isNotEmpty) {
       if (locale == 'de') {
-        buffer.write(' Jahre');
+        buffer.write('Jahre');
       } else {
-        buffer.write(' years');
+        buffer.write('years');
       }
     }
 
