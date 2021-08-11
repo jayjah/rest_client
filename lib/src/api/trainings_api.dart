@@ -122,7 +122,7 @@ class TrainingsObject extends HiveObject
         }
         buffer.write(' ');
       }
-      buffer.write('$ageFrom');
+      buffer.write('$ageFrom ');
     }
     if (ageTill != 100) {
       buffer.write('- $ageTill');
