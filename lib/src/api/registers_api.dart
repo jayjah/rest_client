@@ -99,19 +99,19 @@ class RegisterObject extends HiveObject implements DataModel, DetailData {
       '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()},birthDate: ${birthDate?.toIso8601String()})';
 
   @override
-  String? get content => 'activated: ${activated ?? false}';
+  String? get content => 'Name: $firstName $lastName';
 
   @override
   DateTime? get createdDate => createdAt;
 
   @override
-  String? get header => '${firstName ?? ''} ${lastName ?? ''}';
+  String? get header => 'ID: $id  ${email ?? ''}';
 
   @override
   String? get homepageLink => null;
 
   @override
-  String? get subHeader => email;
+  String? get subHeader => 'verified: $activated';
 
   @override
   String? get youtubeUrl => null;

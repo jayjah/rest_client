@@ -78,7 +78,7 @@ class FeedbackObject extends HiveObject implements DataModel, DetailData {
       '${this.runtimeType}(id: $id,name: $name,message: $message,createdAt: ${createdAt?.toIso8601String()})';
 
   @override
-  String? get content => '$name $message';
+  String? get content => null;
 
   @override
   DateTime? get createdDate => createdAt;

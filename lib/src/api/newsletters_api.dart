@@ -82,7 +82,7 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
   DateTime? get createdDate => createdAt;
 
   @override
-  String? get header => 'ID: $id ${email ?? ''}';
+  String? get header => 'ID: $id  ${email ?? ''}';
 
   @override
   String? get homepageLink => null;
