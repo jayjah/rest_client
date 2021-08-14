@@ -84,13 +84,13 @@ class FeedbackObject extends HiveObject implements DataModel, DetailData {
   DateTime? get createdDate => createdAt;
 
   @override
-  String? get header => name;
+  String? get header => 'Name: $name';
 
   @override
   String? get homepageLink => null;
 
   @override
-  String? get subHeader => message;
+  String? get subHeader => 'Text: $message';
 
   @override
   String? get youtubeUrl => null;
