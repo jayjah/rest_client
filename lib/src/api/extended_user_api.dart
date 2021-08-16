@@ -65,7 +65,8 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
           id == other.id &&
           externId == other.externId &&
           name == other.name &&
-          shortDescription == other.shortDescription;
+          shortDescription == other.shortDescription &&
+          date == other.date;
 
   @override
   String toString() {
