@@ -43,7 +43,7 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
       ..write(obj.type)
       ..writeByte(5)
       ..write(obj.externId)
-      ..write(6)
+      ..writeByte(6)
       ..write(obj.extraId);
   }
 
@@ -118,14 +118,14 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
 
   return ExtendedData(
     id: json['id'] as int?,
-    date: date,
+    date: date ?? DateTime.tryParse(json['date']?.toString() ?? ''),
     name: json['name'] as String?,
     shortDescription: timeTill == null || date == null
         ? json['shortDescription'] as String?
         : '${json['shortDescription'] as String? ?? ''}   ${simpleTimeFormat.format(date)} - ${simpleTimeFormat.format(timeTill)}',
     type: type.toStringType,
     externId: externId,
-    extraId: extraId,
+    extraId: extraId ?? json['extraId'] as int?,
   );
 }
 
@@ -135,8 +135,9 @@ Map<String, dynamic> _$ExtendedDataToJson(ExtendedData instance) =>
       'date': instance.date?.toIso8601String(),
       'name': instance.name,
       'shortDescription': instance.shortDescription,
-      'tyoe': instance.type,
-      'externId': instance.externId,
+      'type': instance.type,
+      'participationId': instance.externId,
+      'extraId': instance.extraId,
     };
 
 // **************************************************************************

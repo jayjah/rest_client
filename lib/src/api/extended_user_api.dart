@@ -68,8 +68,9 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
           shortDescription == other.shortDescription;
 
   @override
-  String toString() =>
-      '${this.runtimeType}(id: $id,date: ${date?.toIso8601String()}, name: $name, shortDescription: $shortDescription)';
+  String toString() {
+    return 'ExtendedData{id: $id, date: $date, name: $name, shortDescription: $shortDescription, type: $type, externId: $externId, extraId: $extraId}';
+  }
 
   @override
   String? get content => null;
