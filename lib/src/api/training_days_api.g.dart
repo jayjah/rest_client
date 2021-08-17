@@ -26,7 +26,7 @@ class TrainingDateObjectAdapter extends TypeAdapter<TrainingDateObject> {
       date: fields[6] as DateTime?,
       maxParticipation: fields[8] as int?,
       isCanceled: fields[7] as bool?,
-      training: fields[8] as TrainingsObject?,
+      training: fields[9] as TrainingsObject?,
     );
   }
 
