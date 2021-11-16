@@ -14,10 +14,10 @@ class _ParticipateEventRestClient implements ParticipateEventRestClient {
   String? baseUrl;
 
   @override
-  Future<List<UserObject>> getAllOfEvent({id}) async {
+  Future<List<UserObject>> getAllOfEvent({int? id}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<UserObject>>(
@@ -25,14 +25,14 @@ class _ParticipateEventRestClient implements ParticipateEventRestClient {
                 .compose(_dio.options, '/events/$id/participates',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => UserObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<void> unParticipateEvent(userId, eventId) async {
+  Future<void> unParticipateEvent(String userId, String eventId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -41,11 +41,12 @@ class _ParticipateEventRestClient implements ParticipateEventRestClient {
             .compose(_dio.options, '/users/$userId/events/$eventId/participate',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    //return null;
   }
 
   @override
-  Future<UserEventObject> participateEvent(userId, eventId) async {
+  Future<UserEventObject> participateEvent(
+      String userId, String eventId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

@@ -11,16 +11,20 @@ part 'credits_api.g.dart';
 abstract class CreditRestClient implements RestInterface<CreditObject> {
   factory CreditRestClient(Dio dio, {String? baseUrl}) = _CreditRestClient;
 
+  @override
   @GET("/credits/{id}")
   Future<CreditObject?> getOne(@Path("id") String id);
 
+  @override
   @GET("/credits")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/credits")
   Future<Map<String, List<CreditObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/credits")
   Future<List<CreditObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -30,13 +34,16 @@ abstract class CreditRestClient implements RestInterface<CreditObject> {
 //      @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @PUT("/credits/{id}")
   Future<CreditObject?> update(
       @Path('id') String id, @Body() CreditObject task);
 
+  @override
   @DELETE("/credits/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/credits")
   Future<CreditObject?> post(@Body() CreditObject task);
 
@@ -48,6 +55,7 @@ abstract class CreditRestClient implements RestInterface<CreditObject> {
 @HiveType(typeId: 7)
 @JsonSerializable()
 class CreditObject extends HiveObject implements DataModel, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -73,7 +81,7 @@ class CreditObject extends HiveObject implements DataModel, DetailData {
           type == other.type;
 
   @override
-  String toString() => '${this.runtimeType}(id: $id,value: $value,type: $type)';
+  String toString() => '$runtimeType(id: $id,value: $value,type: $type)';
 
   @override
   String? get content => null;

@@ -14,10 +14,10 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
   String? baseUrl;
 
   @override
-  Future<List<UserObject>> getAllOfTraining({id}) async {
+  Future<List<UserObject>> getAllOfTraining({int? id}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<UserObject>>(
@@ -25,14 +25,14 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
                 .compose(_dio.options, '/trainingdays/$id/participates',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => UserObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<void> unParticipateTraining(userId, trainingId) async {
+  Future<void> unParticipateTraining(String userId, String trainingId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -42,12 +42,12 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
             _dio.options, '/users/$userId/trainings/$trainingId/participate',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    // return null;
   }
 
   @override
   Future<TrainingDateObject> validateParticipationOfTraining(
-      userId, trainingId) async {
+      String userId, String trainingId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -64,7 +64,7 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
 
   @override
   Future<List<TrainingDateObject>?> participateTraining(
-      userId, trainingId) async {
+      String userId, String trainingId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -85,7 +85,7 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
 
   @override
   Future<TrainingDateObject> participateTrainingDate(
-      userId, trainingId, trainingDateId) async {
+      String userId, String trainingId, String trainingDateId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -102,7 +102,7 @@ class _ParticipateTrainingRestClient implements ParticipateTrainingRestClient {
 
   @override
   Future<TrainingDateObject> unParticipateTrainingDate(
-      userId, trainingId, trainingDateId) async {
+      String userId, String trainingId, String trainingDateId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

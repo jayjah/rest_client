@@ -15,13 +15,16 @@ abstract class ConfigRestClient implements RestInterface<ConfigObject> {
   Future<ConfigObject?> get(
       @Path("id") String id, @Header('config_x_auth_token') String xAuthToken);
 
+  @override
   @PUT("/config/client/{id}")
   Future<ConfigObject?> update(
       @Path('id') String id, @Body() ConfigObject task);
 
+  @override
   @DELETE("/config/client/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/config/client")
   Future<ConfigObject?> post(@Body() ConfigObject task);
 }

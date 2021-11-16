@@ -7,7 +7,7 @@ class AuthorizationInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (!options.headers.containsKey(HttpHeaders.authorizationHeader)) {
-      options.headers.addAll({
+      options.headers.addAll(<String, dynamic>{
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.acceptHeader: "application/json",
         "charset": "utf-8",
@@ -17,7 +17,7 @@ class AuthorizationInterceptor extends Interceptor {
             : "Basic ${Client.basicAuthenticationToken}",
       });
     } else {
-      options.headers.addAll({
+      options.headers.addAll(<String, dynamic>{
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.acceptHeader: "application/json",
         "charset": "utf-8",
@@ -34,7 +34,8 @@ class AuthorizationInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
+  void onResponse(
+      Response<dynamic> response, ResponseInterceptorHandler handler) {
     // handle successful response of `users/[:id]`
     // to save authorization header
     if (response.statusCode == 200 &&

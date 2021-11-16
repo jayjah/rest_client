@@ -10,13 +10,16 @@ part 'registers_api.g.dart';
 abstract class RegisterRestClient implements RestInterface<RegisterObject> {
   factory RegisterRestClient(Dio dio, {String? baseUrl}) = _RegisterRestClient;
 
+  @override
   @GET("/registers")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/registers")
   Future<Map<String, List<RegisterObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/registers")
   Future<List<RegisterObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -26,16 +29,20 @@ abstract class RegisterRestClient implements RestInterface<RegisterObject> {
     //@Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/registers/{id}")
   Future<RegisterObject?> getOne(@Path("id") String id);
 
+  @override
   @PUT("/registers/{id}")
   Future<RegisterObject?> update(
       @Path('id') String id, @Body() RegisterObject task);
 
+  @override
   @DELETE("/registers/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/registers")
   Future<RegisterObject?> post(@Body() RegisterObject task);
 }
@@ -43,6 +50,7 @@ abstract class RegisterRestClient implements RestInterface<RegisterObject> {
 @HiveType(typeId: 9)
 @JsonSerializable()
 class RegisterObject extends HiveObject implements DataModel, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)

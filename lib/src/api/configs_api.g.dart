@@ -132,7 +132,7 @@ class _ConfigRestClient implements ConfigRestClient {
   String? baseUrl;
 
   @override
-  Future<ConfigObject?> get(id, xAuthToken) async {
+  Future<ConfigObject?> get(String id, String xAuthToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -149,7 +149,7 @@ class _ConfigRestClient implements ConfigRestClient {
   }
 
   @override
-  Future<ConfigObject?> update(id, task) async {
+  Future<ConfigObject?> update(String id, ConfigObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -165,7 +165,7 @@ class _ConfigRestClient implements ConfigRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -174,11 +174,11 @@ class _ConfigRestClient implements ConfigRestClient {
             .compose(_dio.options, '/config/client/$id',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    //  return null;
   }
 
   @override
-  Future<ConfigObject?> post(task) async {
+  Future<ConfigObject?> post(ConfigObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

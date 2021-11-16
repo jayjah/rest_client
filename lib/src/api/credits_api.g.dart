@@ -83,7 +83,7 @@ class _CreditRestClient implements CreditRestClient {
   String? baseUrl;
 
   @override
-  Future<CreditObject?> getOne(id) async {
+  Future<CreditObject?> getOne(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -98,7 +98,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<List<int>?> getAllIds({onlyIds = true}) async {
+  Future<List<int>?> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -115,7 +115,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<Map<String, List<CreditObject>>?> getAllSplit(splitBy) async {
+  Future<Map<String, List<CreditObject>>?> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -130,7 +130,8 @@ class _CreditRestClient implements CreditRestClient {
     var value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => CreditObject.fromJson(i as Map<String, dynamic>))
+            .map(
+                (dynamic i) => CreditObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
