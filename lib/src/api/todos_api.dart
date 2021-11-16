@@ -12,13 +12,16 @@ part 'todos_api.g.dart';
 abstract class TodoRestClient implements RestInterface<TodoObject> {
   factory TodoRestClient(Dio dio, {String? baseUrl}) = _TodoRestClient;
 
+  @override
   @GET("/todos")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/todos")
   Future<Map<String, List<TodoObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/todos")
   Future<List<TodoObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -28,9 +31,11 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
     //@Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/todos/{id}")
   Future<TodoObject?> getOne(@Path("id") String id);
 
+  @override
   @PUT("/todos/{id}")
   Future<TodoObject?> update(@Path('id') String id, @Body() TodoObject task);
 
@@ -41,9 +46,11 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
   Future<TodoObject?> todoIsDone(
       @Path('todoId') String todoId, @Path('userId') String userId);
 
+  @override
   @DELETE("/todos/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/todos")
   Future<TodoObject?> post(@Body() TodoObject task);
 }
@@ -52,6 +59,7 @@ abstract class TodoRestClient implements RestInterface<TodoObject> {
 @JsonSerializable()
 class TodoObject extends HiveObject
     implements DataModel, CalendarDate, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -111,7 +119,7 @@ class TodoObject extends HiveObject
   Map<String, dynamic> toJson() => _$TodoObjectToJson(this);
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,isDone: $isDone,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
+      '${runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,isDone: $isDone,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
 
   @override
   String? get content => 'User: ${user?.id ?? ''} isDone: $isDone';

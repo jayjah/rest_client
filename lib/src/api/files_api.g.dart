@@ -14,7 +14,7 @@ class _FilesRestClient implements FilesRestClient {
   static const String boundary = '--7d82a244f2ea5xd0s046';
 
   @override
-  Future<String> downloadFile(fileName) async {
+  Future<String> downloadFile(String fileName) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -31,7 +31,7 @@ class _FilesRestClient implements FilesRestClient {
   }
 
   @override
-  Future<List<int>> downloadImageFile(fileName) async {
+  Future<List<int>> downloadImageFile(String fileName) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -49,11 +49,11 @@ class _FilesRestClient implements FilesRestClient {
   }
 
   @override
-  Future<String> uploadImage(file, filePath, name,
-      {extraContent,
-      type,
-      boundary = boundary,
-      content = 'multipart/form-data'}) async {
+  Future<String> uploadImage(List<int> file, String filePath, String name,
+      {String? extraContent,
+      String? type,
+      String boundary = boundary,
+      String content = 'multipart/form-data'}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = file;

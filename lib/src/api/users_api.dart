@@ -17,13 +17,16 @@ abstract class UserRestClient implements RestInterface<UserObject> {
       {@Header('property') String? property,
       @Header('value') String? valueOfProperty});
 
+  @override
   @GET("/users")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/users")
   Future<Map<String, List<UserObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/users")
   Future<List<UserObject>> getAll({
     @Header("pageById") int? pageById,
@@ -33,15 +36,19 @@ abstract class UserRestClient implements RestInterface<UserObject> {
     //@Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/users/{id}")
   Future<UserObject> getOne(@Path("id") String id);
 
+  @override
   @PUT("/users/{id}")
   Future<UserObject> update(@Path('id') String id, @Body() UserObject task);
 
+  @override
   @DELETE("/users/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/users")
   Future<UserObject> post(@Body() UserObject task);
 
@@ -56,6 +63,7 @@ abstract class UserRestClient implements RestInterface<UserObject> {
 @HiveType(typeId: 11)
 @JsonSerializable()
 class UserObject extends HiveObject implements DataModel, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -136,7 +144,7 @@ class UserObject extends HiveObject implements DataModel, DetailData {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,loginName: $loginName,role: $role,email: $email,creditPoints: $creditPoints,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId)';
+      '${runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,loginName: $loginName,role: $role,email: $email,creditPoints: $creditPoints,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId)';
 
   @override
   String? get content => '$header \n $subHeader';

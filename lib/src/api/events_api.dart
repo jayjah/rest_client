@@ -13,13 +13,16 @@ part 'events_api.g.dart';
 abstract class EventRestClient implements RestInterface<EventObject> {
   factory EventRestClient(Dio dio, {String? baseUrl}) = _EventRestClient;
 
+  @override
   @GET("/events")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/events")
   Future<Map<String, List<EventObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/events")
   Future<List<EventObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -29,15 +32,19 @@ abstract class EventRestClient implements RestInterface<EventObject> {
     //  @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/events/{id}")
   Future<EventObject?> getOne(@Path("id") String id);
 
+  @override
   @PUT("/events/{id}")
   Future<EventObject?> update(@Path('id') String id, @Body() EventObject task);
 
+  @override
   @DELETE("/events/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/events")
   Future<EventObject?> post(@Body() EventObject task);
 }
@@ -46,6 +53,7 @@ abstract class EventRestClient implements RestInterface<EventObject> {
 @JsonSerializable()
 class EventObject extends HiveObject
     implements DataModel, CalendarDate, DetailData, ImageData {
+  @override
   @HiveField(0)
   int? id;
   @override
@@ -122,7 +130,7 @@ class EventObject extends HiveObject
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,startDate: ${startDate?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
+      '${runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,startDate: ${startDate?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()},endDate: ${endDate?.toIso8601String()})';
 
   @override
   String? get content => text;

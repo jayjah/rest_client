@@ -25,6 +25,7 @@ abstract class MessageRestClient {
 @HiveType(typeId: 6)
 @JsonSerializable()
 class MessageObject extends HiveObject implements DataModel {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -54,5 +55,5 @@ class MessageObject extends HiveObject implements DataModel {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,title: $title,message: $message,htmlMessage: $htmlMessage)';
+      '${runtimeType}(id: $id,title: $title,message: $message,htmlMessage: $htmlMessage)';
 }

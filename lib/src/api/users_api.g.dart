@@ -384,10 +384,11 @@ class _UserRestClient implements UserRestClient {
   String? baseUrl;
 
   @override
-  Future<List<UserObject>> filterGetAll({property, valueOfProperty}) async {
+  Future<List<UserObject>> filterGetAll(
+      {String? property, String? valueOfProperty}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<UserObject>>(Options(
@@ -400,14 +401,14 @@ class _UserRestClient implements UserRestClient {
             .compose(_dio.options, '/users',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => UserObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -424,7 +425,7 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
-  Future<Map<String, List<UserObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<UserObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -436,20 +437,20 @@ class _UserRestClient implements UserRestClient {
             .compose(_dio.options, '/users',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => UserObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) => UserObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<List<UserObject>> getAll({pageById, pageByDate}) async {
+  Future<List<UserObject>> getAll({int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<UserObject>>(Options(
@@ -462,14 +463,14 @@ class _UserRestClient implements UserRestClient {
             .compose(_dio.options, '/users',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => UserObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<UserObject> getOne(id) async {
+  Future<UserObject> getOne(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -484,7 +485,7 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
-  Future<UserObject> update(id, task) async {
+  Future<UserObject> update(String id, UserObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -500,7 +501,7 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -513,7 +514,7 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
-  Future<UserObject> post(task) async {
+  Future<UserObject> post(UserObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -529,7 +530,7 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
-  Future<PushTokenObject> postPushToken(id, task) async {
+  Future<PushTokenObject> postPushToken(String id, PushTokenObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -545,7 +546,7 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
-  Future<UserObject> login(basicLoginToken) async {
+  Future<UserObject> login(String basicLoginToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

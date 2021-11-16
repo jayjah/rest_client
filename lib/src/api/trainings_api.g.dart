@@ -173,7 +173,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   String? baseUrl;
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -190,7 +190,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<Map<String, List<TrainingsObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<TrainingsObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -202,20 +202,22 @@ class _TrainingsRestClient implements TrainingsRestClient {
             .compose(_dio.options, '/trainings',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => TrainingsObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) =>
+                TrainingsObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<List<TrainingsObject>> getAll({pageById, pageByDate}) async {
+  Future<List<TrainingsObject>> getAll(
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<TrainingsObject>>(Options(
@@ -228,14 +230,14 @@ class _TrainingsRestClient implements TrainingsRestClient {
             .compose(_dio.options, '/trainings',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => TrainingsObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<TrainingsObject> getOne(id) async {
+  Future<TrainingsObject> getOne(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -250,7 +252,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<TrainingsObject> update(id, task) async {
+  Future<TrainingsObject> update(String id, TrainingsObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -266,7 +268,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -279,7 +281,7 @@ class _TrainingsRestClient implements TrainingsRestClient {
   }
 
   @override
-  Future<TrainingsObject> post(task) async {
+  Future<TrainingsObject> post(TrainingsObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

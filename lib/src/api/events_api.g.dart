@@ -150,7 +150,7 @@ class _EventRestClient implements EventRestClient {
   String? baseUrl;
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -167,7 +167,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<Map<String, List<EventObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<EventObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -179,20 +179,21 @@ class _EventRestClient implements EventRestClient {
             .compose(_dio.options, '/events',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => EventObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) => EventObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<List<EventObject>> getAll({pageById, pageByDate}) async {
+  Future<List<EventObject>> getAll(
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<EventObject>>(Options(
@@ -205,14 +206,14 @@ class _EventRestClient implements EventRestClient {
             .compose(_dio.options, '/events',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => EventObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<EventObject> getOne(id) async {
+  Future<EventObject> getOne(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -227,7 +228,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<EventObject> update(id, task) async {
+  Future<EventObject> update(String id, EventObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -243,7 +244,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -256,7 +257,7 @@ class _EventRestClient implements EventRestClient {
   }
 
   @override
-  Future<EventObject> post(task) async {
+  Future<EventObject> post(EventObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

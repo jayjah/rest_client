@@ -12,13 +12,16 @@ part 'news_api.g.dart';
 abstract class NewsRestClient implements RestInterface<NewsObject> {
   factory NewsRestClient(Dio dio, {String? baseUrl}) = _NewsRestClient;
 
+  @override
   @GET("/news")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/news")
   Future<Map<String, List<NewsObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/news")
   Future<List<NewsObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -28,15 +31,19 @@ abstract class NewsRestClient implements RestInterface<NewsObject> {
     //  @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/news/{id}")
   Future<NewsObject?> getOne(@Path("id") String id);
 
+  @override
   @PUT("/news/{id}")
   Future<NewsObject?> update(@Path('id') String id, @Body() NewsObject task);
 
+  @override
   @DELETE("/news/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/news")
   Future<NewsObject?> post(@Body() NewsObject task);
 }
@@ -45,6 +52,7 @@ abstract class NewsRestClient implements RestInterface<NewsObject> {
 @JsonSerializable()
 class NewsObject extends HiveObject
     implements DataModel, DetailData, ImageData {
+  @override
   @HiveField(0)
   int? id;
   @override
@@ -104,7 +112,7 @@ class NewsObject extends HiveObject
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,image: $image,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '${runtimeType}(id: $id,name: $name,title: $title,shortDescription: $shortDescription,text: $text,image: $image,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 
   @override
   int? get imageId => image?.id;

@@ -62,14 +62,14 @@ class ExtendedDataAdapter extends TypeAdapter<ExtendedData> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-enum _Type { Training, Event, Todo }
+enum _Type { training, event, todo }
 
 ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   final type = json['isDone'] != null
-      ? _Type.Todo
+      ? _Type.todo
       : json['event'] != null
-          ? _Type.Event
-          : _Type.Training;
+          ? _Type.event
+          : _Type.training;
   DateTime? date;
   int?
       externId; // training -> trainingDateId || todo -> userId || event -> eventId
@@ -77,12 +77,12 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
   DateTime? timeTill;
 
   switch (type) {
-    case _Type.Todo:
+    case _Type.todo:
       externId = json['participationId'] as int?;
       date =
           json['date'] == null ? null : DateTime.parse(json['date'] as String);
       break;
-    case _Type.Event:
+    case _Type.event:
       externId = json['participationId'] as int?;
       timeTill = json['event']['endDate'] == null
           ? null
@@ -95,7 +95,7 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
               '${json['date'] as String}',
             );
       break;
-    case _Type.Training:
+    case _Type.training:
       externId = json['participationId'] as int?;
       extraId = json['training']['training']['id'] as int?;
       date = json['date'] == null
@@ -152,10 +152,11 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
   String? baseUrl;
 
   @override
-  Future<Map<DateTime, List<ExtendedData>>> next(id, {now}) async {
+  Future<Map<DateTime, List<ExtendedData>>> next(String id,
+      {DateTime? now}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<Map<DateTime, List<ExtendedData>>>(Options(
@@ -167,17 +168,18 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
             .compose(_dio.options, '/users/$id/next',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         DateTime.parse(k),
         (v as List)
-            .map((i) => ExtendedData.fromJson(i as Map<String, dynamic>))
+            .map(
+                (dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<Map<DateTime, List<ExtendedData>>> calenderData(id) async {
+  Future<Map<DateTime, List<ExtendedData>>> calenderData(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -187,10 +189,11 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
                 .compose(_dio.options, '/users/$id/calender/all',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         DateTime.parse(k),
         (v as List)
-            .map((i) => ExtendedData.fromJson(i as Map<String, dynamic>))
+            .map(
+                (dynamic i) => ExtendedData.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;

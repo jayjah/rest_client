@@ -113,7 +113,7 @@ LocationObject _$LocationObjectFromJson(Map<String, dynamic> json) {
         ? null
         : ImageObject.fromJson(json['image'] as Map<String, dynamic>),
     images: (json['images'] as List<dynamic>?)
-        ?.map((e) => ImageObject.fromJson(e as Map<String, dynamic>))
+        ?.map((dynamic e) => ImageObject.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -149,7 +149,7 @@ class _LocationRestClient implements LocationRestClient {
   String? baseUrl;
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -166,7 +166,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<Map<String, List<LocationObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<LocationObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -178,20 +178,22 @@ class _LocationRestClient implements LocationRestClient {
             .compose(_dio.options, '/locations',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => LocationObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) =>
+                LocationObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<List<LocationObject>> getAll({pageById, pageByDate}) async {
+  Future<List<LocationObject>> getAll(
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<LocationObject>>(Options(
@@ -204,14 +206,14 @@ class _LocationRestClient implements LocationRestClient {
             .compose(_dio.options, '/locations',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => LocationObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<LocationObject> getOne(id) async {
+  Future<LocationObject> getOne(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -226,7 +228,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject> update(id, task) async {
+  Future<LocationObject> update(String id, LocationObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -242,7 +244,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -255,7 +257,7 @@ class _LocationRestClient implements LocationRestClient {
   }
 
   @override
-  Future<LocationObject> post(task) async {
+  Future<LocationObject> post(LocationObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

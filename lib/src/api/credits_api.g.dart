@@ -127,7 +127,7 @@ class _CreditRestClient implements CreditRestClient {
             .compose(_dio.options, '/credits',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
             .map(
@@ -138,10 +138,11 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<List<CreditObject>> getAll({pageById, pageByDate}) async {
+  Future<List<CreditObject>> getAll(
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<CreditObject>>(Options(
@@ -154,14 +155,14 @@ class _CreditRestClient implements CreditRestClient {
             .compose(_dio.options, '/credits',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => CreditObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<CreditObject> update(id, task) async {
+  Future<CreditObject> update(String id, CreditObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -177,7 +178,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -190,7 +191,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<CreditObject> post(task) async {
+  Future<CreditObject> post(CreditObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -206,7 +207,7 @@ class _CreditRestClient implements CreditRestClient {
   }
 
   @override
-  Future<CreditObject> userEarnedCredits(userId, creditId) async {
+  Future<CreditObject> userEarnedCredits(String userId, String creditId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

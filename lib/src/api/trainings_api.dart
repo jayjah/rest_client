@@ -15,13 +15,16 @@ abstract class TrainingsRestClient implements RestInterface<TrainingsObject> {
   factory TrainingsRestClient(Dio dio, {String? baseUrl}) =
       _TrainingsRestClient;
 
+  @override
   @GET("/trainings")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/trainings")
   Future<Map<String, List<TrainingsObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/trainings")
   Future<List<TrainingsObject>> getAll({
     @Header("pageById") int? pageById,
@@ -31,16 +34,20 @@ abstract class TrainingsRestClient implements RestInterface<TrainingsObject> {
     // @Header('pageByIds') List<int>? pageByIds},
   });
 
+  @override
   @GET("/trainings/{id}")
   Future<TrainingsObject> getOne(@Path('id') String id);
 
+  @override
   @PUT("/trainings/{id}")
   Future<TrainingsObject> update(
       @Path('id') String id, @Body() TrainingsObject task);
 
+  @override
   @DELETE("/trainings/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/trainings")
   Future<TrainingsObject> post(@Body() TrainingsObject task);
 }
@@ -55,6 +62,7 @@ class TrainingsObject extends HiveObject
   String? shortDescription;
   @HiveField(2)
   String? text;
+  @override
   @HiveField(3)
   int? id;
   @HiveField(4)
@@ -166,7 +174,7 @@ class TrainingsObject extends HiveObject
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,location: $location, image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '${runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,location: $location, image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 
   @override
   String? get content => text;

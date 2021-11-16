@@ -103,7 +103,7 @@ class ConfigObject extends HiveObject implements DetailData {
 
   @override
   String toString() =>
-      '${this.runtimeType}(name: $name,id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
+      '${runtimeType}(name: $name,id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
 
   @override
   String? get content => toString();

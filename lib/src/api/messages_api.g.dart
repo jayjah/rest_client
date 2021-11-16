@@ -82,7 +82,8 @@ class _MessageRestClient implements MessageRestClient {
   String? baseUrl;
 
   @override
-  Future<MessageObject> postMessageForUser(userId, task) async {
+  Future<MessageObject> postMessageForUser(
+      String userId, MessageObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -98,7 +99,7 @@ class _MessageRestClient implements MessageRestClient {
   }
 
   @override
-  Future<MessageObject> postNewsletterMessage(task) async {
+  Future<MessageObject> postNewsletterMessage(MessageObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -114,7 +115,7 @@ class _MessageRestClient implements MessageRestClient {
   }
 
   @override
-  Future<MessageObject> postPushMessage(id, task) async {
+  Future<MessageObject> postPushMessage(String id, MessageObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

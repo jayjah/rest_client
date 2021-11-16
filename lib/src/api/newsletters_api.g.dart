@@ -89,7 +89,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
   String? baseUrl;
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -106,7 +106,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
   }
 
   @override
-  Future<Map<String, List<NewsletterObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<NewsletterObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -118,20 +118,22 @@ class _NewsletterRestClient implements NewsletterRestClient {
             .compose(_dio.options, '/newsletters/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => NewsletterObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) =>
+                NewsletterObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<List<NewsletterObject>> getAll({pageById, pageByDate}) async {
+  Future<List<NewsletterObject>> getAll(
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<NewsletterObject>>(Options(
@@ -144,7 +146,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
             .compose(_dio.options, '/newsletters/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map(
             (dynamic i) => NewsletterObject.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -152,10 +154,10 @@ class _NewsletterRestClient implements NewsletterRestClient {
   }
 
   @override
-  Future<NewsletterObject> post({email}) async {
+  Future<NewsletterObject> post({String? email}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<List<NewsletterObject>>(
@@ -163,15 +165,16 @@ class _NewsletterRestClient implements NewsletterRestClient {
                 .compose(_dio.options, '/newsletters/registers/$email',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = NewsletterObject.fromJson(_result.data!);
+    final value = NewsletterObject.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<NewsletterObject> delete({email, delete = 'true'}) async {
+  Future<NewsletterObject> delete(
+      {String? email, String? delete = 'true'}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<List<NewsletterObject>>(Options(
@@ -181,7 +184,7 @@ class _NewsletterRestClient implements NewsletterRestClient {
             .compose(_dio.options, '/newsletters/registers/$email',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = NewsletterObject.fromJson(_result.data!);
+    final value = NewsletterObject.fromJson(_result.data!);
     return value;
   }
 

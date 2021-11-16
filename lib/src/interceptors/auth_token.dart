@@ -27,11 +27,6 @@ class AuthorizationInterceptor extends Interceptor {
     super.onRequest(options, handler);
   }
 
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    // TODO: implement onError
-    super.onError(err, handler);
-  }
 
   @override
   void onResponse(

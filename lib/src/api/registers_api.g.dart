@@ -140,7 +140,7 @@ class _RegisterRestClient implements RegisterRestClient {
             .compose(_dio.options, '/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
             .map((dynamic i) =>
@@ -168,7 +168,7 @@ class _RegisterRestClient implements RegisterRestClient {
             .compose(_dio.options, '/registers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => RegisterObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;

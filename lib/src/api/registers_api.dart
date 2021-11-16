@@ -104,7 +104,7 @@ class RegisterObject extends HiveObject implements DataModel, DetailData {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()},birthDate: ${birthDate?.toIso8601String()})';
+      '${runtimeType}(id: $id,firstName: $firstName,lastName: $lastName,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()},birthDate: ${birthDate?.toIso8601String()})';
 
   @override
   String? get content => 'Name: $firstName $lastName';

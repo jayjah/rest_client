@@ -5,6 +5,8 @@ import 'package:retrofit/retrofit.dart';
 
 part 'status_api.g.dart';
 
+// ignore_for_file: non_constant_identifier_names
+
 @RestApi(autoCastResponse: true)
 abstract class StatusRestClient {
   factory StatusRestClient(Dio dio, {String? baseUrl}) = _StatusRestClient;
@@ -47,5 +49,5 @@ class StatusObject extends HiveObject {
 
   @override
   String toString() =>
-      '${this.runtimeType}(status: $status, alive_time: ${alive_time?.toIso8601String()}. db_reachable: $db_reachable)';
+      '${runtimeType}(status: $status, alive_time: ${alive_time?.toIso8601String()}. db_reachable: $db_reachable)';
 }

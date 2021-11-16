@@ -118,7 +118,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
   String? baseUrl;
 
   @override
-  Future<TrainingDateObject> cancelTraining(trainingDateId) async {
+  Future<TrainingDateObject> cancelTraining(String trainingDateId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -133,7 +133,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
   }
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -150,7 +150,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
   }
 
   @override
-  Future<Map<String, List<TrainingDateObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<TrainingDateObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -162,10 +162,11 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
             .compose(_dio.options, '/trainingdays',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => TrainingDateObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) =>
+                TrainingDateObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
@@ -173,10 +174,10 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
 
   @override
   Future<List<TrainingDateObject>> getAllTrainingDates(
-      {pageById, pageByDate}) async {
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<TrainingDateObject>>(Options(
@@ -189,7 +190,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
             .compose(_dio.options, '/trainingdays',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) =>
             TrainingDateObject.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -198,10 +199,10 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
 
   @override
   Future<List<TrainingDateObject>> getTrainingDatesBetween(
-      {dateFrom, dateTill}) async {
+      {DateTime? dateFrom, DateTime? dateTill}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<TrainingDateObject>>(
@@ -209,7 +210,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
                 .compose(_dio.options, '/trainingdays/$dateFrom/$dateTill',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) =>
             TrainingDateObject.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -218,10 +219,10 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
 
   @override
   Future<List<TrainingDateObject>> getTrainingDatesFromTrainingBetween(
-      {trainingDateId, dateFrom, dateTill}) async {
+      {String? trainingDateId, DateTime? dateFrom, DateTime? dateTill}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<TrainingDateObject>>(Options(
@@ -230,7 +231,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
                 '/training/$trainingDateId/trainingdays/$dateFrom/$dateTill',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) =>
             TrainingDateObject.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -238,7 +239,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
   }
 
   @override
-  Future<TrainingDateObject> getOneTrainingDate(id) async {
+  Future<TrainingDateObject> getOneTrainingDate(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -253,7 +254,7 @@ class _TrainingDaysRestClient implements TrainingDaysRestClient {
   }
 
   @override
-  Future<void> deleteTrainingDate(id) async {
+  Future<void> deleteTrainingDate(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};

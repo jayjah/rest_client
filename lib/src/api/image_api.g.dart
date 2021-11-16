@@ -101,7 +101,7 @@ class _ImageRestClient implements ImageRestClient {
   String? baseUrl;
 
   @override
-  Future<List<int>> getAllIds({onlyIds = true}) async {
+  Future<List<int>> getAllIds({bool onlyIds = true}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -118,7 +118,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<Map<String, List<ImageObject>>> getAllSplit(splitBy) async {
+  Future<Map<String, List<ImageObject>>> getAllSplit(int splitBy) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -130,20 +130,21 @@ class _ImageRestClient implements ImageRestClient {
             .compose(_dio.options, '/images',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!.map((k, dynamic v) => MapEntry(
+    final value = _result.data!.map((k, dynamic v) => MapEntry(
         k,
         (v as List)
-            .map((i) => ImageObject.fromJson(i as Map<String, dynamic>))
+            .map((dynamic i) => ImageObject.fromJson(i as Map<String, dynamic>))
             .toList()));
 
     return value;
   }
 
   @override
-  Future<List<ImageObject>> getAll({pageById, pageByDate}) async {
+  Future<List<ImageObject>> getAll(
+      {int? pageById, DateTime? pageByDate}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<ImageObject>>(Options(
@@ -156,14 +157,14 @@ class _ImageRestClient implements ImageRestClient {
             .compose(_dio.options, '/images',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => ImageObject.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<ImageObject> getOne(id) async {
+  Future<ImageObject> getOne(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -178,7 +179,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject> update(id, task) async {
+  Future<ImageObject> update(String id, ImageObject task) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -194,7 +195,7 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<void> delete(id) async {
+  Future<void> delete(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -207,11 +208,11 @@ class _ImageRestClient implements ImageRestClient {
   }
 
   @override
-  Future<ImageObject> postImage(filePath, name, file,
-      {extraContent, type}) async {
+  Future<ImageObject> postImage(String filePath, String name, File file,
+      {String? extraContent, String? type}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
+    queryParameters.removeWhere((k, dynamic v) => v == null);
     final _data = FormData();
     _data.files.add(MapEntry(
         'file',
@@ -234,6 +235,7 @@ class _ImageRestClient implements ImageRestClient {
     return value;
   }
 
+  @override
   @deprecated
   Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
       'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');
