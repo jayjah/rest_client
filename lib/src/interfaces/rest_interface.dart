@@ -3,6 +3,7 @@ part of dart_backend_client;
 /// Basic rest interface
 ///   Any rest api should implement this interface.
 abstract class RestInterface<T> {
+  const RestInterface();
   Future<T?> getOne(@Path("id") String id);
 
   Future<List<T>?> getAll({

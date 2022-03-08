@@ -23,12 +23,13 @@ class MultipartBodyParser {
       );
     }
     var body = encodedNonLastBoundary;
-    parts.forEach((part) {
+    for (final part in parts) {
       body += part.parse();
       if (parts.last != part) {
         body += encodedNonLastBoundary;
       }
-    });
+    }
+
     return body += encodedLastBoundary;
   }
 }

@@ -62,12 +62,6 @@ part 'src/interfaces/data_model.dart';
 part 'src/interfaces/rest_interface.dart';
 part 'src/mock_dio.dart';
 
-Future<void> initLocales(List<String> locales) async {
-  for (final locale in locales) {
-    await initializeDateFormatting(locale);
-  }
-}
-
 // initialize datetime format
 void initModels() => Hive
   ..registerAdapter(ConfigObjectAdapter())
@@ -90,12 +84,6 @@ void initModels() => Hive
   ..registerAdapter(UserEventObjectAdapter())
   ..registerAdapter(UserTrainingObjectAdapter())
   ..registerAdapter(ExtendedDataAdapter());
-
-abstract class StorageRepository<T> {
-  void safe(T data);
-
-  T read();
-}
 
 /*
 TODO add following as pull request to retrofit generator
