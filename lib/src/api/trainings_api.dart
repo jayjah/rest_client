@@ -81,6 +81,8 @@ class TrainingsObject extends HiveObject
   bool? isAg;
   @HiveField(15)
   LocationObject? location;
+  @HiveField(16)
+  String? color;
 
   TrainingsObject({
     this.id,
@@ -99,6 +101,7 @@ class TrainingsObject extends HiveObject
     this.timeTill,
     this.isAg,
     this.location,
+    this.color,
   });
 
   @override
@@ -166,7 +169,7 @@ class TrainingsObject extends HiveObject
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,location: $location, image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,weekDay: $weekDay,ageFrom: $ageFrom,ageTill: $ageTill,location: $location, image: $image,trainer: $trainer,timeFrom: ${timeFrom?.toIso8601String()},timeTill: ${timeTill?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()}, color: $color)';
 
   @override
   String? get content => text;

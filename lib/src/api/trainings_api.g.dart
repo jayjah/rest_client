@@ -33,6 +33,7 @@ class TrainingsObjectAdapter extends TypeAdapter<TrainingsObject> {
       timeTill: fields[13] as DateTime?,
       isAg: fields[14] as bool?,
       location: fields[15] as LocationObject?,
+      color: fields[16] as String?,
     );
   }
 
@@ -71,7 +72,9 @@ class TrainingsObjectAdapter extends TypeAdapter<TrainingsObject> {
       ..writeByte(14)
       ..write(obj.isAg)
       ..writeByte(15)
-      ..write(obj.location);
+      ..write(obj.location)
+      ..writeByte(16)
+      ..write(obj.color);
   }
 
   @override
@@ -93,6 +96,7 @@ TrainingsObject _$TrainingsObjectFromJson(Map<String, dynamic> json) {
   return TrainingsObject(
     id: json['id'] as int?,
     name: json['name'] as String?,
+    color: json['color'] as String?,
     shortDescription: json['shortDescription'] as String?,
     text: json['text'] as String?,
     createdAt: json['createdAt'] == null
@@ -153,6 +157,7 @@ Map<String, dynamic> _$TrainingsObjectToJson(TrainingsObject instance) =>
       'ageFrom': instance.ageFrom,
       'weekDay': instance.weekDay,
       'location': instance.location,
+      'color': instance.color,
       'locationId': instance.location?.id,
       'lastCreatedTrainingDates':
           instance.lastCreatedTrainingDates?.toIso8601String(),
