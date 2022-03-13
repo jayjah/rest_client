@@ -28,7 +28,10 @@ abstract class NewsletterRestClient {
   });
 
   @GET("/newsletters/registers/{email}")
-  Future<NewsletterObject> post({@Path("email") String? email});
+  Future<NewsletterObject> post(
+      {@Path("email") String? email,
+      @Header('firstName') String? firstName,
+      @Header('lastName') String? lastName});
 
   @GET("/newsletters/registers/{email}")
   Future<NewsletterObject> delete(
@@ -49,9 +52,19 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
   bool? activated;
   @HiveField(4)
   DateTime? createdAt;
+  @HiveField(5)
+  String? firstName;
+  @HiveField(6)
+  String? lastName;
 
   NewsletterObject(
-      {this.id, this.email, this.verifyToken, this.activated, this.createdAt});
+      {this.id,
+      this.email,
+      this.verifyToken,
+      this.activated,
+      this.createdAt,
+      this.firstName,
+      this.lastName});
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
@@ -64,6 +77,8 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
           id == other.id &&
           verifyToken == other.verifyToken &&
           email == other.email &&
+          firstName == other.firstName &&
+          lastName == other.lastName &&
           activated == other.activated &&
           createdAt == other.createdAt;
 
@@ -73,10 +88,10 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()})';
+      '${this.runtimeType}(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()}, firstName: $firstName, lastName: $lastName)';
 
   @override
-  String? get content => null;
+  String? get content => '$firstName $lastName';
 
   @override
   DateTime? get createdDate => createdAt;

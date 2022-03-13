@@ -22,6 +22,8 @@ class NewsletterObjectAdapter extends TypeAdapter<NewsletterObject> {
       verifyToken: fields[2] as String?,
       activated: fields[3] as bool?,
       createdAt: fields[4] as DateTime?,
+      firstName: fields[5] as String?,
+      lastName: fields[6] as String?,
     );
   }
 
@@ -38,7 +40,11 @@ class NewsletterObjectAdapter extends TypeAdapter<NewsletterObject> {
       ..writeByte(3)
       ..write(obj.activated)
       ..writeByte(4)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(5)
+      ..write(obj.firstName)
+      ..writeByte(6)
+      ..write(obj.lastName);
   }
 
   @override
@@ -62,6 +68,8 @@ NewsletterObject _$NewsletterObjectFromJson(Map<String, dynamic> json) {
     email: json['email'] as String?,
     verifyToken: json['verifyToken'] as String?,
     activated: json['activated'] as bool?,
+    firstName: json['firstName'] as String?,
+    lastName: json['lastName'] as String?,
     createdAt: json['createdAt'] == null
         ? null
         : DateTime.parse(json['createdAt'] as String),
@@ -74,6 +82,8 @@ Map<String, dynamic> _$NewsletterObjectToJson(NewsletterObject instance) =>
       'email': instance.email,
       'verifyToken': instance.verifyToken,
       'activated': instance.activated,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'createdAt': instance.createdAt?.toIso8601String(),
     };
 
@@ -152,17 +162,22 @@ class _NewsletterRestClient implements NewsletterRestClient {
   }
 
   @override
-  Future<NewsletterObject> post({email}) async {
+  Future<NewsletterObject> post({email, firstName, lastName}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<List<NewsletterObject>>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/newsletters/registers/$email',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<List<NewsletterObject>>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{
+                  'firstName': firstName,
+                  'lastName': lastName
+                },
+                extra: _extra)
+            .compose(_dio.options, '/newsletters/registers/$email',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = NewsletterObject.fromJson(_result.data!);
     return value;
   }
