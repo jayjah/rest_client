@@ -1,12 +1,6 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
-
-import 'image_api.dart';
-import 'trainers_api.dart';
 
 part 'trainings_api.g.dart';
 
