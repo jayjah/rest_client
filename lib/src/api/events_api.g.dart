@@ -30,6 +30,7 @@ class EventObjectAdapter extends TypeAdapter<EventObject> {
       startDate: fields[11] as DateTime?,
       endDate: fields[12] as DateTime?,
       text: fields[4] as String?,
+      homepageLinkName: fields[13] as String?,
     );
   }
 
@@ -62,7 +63,9 @@ class EventObjectAdapter extends TypeAdapter<EventObject> {
       ..writeByte(11)
       ..write(obj.startDate)
       ..writeByte(12)
-      ..write(obj.endDate);
+      ..write(obj.endDate)
+      ..writeByte(13)
+      ..write(obj.homepageLinkName);
   }
 
   @override
@@ -98,6 +101,7 @@ EventObject _$EventObjectFromJson(Map<String, dynamic> json) {
     title: json['title'] as String?,
     wordPressId: json['wordPressId'] as String?,
     homepageLink: json['homepageLink'] as String?,
+    homepageLinkName: json['homepageLinkName'] as String?,
     startDate: json['startDate'] == null
         ? null
         : json['startDate'] is String
@@ -134,6 +138,7 @@ Map<String, dynamic> _$EventObjectToJson(EventObject instance) =>
       'image': instance.image,
       'imageId': instance.image?.id,
       'homepageLink': instance.homepageLink,
+      'homepageLinkName': instance.homepageLinkName,
       'startDate': formatDateTime(instance.startDate), //?.toIso8601String(),
       'endDate': formatDateTime(instance.endDate),
     };

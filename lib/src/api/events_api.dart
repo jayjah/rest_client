@@ -74,6 +74,8 @@ class EventObject extends HiveObject
   DateTime? startDate;
   @HiveField(12)
   DateTime? endDate;
+  @HiveField(13)
+  String? homepageLinkName;
 
   EventObject(
       {this.id,
@@ -86,6 +88,7 @@ class EventObject extends HiveObject
       this.title,
       this.wordPressId,
       this.homepageLink,
+      this.homepageLinkName,
       this.startDate,
       this.endDate,
       this.text});

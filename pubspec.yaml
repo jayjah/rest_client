@@ -1,6 +1,6 @@
 name: dart_backend_client
 description: A dart package to provide a rest interface
-version: 0.3.1
+version: 0.9.0
 homepage: https://www.jayjah.de
 repository: https://github.com/jayjah/dart_backend_client
 
