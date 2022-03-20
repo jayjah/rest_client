@@ -15,6 +15,7 @@ abstract class DetailData {
   String? get content;
   String? get youtubeUrl;
   String? get homepageLink;
+  String? get homepageLinkName;
   DateTime? get createdDate;
 }
 

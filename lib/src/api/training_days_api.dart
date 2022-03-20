@@ -127,6 +127,9 @@ class TrainingDateObject extends HiveObject
   String? get homepageLink => null;
 
   @override
+  String? get homepageLinkName => null;
+
+  @override
   String? get subHeader => shortDescription;
 
   @override

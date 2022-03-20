@@ -1,10 +1,9 @@
 import 'dart:io' as io;
 
-import 'package:dio/dio.dart' hide Response;
 import 'package:http/http.dart' as http;
 import 'package:retrofit/retrofit.dart';
 
-import '../../dart_backend_client.dart';
+import '../../dart_backend_client.dart' hide Response;
 
 part 'files_api.g.dart';
 

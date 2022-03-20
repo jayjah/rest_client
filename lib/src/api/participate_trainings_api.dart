@@ -1,8 +1,5 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-
-import 'training_days_api.dart';
 
 part 'participate_trainings_api.g.dart';
 

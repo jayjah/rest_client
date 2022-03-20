@@ -1,11 +1,7 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:osm_nominatim/osm_nominatim.dart';
 import 'package:retrofit/retrofit.dart';
-
-import 'image_api.dart';
 
 part 'locations_api.g.dart';
 
@@ -122,7 +118,7 @@ class LocationObject extends HiveObject
     if (addressDetails == null) {
       return LocationObject();
     }
-    print('LocationObject :: ADDRESSDETAILS :. $addressDetails');
+    //print('LocationObject :: ADDRESSDETAILS :. $addressDetails');
     final city = addressDetails['city'] as String? ??
         addressDetails['town'] as String? ??
         addressDetails['village'] as String? ??
@@ -186,6 +182,9 @@ class LocationObject extends HiveObject
 
   @override
   String? get homepageLink => null;
+
+  @override
+  String? get homepageLinkName => null;
 
   @override
   String? get subHeader => shortDescription;

@@ -1,5 +1,4 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'participate_events_api.g.dart';

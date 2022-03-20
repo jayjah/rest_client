@@ -1,11 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
-import 'package:intl/intl.dart';
+import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../../dart_backend_client.dart';
-import 'image_api.dart';
 
 part 'events_api.g.dart';
 
@@ -74,6 +69,7 @@ class EventObject extends HiveObject
   DateTime? startDate;
   @HiveField(12)
   DateTime? endDate;
+  @override
   @HiveField(13)
   String? homepageLinkName;
 

@@ -1,10 +1,6 @@
 import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
-
-import 'image_api.dart';
 
 part 'news_api.g.dart';
 
@@ -117,6 +113,9 @@ class NewsObject extends HiveObject
 
   @override
   String? get homepageLink => null;
+
+  @override
+  String? get homepageLinkName => null;
 
   @override
   String? get subHeader => shortDescription;
