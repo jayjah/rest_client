@@ -152,7 +152,7 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
   String? baseUrl;
 
   @override
-  Future<Map<DateTime, List<ExtendedData>>> next(id, {now}) async {
+  Future<Map<DateTime, List<ExtendedData>>> next(id, {DateTime? now}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -161,7 +161,8 @@ class _ExtendedUserRestClient implements ExtendedUserRestClient {
         _setStreamType<Map<DateTime, List<ExtendedData>>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{
-                  r'date': now ?? DateTime.now().toIso8601String()
+                  r'date':
+                      now?.toIso8601String() ?? DateTime.now().toIso8601String()
                 },
                 extra: _extra)
             .compose(_dio.options, '/users/$id/next',
