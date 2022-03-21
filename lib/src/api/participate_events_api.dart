@@ -18,4 +18,8 @@ abstract class ParticipateEventRestClient {
   @POST("/users/{userId}/events/{eventId}/participate")
   Future<UserEventObject> participateEvent(
       @Path('userId') String userId, @Path('eventId') String eventId);
+
+  @GET("/users/{userId}/events/{eventId}/participation")
+  Future<bool> doesUserParticipateEvent(
+      @Path('userId') String userId, @Path('eventId') String eventId);
 }
