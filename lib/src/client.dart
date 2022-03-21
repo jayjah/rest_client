@@ -20,7 +20,9 @@ abstract class Client {
   }
 
   static final Dio _dio = Dio(BaseOptions(
-      headers: {}, queryParameters: {}, contentType: 'application/json'))
+      headers: <String, dynamic>{},
+      queryParameters: <String, dynamic>{},
+      contentType: 'application/json'))
     ..interceptors.add(AuthorizationInterceptor());
   static Dio get getDio => _dio;
 }

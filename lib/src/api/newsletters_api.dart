@@ -40,6 +40,7 @@ abstract class NewsletterRestClient {
 @HiveType(typeId: 8)
 @JsonSerializable()
 class NewsletterObject extends HiveObject implements DataModel, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -86,7 +87,7 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()}, firstName: $firstName, lastName: $lastName)';
+      '$runtimeType(id: $id,email: $email,verifyToken: $verifyToken,activated: $activated,createdAt: ${createdAt?.toIso8601String()}, firstName: $firstName, lastName: $lastName)';
 
   @override
   String? get content => '$firstName $lastName';

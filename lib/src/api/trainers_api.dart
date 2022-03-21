@@ -8,13 +8,16 @@ part 'trainers_api.g.dart';
 abstract class TrainerRestClient implements RestInterface<TrainerObject> {
   factory TrainerRestClient(Dio dio, {String? baseUrl}) = _TrainerRestClient;
 
+  @override
   @GET("/trainers")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/trainers")
   Future<Map<String, List<TrainerObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/trainers")
   Future<List<TrainerObject>> getAll({
     @Header("pageById") int? pageById,
@@ -24,16 +27,20 @@ abstract class TrainerRestClient implements RestInterface<TrainerObject> {
     // @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/trainers/{id}")
   Future<TrainerObject> getOne(@Path('id') String id);
 
+  @override
   @PUT("/trainers/{id}")
   Future<TrainerObject> update(
       @Path('id') String id, @Body() TrainerObject task);
 
+  @override
   @DELETE("/trainers/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/trainers")
   Future<TrainerObject> post(@Body() TrainerObject task);
 }
@@ -48,6 +55,7 @@ class TrainerObject extends HiveObject
   String? shortDescription;
   @HiveField(2)
   String? text;
+  @override
   @HiveField(3)
   int? id;
   @HiveField(4)
@@ -91,7 +99,7 @@ class TrainerObject extends HiveObject
   Map<String, dynamic> toJson() => _$TrainerObjectToJson(this);
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,image: $image,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '$runtimeType(id: $id,name: $name,shortDescription: $shortDescription,text: $text,image: $image,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 
   @override
   int? get imageId => image?.id;

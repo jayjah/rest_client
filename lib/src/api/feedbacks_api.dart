@@ -8,13 +8,16 @@ part 'feedbacks_api.g.dart';
 abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
   factory FeedbackRestClient(Dio dio, {String? baseUrl}) = _FeedbackRestClient;
 
+  @override
   @GET("/feedbacks")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/feedbacks")
   Future<Map<String, List<FeedbackObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/feedbacks")
   Future<List<FeedbackObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -24,16 +27,20 @@ abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
     //   @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/feedbacks/{id}")
   Future<FeedbackObject?> getOne(@Path("id") String id);
 
+  @override
   @PUT("/feedbacks/{id}")
   Future<FeedbackObject?> update(
       @Path('id') String id, @Body() FeedbackObject task);
 
+  @override
   @DELETE("/feedbacks/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/feedbacks")
   Future<FeedbackObject?> post(@Body() FeedbackObject task);
 }
@@ -41,6 +48,7 @@ abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
 @HiveType(typeId: 4)
 @JsonSerializable()
 class FeedbackObject extends HiveObject implements DataModel, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -73,7 +81,7 @@ class FeedbackObject extends HiveObject implements DataModel, DetailData {
   Map<String, dynamic> toJson() => _$FeedbackObjectToJson(this);
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,message: $message,createdAt: ${createdAt?.toIso8601String()})';
+      '$runtimeType(id: $id,name: $name,message: $message,createdAt: ${createdAt?.toIso8601String()})';
 
   @override
   String? get content => null;

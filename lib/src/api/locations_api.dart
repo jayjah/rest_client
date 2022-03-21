@@ -9,13 +9,16 @@ part 'locations_api.g.dart';
 abstract class LocationRestClient implements RestInterface<LocationObject> {
   factory LocationRestClient(Dio dio, {String? baseUrl}) = _LocationRestClient;
 
+  @override
   @GET("/locations")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/locations")
   Future<Map<String, List<LocationObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/locations")
   Future<List<LocationObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -25,16 +28,20 @@ abstract class LocationRestClient implements RestInterface<LocationObject> {
     //   @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/locations/{id}")
   Future<LocationObject?> getOne(@Path("id") String id);
 
+  @override
   @PUT("/locations/{id}")
   Future<LocationObject?> update(
       @Path('id') String id, @Body() LocationObject task);
 
+  @override
   @DELETE("/locations/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/locations")
   Future<LocationObject?> post(@Body() LocationObject task);
 }
@@ -55,6 +62,7 @@ class LocationObject extends HiveObject
   String? postalCode;
   @HiveField(5)
   String? name;
+  @override
   @HiveField(6)
   int? id;
   @HiveField(7)
@@ -88,7 +96,8 @@ class LocationObject extends HiveObject
   int? get imageId => image?.id;
 
   @override
-  List<int?>? get imageIds => images?.map((e) => e.id).toList()?..add(imageId);
+  List<int?>? get imageIds =>
+      images?.map((ImageObject? e) => e?.id).toList()?..add(imageId);
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
@@ -169,7 +178,7 @@ class LocationObject extends HiveObject
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()}, image: $image, images:${images?.map((e) => e.toJson())})';
+      '$runtimeType(id: $id,name: $name,city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()}, image: $image, images:${images?.map((e) => e.toJson())})';
 
   @override
   String? get content => text;

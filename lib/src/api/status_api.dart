@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dart_backend_client/dart_backend_client.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
@@ -46,5 +48,5 @@ class StatusObject extends HiveObject {
 
   @override
   String toString() =>
-      '${this.runtimeType}(status: $status, alive_time: ${alive_time?.toIso8601String()}. db_reachable: $db_reachable)';
+      '$runtimeType(status: $status, alive_time: ${alive_time?.toIso8601String()}. db_reachable: $db_reachable)';
 }

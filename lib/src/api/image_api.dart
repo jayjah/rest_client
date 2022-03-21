@@ -10,13 +10,16 @@ part 'image_api.g.dart';
 abstract class ImageRestClient implements RestInterface<ImageObject> {
   factory ImageRestClient(Dio dio, {String? baseUrl}) = _ImageRestClient;
 
+  @override
   @GET("/images")
   Future<List<int>?> getAllIds({@Header('onlyIds') bool onlyIds = true});
 
+  @override
   @GET("/images")
   Future<Map<String, List<ImageObject>>?> getAllSplit(
       @Header('splitBy') int splitBy);
 
+  @override
   @GET("/images")
   Future<List<ImageObject>?> getAll({
     @Header("pageById") int? pageById,
@@ -26,17 +29,21 @@ abstract class ImageRestClient implements RestInterface<ImageObject> {
     // @Header('pageByIds') List<int>? pageByIds,
   });
 
+  @override
   @GET("/images/{id}")
   Future<ImageObject?> getOne(@Path('id') String id);
 
+  @override
   @PUT("/images/{id}")
   Future<ImageObject?> update(@Path() String id, @Body() ImageObject task);
 
+  @override
   @DELETE("/images/{id}")
   Future<void> delete(@Path('id') String id);
 
-  @deprecated
-  Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
+  @override
+  @Deprecated("use postImage Method instead!")
+  Future<ImageObject?> post(ImageObject obj) => throw const BackendClientException(
       'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');
 
   @POST("/images")
@@ -98,5 +105,5 @@ class ImageObject extends HiveObject implements DataModel {
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,filePath: $filePath,type: $type,extraContent: $extraContent,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '$runtimeType(id: $id,name: $name,filePath: $filePath,type: $type,extraContent: $extraContent,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 }

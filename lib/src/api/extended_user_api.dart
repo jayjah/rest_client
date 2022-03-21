@@ -24,6 +24,7 @@ extension TypeConverter on _Type {
 @HiveType(typeId: 21)
 @JsonSerializable()
 class ExtendedData extends HiveObject implements DataModel, DetailData {
+  @override
   @HiveField(0)
   int? id;
   @HiveField(1)

@@ -58,12 +58,14 @@ class TrainingDateObject extends HiveObject
   String? shortDescription;
   @HiveField(2)
   String? text;
+  @override
   @HiveField(3)
   int? id;
   @HiveField(4)
   DateTime? createdAt;
   @HiveField(5)
   DateTime? updatedAt;
+  @override
   @HiveField(6)
   DateTime? date;
   @HiveField(7)
@@ -110,7 +112,7 @@ class TrainingDateObject extends HiveObject
 
   @override
   String toString() =>
-      '${this.runtimeType}(id: $id,name: $name,shortDescription: $shortDescription,text: $text,isCanceled: $isCanceled,maxParticipation: $maxParticipation,date: ${date?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '$runtimeType(id: $id,name: $name,shortDescription: $shortDescription,text: $text,isCanceled: $isCanceled,maxParticipation: $maxParticipation,date: ${date?.toIso8601String()},createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
 
   @override
   String? get content => text;

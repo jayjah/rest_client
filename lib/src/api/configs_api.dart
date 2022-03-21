@@ -12,13 +12,16 @@ abstract class ConfigRestClient implements RestInterface<ConfigObject> {
   Future<ConfigObject?> get(
       @Path("id") String id, @Header('config_x_auth_token') String xAuthToken);
 
+  @override
   @PUT("/config/client/{id}")
   Future<ConfigObject?> update(
       @Path('id') String id, @Body() ConfigObject task);
 
+  @override
   @DELETE("/config/client/{id}")
   Future<void> delete(@Path('id') String id);
 
+  @override
   @POST("/config/client")
   Future<ConfigObject?> post(@Body() ConfigObject task);
 }
@@ -97,7 +100,7 @@ class ConfigObject extends HiveObject implements DetailData {
 
   @override
   String toString() =>
-      '${this.runtimeType}(name: $name,id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
+      '$runtimeType(name: $name,id: $id,newsEnabled: $newsEnabled,eventsEnabled: $eventsEnabled,locationsEnabled: $locationsEnabled,trainersEnabled: $trainersEnabled,newsPerPage: $newsPerPage,eventsPerPage: $eventsPerPage,gMapApiKey: $gMapApiKey,minVersion: $minVersion,registrationEnabled: $registrationEnabled)';
 
   @override
   String? get content => toString();

@@ -7,17 +7,18 @@ void main() {
       initModels();
     });
     test('MockDio Test', () async {
-      final obj = ImageObject();
+      final ImageObject obj = ImageObject();
       final MockDio dio = MockDio()..data = <ImageObject>[obj];
-      final val = await dio.get('');
+      final Response<ImageObject> val = await dio.get<ImageObject>('');
       expect(val, isNotNull);
       expect(val.data, obj);
     });
     test('MockDio Integration Test', () async {
-      final obj = ImageObject();
-      final dio = MockDio()..data = [obj.toJson()];
-      final restClient = ImageRestClient(dio);
-      final val = await restClient.getAll();
+      final ImageObject obj = ImageObject();
+      final MockDio dio = MockDio()
+        ..data = <Map<String, dynamic>>[obj.toJson()];
+      final ImageRestClient restClient = ImageRestClient(dio);
+      final List<ImageObject>? val = await restClient.getAll();
       expect(val, isNotNull);
       expect(val!.first, obj);
     });
