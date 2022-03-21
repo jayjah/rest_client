@@ -1,9 +1,8 @@
 import 'dart:io' as io;
 
+import 'package:dart_backend_client/dart_backend_client.dart' hide Response;
 import 'package:http/http.dart' as http;
 import 'package:retrofit/retrofit.dart';
-
-import '../../dart_backend_client.dart' hide Response;
 
 part 'files_api.g.dart';
 
@@ -26,7 +25,7 @@ abstract class FilesRestClient {
     String? imagePath,
   });
 
-  @deprecated
+  @Deprecated("")
   @POST("/images/upload")
   Future<String> uploadImage(@Body() List<int> file,
       @Header('filePath') String filePath, @Header('name') String name,
