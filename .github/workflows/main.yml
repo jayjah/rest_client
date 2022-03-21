@@ -24,7 +24,7 @@ jobs:
         run: dart pub get
 
       - name: Analyze code
-        run: dart analyze
+        run: dart analyze --fatal-infos
 
-      - name: Run test suite
-        run: dart test
+      #- name: Run test suite
+      #  run: dart test
