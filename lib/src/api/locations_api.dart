@@ -181,7 +181,7 @@ class LocationObject extends HiveObject
       '$runtimeType(id: $id,name: $name,city: $city,address: $address,postalCode: $postalCode,latitude: $latitude,text: $text,longitude: $longitude,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()}, image: $image, images:${images?.map((e) => e.toJson())})';
 
   @override
-  String? get content => text;
+  String? get content => shortDescription;
 
   @override
   DateTime? get createdDate => createdAt;
@@ -196,7 +196,8 @@ class LocationObject extends HiveObject
   String? get homepageLinkName => null;
 
   @override
-  String? get subHeader => shortDescription;
+  String? get subHeader =>
+      '${address ?? ''}\n${postalCode ?? ''} ${city ?? ''}';
 
   @override
   String? get youtubeUrl => null;
