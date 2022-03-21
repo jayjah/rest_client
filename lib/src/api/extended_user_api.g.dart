@@ -101,13 +101,12 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
       date = json['date'] == null
           ? null
           : DateTime.parse(
-              '${json['date'] as String} ${json['training']['training']['timeFrom'] as String}',
+              '${json['date'] as String} ${json['training']['timeFrom'] as String}',
             );
-      timeTill = json['training']['training']['timeTill'] == null ||
-              date == null
+      timeTill = json['training']['timeTill'] == null || date == null
           ? null
           : DateTime.parse(
-              '${formatDate(DateTime.parse(formatDate(date)!))} ${json['training']['training']['timeTill']}');
+              '${formatDate(DateTime.parse(formatDate(date)!))} ${json['training']['timeTill']}');
 
       break;
     default:
