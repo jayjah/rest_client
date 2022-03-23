@@ -97,9 +97,14 @@ class EventObject extends HiveObject
       this.endDate,
       this.text});
 
-  String get startEndAsString => startDate == null || endDate == null
-      ? ''
-      : '${simpleTimeFormat.format(startDate!)} - ${DateFormat('HH:mm   dd.MM.yyyy', 'DE').format(endDate!)}';
+  String get startAndEndAsString {
+    if (startDate == null || endDate == null) return '';
+
+    final DateFormat dayFormat = DateFormat('dd.MM');
+    final DateFormat timeFormat = DateFormat('HH:mm');
+
+    return '${dayFormat.format(startDate!)} - ${dayFormat.format(endDate!)}   ${timeFormat.format(startDate!)} - ${timeFormat.format(endDate!)}';
+  }
 
   @override
   int? get imageId => image?.id;
