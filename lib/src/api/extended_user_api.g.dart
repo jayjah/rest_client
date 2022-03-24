@@ -116,7 +116,7 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
                   '${json['date'] as String} ${json['training']['training']['timeTill'] as String}',
                 )
               : DateTime.parse(
-                  '${json['date'] as String} ${json['training']['training']['timeTill'] as String}',
+                  '${json['date'] as String} ${json['training']['timeTill'] as String}',
                 );
       break;
     default:
