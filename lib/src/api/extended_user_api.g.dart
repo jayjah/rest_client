@@ -97,21 +97,27 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
       break;
     case _Type.Training:
       externId = json['participationId'] as int?;
-      extraId = (json['training']['id'] as int? == externId) ? json['training']['training']['id'] as int? : json['training']['id'] as int?;
+      extraId = (json['training']['id'] as int?) == externId
+          ? json['training']['training']['id'] as int?
+          : json['training']['id'] as int?;
       date = json['date'] == null
           ? null
-          :
-      json['training']['timeFrom'] == null ?
-      DateTime.parse(
-              '${json['date'] as String} ${json['training']['training']['timeFrom'] as String}',
-            ) : DateTime.parse(
-        '${json['date'] as String} ${json['training']['timeFrom'] as String}',
-      );
-      timeTill = json['training']['timeTill'] == null || date == null || json['training']['training']['timeTill']
+          : json['training']['timeFrom'] == null
+              ? DateTime.parse(
+                  '${json['date'] as String} ${json['training']['training']['timeFrom'] as String}',
+                )
+              : DateTime.parse(
+                  '${json['date'] as String} ${json['training']['timeFrom'] as String}',
+                );
+      timeTill = json['date'] == null
           ? null
-          : DateTime.parse(
-              '${formatDate(DateTime.parse(formatDate(date)!))} ${json['training']['timeTill'] ?? json['training']['training']['timeTill']}');
-
+          : json['training']['timeTill'] == null
+              ? DateTime.parse(
+                  '${json['date'] as String} ${json['training']['training']['timeTill'] as String}',
+                )
+              : DateTime.parse(
+                  '${json['date'] as String} ${json['training']['training']['timeTill'] as String}',
+                );
       break;
     default:
       date =
