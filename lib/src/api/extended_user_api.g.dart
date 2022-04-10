@@ -98,7 +98,7 @@ ExtendedData _$ExtendedDataFromJson(Map<String, dynamic> json) {
     case _Type.Training:
       externId = json['participationId'] as int?;
       extraId = (json['training']['id'] as int?) == externId
-          ? json['training']['training']['id'] as int?
+          ? json['training']['training']?['id'] as int?
           : json['training']['id'] as int?;
       date = json['date'] == null
           ? null
