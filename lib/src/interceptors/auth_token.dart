@@ -28,12 +28,6 @@ class AuthorizationInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    // TODO: implement onError
-    super.onError(err, handler);
-  }
-
-  @override
   void onResponse(
       Response<dynamic> response, ResponseInterceptorHandler handler) {
     // handle successful response of `users/[:id]`
