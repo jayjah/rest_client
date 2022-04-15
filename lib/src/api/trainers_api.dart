@@ -102,7 +102,7 @@ class TrainerObject extends HiveObject
   Map<String, dynamic> toJson() => _$TrainerObjectToJson(this);
   @override
   String toString() =>
-      '$runtimeType(id: $id,name: $name,shortDescription: $shortDescription,text: $text,image: $image,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()})';
+      '$runtimeType(id: $id,name: $name,shortDescription: $shortDescription,text: $text,image: $image,user: $user,createdAt: ${createdAt?.toIso8601String()},updatedAt: ${updatedAt?.toIso8601String()}, ageLabel: $ageLabel)';
 
   @override
   int? get imageId => image?.id;
