@@ -25,6 +25,7 @@ class TrainerObjectAdapter extends TypeAdapter<TrainerObject> {
       updatedAt: fields[5] as DateTime?,
       user: fields[7] as UserObject?,
       image: fields[6] as ImageObject?,
+      ageLabel: fields[8] as String?,
     );
   }
 
@@ -47,7 +48,9 @@ class TrainerObjectAdapter extends TypeAdapter<TrainerObject> {
       ..writeByte(6)
       ..write(obj.image)
       ..writeByte(7)
-      ..write(obj.user);
+      ..write(obj.user)
+      ..writeByte(8)
+      ..write(obj.ageLabel);
   }
 
   @override
@@ -80,6 +83,7 @@ TrainerObject _$TrainerObjectFromJson(Map<String, dynamic> json) {
     user: json['user'] == null
         ? null
         : UserObject.fromJson(json['user'] as Map<String, dynamic>),
+    ageLabel: json['ageLabel'] as String?,
     image: json['image'] == null
         ? null
         : ImageObject.fromJson(json['image'] as Map<String, dynamic>),

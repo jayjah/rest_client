@@ -66,6 +66,8 @@ class TrainerObject extends HiveObject
   ImageObject? image;
   @HiveField(7)
   UserObject? user;
+  @HiveField(8)
+  String? ageLabel;
 
   TrainerObject(
       {this.id,
@@ -75,7 +77,8 @@ class TrainerObject extends HiveObject
       this.createdAt,
       this.updatedAt,
       this.user,
-      this.image});
+      this.image,
+      this.ageLabel});
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
