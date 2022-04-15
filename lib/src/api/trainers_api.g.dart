@@ -102,6 +102,7 @@ Map<String, dynamic> _$TrainerObjectToJson(TrainerObject instance) =>
       'imageId': instance.image?.id,
       'user': instance.user,
       'userId': instance.user?.id,
+      'ageLabel': instance.ageLabel,
     };
 
 // **************************************************************************
