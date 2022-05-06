@@ -193,4 +193,14 @@ class TrainingsObject extends HiveObject
 
   @override
   String? get youtubeUrl => null;
+
+  bool get isParkourTraining {
+    return (header?.toLowerCase().contains('parkour') ?? false) ||
+        (subHeader?.toLowerCase().contains('parkour') ?? false);
+  }
+
+  bool get isBreakdanceTraining {
+    return (header?.toLowerCase().contains('break') ?? false) ||
+        (subHeader?.toLowerCase().contains('break') ?? false);
+  }
 }
