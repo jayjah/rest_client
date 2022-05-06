@@ -93,6 +93,28 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
 
   @override
   String? get youtubeUrl => null;
+
+  bool get isEvent {
+    return type?.toLowerCase() == 'event';
+  }
+
+  bool get isParkourTraining {
+    return (header?.toLowerCase().contains('parkour') ?? false) ||
+        (subHeader?.toLowerCase().contains('parkour') ?? false);
+  }
+
+  bool get isBreakdanceTraining {
+    return (header?.toLowerCase().contains('break') ?? false) ||
+        (subHeader?.toLowerCase().contains('break') ?? false);
+  }
+
+  bool get isTraining {
+    return type?.toLowerCase() == 'training';
+  }
+
+  bool get isTodo {
+    return type?.toLowerCase() == 'todo';
+  }
 }
 
 enum Role {
