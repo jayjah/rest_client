@@ -80,21 +80,31 @@ class RegisterObject extends HiveObject implements DataModel, DetailData {
       this.createdAt});
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is RegisterObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
+          email == other.email &&
+          verifyToken == other.verifyToken &&
           firstName == other.firstName &&
           lastName == other.lastName &&
-          verifyToken == other.verifyToken &&
-          email == other.email &&
           birthDate == other.birthDate &&
+          password == other.password &&
           activated == other.activated &&
           createdAt == other.createdAt;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      email.hashCode ^
+      verifyToken.hashCode ^
+      firstName.hashCode ^
+      lastName.hashCode ^
+      birthDate.hashCode ^
+      password.hashCode ^
+      activated.hashCode ^
+      createdAt.hashCode;
 
   factory RegisterObject.fromJson(Map<String, dynamic> json) =>
       _$RegisterObjectFromJson(json);

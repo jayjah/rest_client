@@ -79,9 +79,6 @@ class ConfigObject extends HiveObject implements DetailData {
   Map<String, dynamic> toJson() => _$ConfigObjectToJson(this);
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ConfigObject &&
@@ -96,7 +93,27 @@ class ConfigObject extends HiveObject implements DetailData {
           gMapApiKey == other.gMapApiKey &&
           minVersion == other.minVersion &&
           registrationEnabled == other.registrationEnabled &&
-          name == other.name;
+          name == other.name &&
+          imprintPath == other.imprintPath &&
+          aboutUsPath == other.aboutUsPath &&
+          defaultYoutubeId == other.defaultYoutubeId;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      newsEnabled.hashCode ^
+      eventsEnabled.hashCode ^
+      locationsEnabled.hashCode ^
+      trainersEnabled.hashCode ^
+      newsPerPage.hashCode ^
+      eventsPerPage.hashCode ^
+      gMapApiKey.hashCode ^
+      minVersion.hashCode ^
+      registrationEnabled.hashCode ^
+      name.hashCode ^
+      imprintPath.hashCode ^
+      aboutUsPath.hashCode ^
+      defaultYoutubeId.hashCode;
 
   @override
   String toString() =>

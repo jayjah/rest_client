@@ -93,22 +93,33 @@ class TodoObject extends HiveObject
   DateTime? get date => endDate;
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is TodoObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          shortDescription == other.shortDescription &&
-          name == other.name &&
-          text == other.text &&
+          endDate == other.endDate &&
+          title == other.title &&
           isDone == other.isDone &&
-          user == other.user &&
-          updatedAt == other.updatedAt &&
+          text == other.text &&
+          name == other.name &&
+          shortDescription == other.shortDescription &&
           createdAt == other.createdAt &&
-          endDate == other.endDate;
+          updatedAt == other.updatedAt &&
+          user == other.user;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      endDate.hashCode ^
+      title.hashCode ^
+      isDone.hashCode ^
+      text.hashCode ^
+      name.hashCode ^
+      shortDescription.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      user.hashCode;
 
   factory TodoObject.fromJson(Map<String, dynamic> json) =>
       _$TodoObjectFromJson(json);

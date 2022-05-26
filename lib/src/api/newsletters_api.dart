@@ -66,20 +66,27 @@ class NewsletterObject extends HiveObject implements DataModel, DetailData {
       this.lastName});
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is NewsletterObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          verifyToken == other.verifyToken &&
           email == other.email &&
-          firstName == other.firstName &&
-          lastName == other.lastName &&
+          verifyToken == other.verifyToken &&
           activated == other.activated &&
-          createdAt == other.createdAt;
+          createdAt == other.createdAt &&
+          firstName == other.firstName &&
+          lastName == other.lastName;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      email.hashCode ^
+      verifyToken.hashCode ^
+      activated.hashCode ^
+      createdAt.hashCode ^
+      firstName.hashCode ^
+      lastName.hashCode;
 
   factory NewsletterObject.fromJson(Map<String, dynamic> json) =>
       _$NewsletterObjectFromJson(json);

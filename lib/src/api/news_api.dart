@@ -85,22 +85,33 @@ class NewsObject extends HiveObject
   });
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is NewsObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          name == other.name &&
-          createdAt == other.createdAt &&
-          wordPressId == other.wordPressId &&
+          youtubeUrl == other.youtubeUrl &&
           title == other.title &&
-          updatedAt == other.updatedAt &&
-          image == other.image &&
+          wordPressId == other.wordPressId &&
+          text == other.text &&
+          name == other.name &&
           shortDescription == other.shortDescription &&
-          text == other.text;
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
+          image == other.image;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      youtubeUrl.hashCode ^
+      title.hashCode ^
+      wordPressId.hashCode ^
+      text.hashCode ^
+      name.hashCode ^
+      shortDescription.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      image.hashCode;
 
   factory NewsObject.fromJson(Map<String, dynamic> json) =>
       _$NewsObjectFromJson(json);

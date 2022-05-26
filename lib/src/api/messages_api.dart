@@ -38,8 +38,6 @@ class MessageObject extends HiveObject implements DataModel {
   factory MessageObject.fromJson(Map<String, dynamic> json) =>
       _$MessageObjectFromJson(json);
   Map<String, dynamic> toJson() => _$MessageObjectToJson(this);
-  @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -47,9 +45,13 @@ class MessageObject extends HiveObject implements DataModel {
       other is MessageObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          htmlMessage == other.htmlMessage &&
           title == other.title &&
-          message == other.message;
+          message == other.message &&
+          htmlMessage == other.htmlMessage;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^ title.hashCode ^ message.hashCode ^ htmlMessage.hashCode;
 
   @override
   String toString() =>

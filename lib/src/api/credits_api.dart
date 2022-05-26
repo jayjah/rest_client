@@ -65,8 +65,6 @@ class CreditObject extends HiveObject implements DataModel, DetailData {
   factory CreditObject.fromJson(Map<String, dynamic> json) =>
       _$CreditObjectFromJson(json);
   Map<String, dynamic> toJson() => _$CreditObjectToJson(this);
-  @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -76,6 +74,9 @@ class CreditObject extends HiveObject implements DataModel, DetailData {
           id == other.id &&
           value == other.value &&
           type == other.type;
+
+  @override
+  int get hashCode => id.hashCode ^ value.hashCode ^ type.hashCode;
 
   @override
   String toString() => '$runtimeType(id: $id,value: $value,type: $type)';

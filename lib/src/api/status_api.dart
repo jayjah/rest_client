@@ -35,9 +35,6 @@ class StatusObject extends HiveObject {
   Map<String, dynamic> toJson() => _$StatusObjectToJson(this);
 
   @override
-  int get hashCode => alive_time.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is StatusObject &&
@@ -45,6 +42,10 @@ class StatusObject extends HiveObject {
           status == other.status &&
           alive_time == other.alive_time &&
           db_reachable == other.db_reachable;
+
+  @override
+  int get hashCode =>
+      status.hashCode ^ alive_time.hashCode ^ db_reachable.hashCode;
 
   @override
   String toString() =>

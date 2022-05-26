@@ -100,25 +100,39 @@ class LocationObject extends HiveObject
       images?.map((ImageObject? e) => e?.id).toList()?..add(imageId);
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is LocationObject &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
+          longitude == other.longitude &&
+          latitude == other.latitude &&
+          city == other.city &&
+          address == other.address &&
+          postalCode == other.postalCode &&
           name == other.name &&
+          id == other.id &&
+          shortDescription == other.shortDescription &&
           text == other.text &&
           createdAt == other.createdAt &&
-          latitude == other.latitude &&
-          longitude == other.longitude &&
           updatedAt == other.updatedAt &&
           image == other.image &&
-          images == other.images &&
-          postalCode == other.postalCode &&
-          address == other.address &&
-          city == other.city;
+          images == other.images;
+
+  @override
+  int get hashCode =>
+      longitude.hashCode ^
+      latitude.hashCode ^
+      city.hashCode ^
+      address.hashCode ^
+      postalCode.hashCode ^
+      name.hashCode ^
+      id.hashCode ^
+      shortDescription.hashCode ^
+      text.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      image.hashCode ^
+      images.hashCode;
 
   factory LocationObject.fromJson(Map<String, dynamic> json) =>
       _$LocationObjectFromJson(json);

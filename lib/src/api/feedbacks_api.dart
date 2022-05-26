@@ -65,16 +65,18 @@ class FeedbackObject extends HiveObject implements DataModel, DetailData {
   });
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is FeedbackObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&
+          message == other.message &&
           createdAt == other.createdAt;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^ name.hashCode ^ message.hashCode ^ createdAt.hashCode;
 
   factory FeedbackObject.fromJson(Map<String, dynamic> json) =>
       _$FeedbackObjectFromJson(json);

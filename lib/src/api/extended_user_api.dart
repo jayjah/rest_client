@@ -54,19 +54,29 @@ class ExtendedData extends HiveObject implements DataModel, DetailData {
   factory ExtendedData.fromJson(Map<String, dynamic> json) =>
       _$ExtendedDataFromJson(json);
   Map<String, dynamic> toJson() => _$ExtendedDataToJson(this);
-  @override
-  int get hashCode =>
-      id.hashCode ^ runtimeType.hashCode ^ externId.hashCode ^ date.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ExtendedData &&
+          runtimeType == other.runtimeType &&
           id == other.id &&
-          externId == other.externId &&
+          date == other.date &&
           name == other.name &&
           shortDescription == other.shortDescription &&
-          date == other.date;
+          type == other.type &&
+          externId == other.externId &&
+          extraId == other.extraId;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      date.hashCode ^
+      name.hashCode ^
+      shortDescription.hashCode ^
+      type.hashCode ^
+      externId.hashCode ^
+      extraId.hashCode;
 
   @override
   String toString() {

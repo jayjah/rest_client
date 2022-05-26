@@ -84,20 +84,27 @@ class ImageObject extends HiveObject implements DataModel {
       this.type});
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ImageObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          filePath == other.filePath &&
           name == other.name &&
+          filePath == other.filePath &&
           createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
           extraContent == other.extraContent &&
-          type == other.type &&
-          updatedAt == other.updatedAt;
+          type == other.type;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      filePath.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      extraContent.hashCode ^
+      type.hashCode;
 
   factory ImageObject.fromJson(Map<String, dynamic> json) =>
       _$ImageObjectFromJson(json);

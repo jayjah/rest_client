@@ -113,20 +113,41 @@ class EventObject extends HiveObject
   DateTime? get date => startDate;
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is EventObject &&
           runtimeType == other.runtimeType &&
           id == other.id &&
+          youtubeUrl == other.youtubeUrl &&
+          title == other.title &&
+          wordPressId == other.wordPressId &&
+          text == other.text &&
           name == other.name &&
           shortDescription == other.shortDescription &&
           createdAt == other.createdAt &&
           updatedAt == other.updatedAt &&
+          image == other.image &&
+          homepageLink == other.homepageLink &&
           startDate == other.startDate &&
-          endDate == other.endDate;
+          endDate == other.endDate &&
+          homepageLinkName == other.homepageLinkName;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      youtubeUrl.hashCode ^
+      title.hashCode ^
+      wordPressId.hashCode ^
+      text.hashCode ^
+      name.hashCode ^
+      shortDescription.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      image.hashCode ^
+      homepageLink.hashCode ^
+      startDate.hashCode ^
+      endDate.hashCode ^
+      homepageLinkName.hashCode;
 
   factory EventObject.fromJson(Map<String, dynamic> json) =>
       _$EventObjectFromJson(json);

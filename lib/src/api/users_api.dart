@@ -113,9 +113,6 @@ class UserObject extends HiveObject implements DataModel, DetailData {
       this.creditPoints});
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is UserObject &&
@@ -124,12 +121,37 @@ class UserObject extends HiveObject implements DataModel, DetailData {
           firstName == other.firstName &&
           lastName == other.lastName &&
           loginName == other.loginName &&
-          newsLetter == other.newsLetter &&
+          password == other.password &&
           email == other.email &&
-          externalId == other.externalId &&
           birthDate == other.birthDate &&
-          creditPoints == other.creditPoints &&
-          role == other.role;
+          lastLogin == other.lastLogin &&
+          newsLetter == other.newsLetter &&
+          role == other.role &&
+          externalId == other.externalId &&
+          createdAt == other.createdAt &&
+          todos == other.todos &&
+          eventParticipates == other.eventParticipates &&
+          trainingParticipates == other.trainingParticipates &&
+          creditPoints == other.creditPoints;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      firstName.hashCode ^
+      lastName.hashCode ^
+      loginName.hashCode ^
+      password.hashCode ^
+      email.hashCode ^
+      birthDate.hashCode ^
+      lastLogin.hashCode ^
+      newsLetter.hashCode ^
+      role.hashCode ^
+      externalId.hashCode ^
+      createdAt.hashCode ^
+      todos.hashCode ^
+      eventParticipates.hashCode ^
+      trainingParticipates.hashCode ^
+      creditPoints.hashCode;
 
   factory UserObject.fromJson(Map<String, dynamic> json) =>
       _$UserObjectFromJson(json);
@@ -181,6 +203,24 @@ class PushTokenObject extends HiveObject {
   factory PushTokenObject.fromJson(Map<String, dynamic> json) =>
       _$PushTokenObjectFromJson(json);
   Map<String, dynamic> toJson() => _$PushTokenObjectToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PushTokenObject &&
+          runtimeType == other.runtimeType &&
+          token == other.token &&
+          apn == other.apn &&
+          hms == other.hms &&
+          fcm == other.fcm;
+
+  @override
+  int get hashCode =>
+      token.hashCode ^
+      apn.hashCode ^
+      hms.hashCode ^
+      fcm.hashCode ^
+      runtimeType.hashCode;
 }
 
 @HiveType(typeId: 13)
@@ -207,6 +247,26 @@ class UserEventObject extends HiveObject {
   factory UserEventObject.fromJson(Map<String, dynamic> json) =>
       _$UserEventObjectFromJson(json);
   Map<String, dynamic> toJson() => _$UserEventObjectToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserEventObject &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          id == other.id &&
+          shortDescription == other.shortDescription &&
+          text == other.text &&
+          eventId == other.eventId;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      id.hashCode ^
+      shortDescription.hashCode ^
+      text.hashCode ^
+      eventId.hashCode ^
+      runtimeType.hashCode;
 }
 
 @HiveType(typeId: 14)
@@ -221,6 +281,18 @@ class UserTrainingObject extends HiveObject {
   factory UserTrainingObject.fromJson(Map<String, dynamic> json) =>
       _$UserTrainingObjectFromJson(json);
   Map<String, dynamic> toJson() => _$UserTrainingObjectToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserTrainingObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          trainingDate == other.trainingDate;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^ trainingDate.hashCode ^ runtimeType.hashCode;
 }
 
 @HiveType(typeId: 15)
@@ -235,4 +307,14 @@ class UserTrainingDateObject extends HiveObject {
   factory UserTrainingDateObject.fromJson(Map<String, dynamic> json) =>
       _$UserTrainingDateObjectFromJson(json);
   Map<String, dynamic> toJson() => _$UserTrainingDateObjectToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserTrainingDateObject &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
 }

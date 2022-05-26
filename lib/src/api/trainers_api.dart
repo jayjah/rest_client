@@ -81,24 +81,36 @@ class TrainerObject extends HiveObject
       this.ageLabel});
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
+  factory TrainerObject.fromJson(Map<String, dynamic> json) =>
+      _$TrainerObjectFromJson(json);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is TrainerObject &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
-          shortDescription == other.shortDescription &&
           name == other.name &&
+          shortDescription == other.shortDescription &&
           text == other.text &&
+          id == other.id &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
           image == other.image &&
           user == other.user &&
-          updatedAt == other.updatedAt &&
-          createdAt == other.createdAt;
+          ageLabel == other.ageLabel;
 
-  factory TrainerObject.fromJson(Map<String, dynamic> json) =>
-      _$TrainerObjectFromJson(json);
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      shortDescription.hashCode ^
+      text.hashCode ^
+      id.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      image.hashCode ^
+      user.hashCode ^
+      ageLabel.hashCode;
+
   Map<String, dynamic> toJson() => _$TrainerObjectToJson(this);
   @override
   String toString() =>

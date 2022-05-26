@@ -89,22 +89,33 @@ class TrainingDateObject extends HiveObject
   });
 
   @override
-  int get hashCode => id.hashCode ^ runtimeType.hashCode;
-
-  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is TrainingDateObject &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
-          shortDescription == other.shortDescription &&
           name == other.name &&
+          shortDescription == other.shortDescription &&
           text == other.text &&
+          id == other.id &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
+          date == other.date &&
           isCanceled == other.isCanceled &&
           maxParticipation == other.maxParticipation &&
-          date == other.date &&
-          updatedAt == other.updatedAt &&
-          createdAt == other.createdAt;
+          training == other.training;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      shortDescription.hashCode ^
+      text.hashCode ^
+      id.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      date.hashCode ^
+      isCanceled.hashCode ^
+      maxParticipation.hashCode ^
+      training.hashCode;
 
   factory TrainingDateObject.fromJson(Map<String, dynamic> json) =>
       _$TrainingDateObjectFromJson(json);
