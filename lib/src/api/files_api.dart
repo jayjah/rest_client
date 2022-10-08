@@ -6,7 +6,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'files_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class FilesRestClient {
   factory FilesRestClient(Dio dio, {String? baseUrl}) = _FilesRestClient;
   @GET("/files/files/{fileName}")

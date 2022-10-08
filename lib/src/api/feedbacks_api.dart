@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'feedbacks_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class FeedbackRestClient implements RestInterface<FeedbackObject> {
   factory FeedbackRestClient(Dio dio, {String? baseUrl}) = _FeedbackRestClient;
 

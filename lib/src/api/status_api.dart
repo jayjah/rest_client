@@ -6,7 +6,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'status_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class StatusRestClient {
   factory StatusRestClient(Dio dio, {String? baseUrl}) = _StatusRestClient;
 

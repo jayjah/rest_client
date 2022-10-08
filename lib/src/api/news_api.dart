@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'news_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class NewsRestClient implements RestInterface<NewsObject> {
   factory NewsRestClient(Dio dio, {String? baseUrl}) = _NewsRestClient;
 

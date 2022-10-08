@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'events_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class EventRestClient implements RestInterface<EventObject> {
   factory EventRestClient(Dio dio, {String? baseUrl}) = _EventRestClient;
 

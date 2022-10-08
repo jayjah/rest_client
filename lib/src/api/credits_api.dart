@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'credits_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class CreditRestClient implements RestInterface<CreditObject> {
   factory CreditRestClient(Dio dio, {String? baseUrl}) = _CreditRestClient;
 

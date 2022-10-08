@@ -6,7 +6,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'image_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class ImageRestClient implements RestInterface<ImageObject> {
   factory ImageRestClient(Dio dio, {String? baseUrl}) = _ImageRestClient;
 

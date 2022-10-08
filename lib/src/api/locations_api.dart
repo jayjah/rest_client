@@ -5,7 +5,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'locations_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class LocationRestClient implements RestInterface<LocationObject> {
   factory LocationRestClient(Dio dio, {String? baseUrl}) = _LocationRestClient;
 

@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'users_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class UserRestClient implements RestInterface<UserObject> {
   factory UserRestClient(Dio dio, {String? baseUrl}) = _UserRestClient;
 

@@ -3,7 +3,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'participate_trainings_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class ParticipateTrainingRestClient {
   factory ParticipateTrainingRestClient(Dio dio, {String? baseUrl}) =
       _ParticipateTrainingRestClient;

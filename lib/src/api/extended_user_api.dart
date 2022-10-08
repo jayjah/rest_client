@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'extended_user_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class ExtendedUserRestClient {
   factory ExtendedUserRestClient(Dio dio, {String? baseUrl}) =
       _ExtendedUserRestClient;

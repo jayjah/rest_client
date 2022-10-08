@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'training_days_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class TrainingDaysRestClient {
   factory TrainingDaysRestClient(Dio dio, {String? baseUrl}) =
       _TrainingDaysRestClient;

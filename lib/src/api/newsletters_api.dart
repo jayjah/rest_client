@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'newsletters_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class NewsletterRestClient {
   factory NewsletterRestClient(Dio dio, {String? baseUrl}) =
       _NewsletterRestClient;

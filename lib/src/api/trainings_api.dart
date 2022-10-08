@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'trainings_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class TrainingsRestClient implements RestInterface<TrainingsObject> {
   factory TrainingsRestClient(Dio dio, {String? baseUrl}) =
       _TrainingsRestClient;

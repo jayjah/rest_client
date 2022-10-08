@@ -3,7 +3,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'participate_events_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class ParticipateEventRestClient {
   factory ParticipateEventRestClient(Dio dio, {String? baseUrl}) =
       _ParticipateEventRestClient;

@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'configs_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class ConfigRestClient implements RestInterface<ConfigObject> {
   factory ConfigRestClient(Dio dio, {String? baseUrl}) = _ConfigRestClient;
 

@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'registers_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class RegisterRestClient implements RestInterface<RegisterObject> {
   factory RegisterRestClient(Dio dio, {String? baseUrl}) = _RegisterRestClient;
 

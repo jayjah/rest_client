@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'todos_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class TodoRestClient implements RestInterface<TodoObject> {
   factory TodoRestClient(Dio dio, {String? baseUrl}) = _TodoRestClient;
 

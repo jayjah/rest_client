@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'messages_api.g.dart';
 
-@RestApi(autoCastResponse: true)
+@RestApi()
 abstract class MessageRestClient {
   factory MessageRestClient(Dio dio, {String? baseUrl}) = _MessageRestClient;
 
