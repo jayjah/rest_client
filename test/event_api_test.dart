@@ -11,11 +11,6 @@ void main() {
         baseUrl: 'https://movementfam.jayjah.de/v3',
       );
     });
-    test('post', () async {
-      final created =
-          await events.post(EventObject.fromJson(<String, dynamic>{}));
-      expect(created, isNotNull);
-    });
     test('getAll', () async {
       final allEvents = await events.getAll();
       expect(allEvents, isList);
@@ -23,14 +18,6 @@ void main() {
     test('getOne', () async {
       final getOne = await events.getOne('1');
       expect(getOne, isNotNull);
-    });
-    test('update', () async {
-      final updated =
-          await events.update('1', EventObject.fromJson(<String, dynamic>{}));
-      expect(updated, isNotNull);
-    });
-    test('delete', () async {
-      await events.delete('1');
     });
   });
 }

@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dio/native_imp.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -59,7 +58,6 @@ part 'src/helpers/formatting.dart';
 part 'src/interceptors/auth_token.dart';
 part 'src/interfaces/data_model.dart';
 part 'src/interfaces/rest_interface.dart';
-part 'src/mock_dio.dart';
 
 // initialize datetime format
 void initModels() => Hive
