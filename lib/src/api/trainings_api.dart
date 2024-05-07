@@ -119,7 +119,7 @@ class TrainingsObject extends HiveObject
     final String locale = Intl.getCurrentLocale();
     final StringBuffer buffer = StringBuffer();
     if (ageFrom != 0) {
-      if (ageTill == 100) {
+      if (ageTill == 100 || ageTill == 99) {
         if (locale == 'de') {
           buffer.write('ab');
         } else {

@@ -1,3 +1,6 @@
+## [0.13.0] -
+* fix: handle correct ageTill value
+
 ## [0.12.0] - 
 * update dependencies
 * fix: handle correct ageTill value
