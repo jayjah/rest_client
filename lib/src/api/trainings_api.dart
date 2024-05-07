@@ -129,7 +129,8 @@ class TrainingsObject extends HiveObject
       }
       buffer.write('$ageFrom ');
     }
-    if (ageTill != 100) {
+    if (ageTill != 100 && ageTill != 99) {
+      // 100 means that there is no end bound from server; 99 means that there is no end bound from client
       buffer.write('- $ageTill ');
     }
 
