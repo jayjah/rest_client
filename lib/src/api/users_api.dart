@@ -50,12 +50,6 @@ abstract class UserRestClient implements RestInterface<UserObject> {
   @POST("/users")
   Future<UserObject> post(@Body() UserObject task);
 
-  @POST("/users/skills/{id}")
-  Future<SkillApplication?> postSkill(
-    @Path('id') int userId,
-    @Header('skillId') String skillId,
-  );
-
   @POST("/users/{id}/pushToken")
   Future<PushTokenObject> postPushToken(
       @Path('id') String id, @Body() PushTokenObject task);
