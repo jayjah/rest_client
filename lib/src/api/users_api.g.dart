@@ -740,6 +740,45 @@ class _UserRestClient implements UserRestClient {
   }
 
   @override
+  Future<SkillApplication?> postSkill(
+    String userId,
+    String skillId,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'skillId': skillId};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<SkillApplication>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/users/skills/${userId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
+    late SkillApplication? _value;
+    try {
+      _value = _result.data == null
+          ? null
+          : SkillApplication.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<PushTokenObject> postPushToken(
     String id,
     PushTokenObject task,
