@@ -741,7 +741,7 @@ class _UserRestClient implements UserRestClient {
 
   @override
   Future<SkillApplication?> postSkill(
-    String userId,
+    int userId,
     String skillId,
   ) async {
     final _extra = <String, dynamic>{};

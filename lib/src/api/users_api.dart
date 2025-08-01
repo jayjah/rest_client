@@ -52,7 +52,7 @@ abstract class UserRestClient implements RestInterface<UserObject> {
 
   @POST("/users/skills/{id}")
   Future<SkillApplication?> postSkill(
-    @Path('id') String userId,
+    @Path('id') int userId,
     @Header('skillId') String skillId,
   );
 
