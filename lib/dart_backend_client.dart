@@ -75,6 +75,7 @@ void initModels() => Hive
   ..registerAdapter(TrainerObjectAdapter())
   ..registerAdapter(TrainingDateObjectAdapter())
   ..registerAdapter(TrainingsObjectAdapter())
+  ..registerAdapter(SkillApplicationAdapter())
   ..registerAdapter(UserObjectAdapter())
   ..registerAdapter(PushTokenObjectAdapter())
   ..registerAdapter(UserTrainingDateObjectAdapter())

@@ -50,6 +50,13 @@ abstract class UserRestClient implements RestInterface<UserObject> {
   @POST("/users")
   Future<UserObject> post(@Body() UserObject task);
 
+  @override
+  @POST("/users/skills/{id}")
+  Future<SkillApplication> postSkill(
+    @Path('id') String userId,
+    @Header('skillId') String skillId,
+  );
+
   @POST("/users/{id}/pushToken")
   Future<PushTokenObject> postPushToken(
       @Path('id') String id, @Body() PushTokenObject task);
@@ -94,23 +101,28 @@ class UserObject extends HiveObject implements DataModel, DetailData {
   List<UserTrainingObject>? trainingParticipates;
   @HiveField(15)
   int? creditPoints;
-  UserObject(
-      {this.id,
-      this.firstName,
-      this.lastName,
-      this.createdAt,
-      this.loginName,
-      this.password,
-      this.email,
-      this.birthDate,
-      this.lastLogin,
-      this.newsLetter,
-      this.role,
-      this.externalId,
-      this.eventParticipates,
-      this.todos,
-      this.trainingParticipates,
-      this.creditPoints});
+
+  @HiveField(16)
+  List<SkillApplication>? skills;
+  UserObject({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.createdAt,
+    this.loginName,
+    this.password,
+    this.email,
+    this.birthDate,
+    this.lastLogin,
+    this.newsLetter,
+    this.role,
+    this.externalId,
+    this.eventParticipates,
+    this.todos,
+    this.trainingParticipates,
+    this.creditPoints,
+    this.skills,
+  });
 
   @override
   bool operator ==(Object other) =>
@@ -132,7 +144,8 @@ class UserObject extends HiveObject implements DataModel, DetailData {
           todos == other.todos &&
           eventParticipates == other.eventParticipates &&
           trainingParticipates == other.trainingParticipates &&
-          creditPoints == other.creditPoints;
+          creditPoints == other.creditPoints &&
+          skills == other.skills;
 
   @override
   int get hashCode =>
@@ -151,7 +164,8 @@ class UserObject extends HiveObject implements DataModel, DetailData {
       todos.hashCode ^
       eventParticipates.hashCode ^
       trainingParticipates.hashCode ^
-      creditPoints.hashCode;
+      creditPoints.hashCode ^
+      skills.hashCode;
 
   factory UserObject.fromJson(Map<String, dynamic> json) =>
       _$UserObjectFromJson(json);
@@ -164,7 +178,7 @@ class UserObject extends HiveObject implements DataModel, DetailData {
 
   @override
   String toString() =>
-      '$runtimeType(id: $id,firstName: $firstName,lastName: $lastName,loginName: $loginName,role: $role,email: $email,creditPoints: $creditPoints,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId)';
+      '$runtimeType(id: $id,firstName: $firstName,lastName: $lastName,loginName: $loginName,role: $role,email: $email,creditPoints: $creditPoints,createdAt: ${createdAt?.toIso8601String()},lastLogin: ${lastLogin?.toIso8601String()},newsLetter: $newsLetter,birthDate: ${birthDate?.toIso8601String()},externalId: $externalId, skills: $skills)';
 
   @override
   String? get content => '$header \n $subHeader';
@@ -317,4 +331,39 @@ class UserTrainingDateObject extends HiveObject {
 
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
+}
+
+@HiveType(typeId: 22)
+@JsonSerializable()
+class SkillApplication extends HiveObject {
+  @HiveField(0)
+  int? id;
+
+  @HiveField(1)
+  String? description;
+
+  @HiveField(2)
+  DateTime? createdAt;
+
+  SkillApplication({
+    this.id,
+    this.createdAt,
+    this.description,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SkillApplication &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          description == other.description &&
+          createdAt == other.createdAt;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      description.hashCode ^
+      createdAt.hashCode ^
+      runtimeType.hashCode;
 }
