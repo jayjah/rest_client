@@ -359,4 +359,8 @@ class SkillApplication extends HiveObject {
       description.hashCode ^
       createdAt.hashCode ^
       runtimeType.hashCode;
+
+  factory SkillApplication.fromJson(Map<String, dynamic> json) =>
+      _$SkillApplicationFromJson(json);
+  Map<String, dynamic> toJson() => _$SkillApplicationToJson(this);
 }
