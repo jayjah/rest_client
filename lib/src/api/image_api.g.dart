@@ -234,6 +234,7 @@ class _ImageRestClient implements ImageRestClient {
     return value;
   }
 
+  @override
   @deprecated
   Future<ImageObject?> post(ImageObject obj) => throw BackendClientException(
       'API: Future<ImageObject?> post() is deprecated!\nUse API: Future<ImageObject?> postImage() instead!');

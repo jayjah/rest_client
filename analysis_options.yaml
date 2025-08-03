@@ -10,8 +10,8 @@ analyzer:
 
   exclude:
     - "lib/localization"
-    - "**/*.gen.dart"
     - "**/*.g.dart"
+    - "**/*.gen.dart"
     - "**/*.freezed.dart"
     - "**/*.file.dart"
 
