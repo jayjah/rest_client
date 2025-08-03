@@ -5,7 +5,7 @@ import 'package:retrofit/retrofit.dart';
 part 'skill_tree_api.g.dart';
 
 @RestApi()
-abstract class SkillTreeClient implements RestInterface<UserObject> {
+abstract class SkillTreeClient {
   factory SkillTreeClient(Dio dio, {String? baseUrl}) = _SkillTreeClient;
 
   @POST("/users/skills/{id}")
