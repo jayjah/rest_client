@@ -1,6 +1,7 @@
-import 'package:dart_backend_client/dart_backend_client.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+
+import 'users_api.dart';
 
 part 'skill_tree_api.g.dart';
 

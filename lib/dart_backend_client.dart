@@ -25,7 +25,6 @@ import 'src/api/trainers_api.dart';
 import 'src/api/training_days_api.dart';
 import 'src/api/trainings_api.dart';
 import 'src/api/users_api.dart';
-import 'src/api/skill_tree_api.dart';
 
 export 'package:dio/dio.dart';
 export 'package:hive/hive.dart';
@@ -45,13 +44,13 @@ export 'src/api/newsletters_api.dart';
 export 'src/api/participate_events_api.dart';
 export 'src/api/participate_trainings_api.dart';
 export 'src/api/registers_api.dart';
+export 'src/api/skill_tree_api.dart';
 export 'src/api/status_api.dart';
 export 'src/api/todos_api.dart';
 export 'src/api/trainers_api.dart';
 export 'src/api/training_days_api.dart';
 export 'src/api/trainings_api.dart';
 export 'src/api/users_api.dart';
-export 'src/api/skill_tree_api.dart';
 
 part 'src/client.dart';
 part 'src/exception.dart';
