@@ -1,6 +1,6 @@
 name: dart_backend_client
 description: A dart package to provide a rest interface
-version: 0.22.0
+version: 0.23.0
 homepage: https://www.jayjah.de
 repository: https://github.com/jayjah/dart_backend_client
 
@@ -20,7 +20,6 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   http: ^1.4.0
   osm_nominatim: ^4.0.1
-  native_dio_adapter: ^1.5.0
   #dio_logger: any
 dev_dependencies:
   test: any
