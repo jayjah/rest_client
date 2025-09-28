@@ -22,7 +22,7 @@ abstract class Client {
   static final Dio _dio = Dio(BaseOptions(
       headers: <String, dynamic>{},
       queryParameters: <String, dynamic>{},
-      contentType: 'application/json'))
+      contentType: 'application/json'))..httpClientAdapter = NativeAdapter()
     ..interceptors.add(AuthorizationInterceptor());
   static Dio get getDio => _dio;
 }
