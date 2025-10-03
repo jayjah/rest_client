@@ -94,12 +94,12 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
   Future<String?> postNewPassword(
     String email,
     String code,
-    String newPassword,
+    String password,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = newPassword;
+    const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<String>(Options(
       method: 'POST',
       headers: _headers,
@@ -107,7 +107,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
     )
         .compose(
           _dio.options,
-          '/users/recoverpassword/${email}/${code}',
+          '/users/recoverpassword/${email}/${code}/${password}',
           queryParameters: queryParameters,
           data: _data,
         )
