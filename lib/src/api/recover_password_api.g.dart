@@ -61,7 +61,8 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'code': code};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<RecoverPasswordResponse>(Options(
       method: 'GET',
@@ -70,7 +71,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
     )
         .compose(
           _dio.options,
-          '/users/recoverpassword/${email}/${code}',
+          '/users/recoverpassword/${email}/validate',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -98,7 +99,11 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'code': code,
+      r'password': password,
+    };
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<RecoverPasswordResponse>(Options(
       method: 'POST',
@@ -107,7 +112,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
     )
         .compose(
           _dio.options,
-          '/users/recoverpassword/${email}/${code}/${password}',
+          '/users/recoverpassword/${email}/set',
           queryParameters: queryParameters,
           data: _data,
         )

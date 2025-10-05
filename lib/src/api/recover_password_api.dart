@@ -12,17 +12,17 @@ abstract class RecoverPasswordClient {
     @Path('email') String email,
   );
 
-  @GET('/users/recoverpassword/{email}/{code}')
+  @GET('/users/recoverpassword/{email}/validate')
   Future<RecoverPasswordResponse> validateEmailAndCode(
     @Path('email') String email,
-    @Path('code') String code,
+    @Header('code') String code,
   );
 
-  @POST("/users/recoverpassword/{email}/{code}/{password}")
+  @POST("/users/recoverpassword/{email}/set")
   Future<RecoverPasswordResponse> postNewPassword(
     @Path('email') String email,
-    @Path('code') String code,
-    @Path('password') String password,
+    @Header('code') String code,
+    @Header('password') String password,
   );
 }
 
