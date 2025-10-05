@@ -22,12 +22,12 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<String?> postPasswordRecover(String email) async {
+  Future<RecoverPasswordResponse> postPasswordRecover(String email) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<String>(Options(
+    final _options = _setStreamType<RecoverPasswordResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -43,10 +43,10 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<String>(_options);
-    late String? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RecoverPasswordResponse _value;
     try {
-      _value = _result.data;
+      _value = RecoverPasswordResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -55,7 +55,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
   }
 
   @override
-  Future<String?> validateEmailAndCode(
+  Future<RecoverPasswordResponse> validateEmailAndCode(
     String email,
     String code,
   ) async {
@@ -63,7 +63,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<String>(Options(
+    final _options = _setStreamType<RecoverPasswordResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -79,10 +79,10 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<String>(_options);
-    late String? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RecoverPasswordResponse _value;
     try {
-      _value = _result.data;
+      _value = RecoverPasswordResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -91,7 +91,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
   }
 
   @override
-  Future<String?> postNewPassword(
+  Future<RecoverPasswordResponse> postNewPassword(
     String email,
     String code,
     String password,
@@ -100,7 +100,7 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<String>(Options(
+    final _options = _setStreamType<RecoverPasswordResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -116,10 +116,10 @@ class _RecoverPasswordClient implements RecoverPasswordClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<String>(_options);
-    late String? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RecoverPasswordResponse _value;
     try {
-      _value = _result.data;
+      _value = RecoverPasswordResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
