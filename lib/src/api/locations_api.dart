@@ -166,7 +166,8 @@ class LocationObject extends HiveObject
   Map<String, dynamic> toJson() => _$LocationObjectToJson(this);
 
   static Future<Iterable<LocationObject>> fromQuery(String pattern) async {
-    final locations = await Nominatim(userAgent: '').searchByName(
+    final locations =
+        await Nominatim(userAgent: 'MovementFamily e.V. App').searchByName(
       query: pattern,
       limit: 5,
       addressDetails: true,
@@ -180,7 +181,8 @@ class LocationObject extends HiveObject
 
   static Future<LocationObject> fromLatLong(
       double latitude, double longitude) async {
-    final location = await Nominatim(userAgent: '').reverseSearch(
+    final location =
+        await Nominatim(userAgent: 'MovementFamily e.V. App').reverseSearch(
       lon: longitude,
       lat: latitude,
       addressDetails: true,
